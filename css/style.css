@@ -1,0 +1,98 @@
+body {
+	margin: 0 0;
+	width: 100%;
+	height: 100%;
+	background: url(https://i.ytimg.com/vi/Vp_9ceE2KOY/maxresdefault.jpg) no-repeat;
+	background-size: cover;
+	font-family: 'Audiowide', cursive;
+
+}
+#header {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	padding-top: 70px;
+	font-family: 'Audiowide', cursive;
+
+}
+.name_of_game {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	width: 80%;
+	height: 150px;
+	background:  rgba(0, 255, 243, 0.76);
+	-webkit-box-shadow: 0px 0px 22px 13px rgba(110,187,255,0.8);
+	-moz-box-shadow: 0px 0px 22px 13px rgba(110,187,255,0.8);
+	box-shadow: 0px 0px 22px 13px rgba(110,187,255,0.8);
+	font-family: 'Audiowide', cursive;
+	font-size: 65px;
+}
+.name_of_game h2 {
+	color: #5c67ff;
+}
+#wellcome {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	padding-top: 100px;
+
+}
+
+#registration {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	height: 686px;
+	width: 400px;
+	background: rgba(0, 255, 243, 0.76);
+	border: 1px solid #09f4ff;
+	-webkit-box-shadow: 0px 0px 22px 13px rgba(110,187,255,0.8);
+	-moz-box-shadow: 0px 0px 22px 13px rgba(110,187,255,0.8);
+	box-shadow: 0px 0px 22px 13px rgba(110,187,255,0.8);
+	border: 1px solid #09f4ff;
+	color: #4d6aff;
+}
+.registration_form {
+	width: 75%;
+}
+.sign {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 300px;
+}
+
+.sign input {
+    width: 100%;
+    background-color: white;
+    height: 30px;
+    border: none;
+    padding-left: 10px;
+    background-color: #07ffc6c2;
+	color: #5c67ff;
+    font-size: 20px;
+	outline: 0 !important;
+	border: 0px;
+}
+.sign button {
+	margin-top: 40px;
+    width: 134%;
+    border: 0;
+    border-radius: 0px;
+    height: 50px;
+    background-color: #00fff3bd;
+	outline: 0 !important;
+	border: 0px;
+	font-size: 40px;
+	color: #5c67ff;
+}
+.sign button:hover {
+	background-color: #00ffad;
+}
+.sign label {
+	padding: 10px;
+}
