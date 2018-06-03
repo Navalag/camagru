@@ -1,50 +1,35 @@
-<?php
-	require 'config/database.php'
-	session_start();
+<?php 
+
+include 'inc/header.php';
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-	<title>sign in / sign up</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet">
-</head>
-<body>
-	<section id="header">
-		<div class="name_of_game">
-			<h2>Camagru</h2>
-		</div>
-	</section>
-	<section id="wellcome">
-		<section id="registration">
-			<div class="registration_form">
-				<form class="sign" action="admin/login.php" method="post">
-					<h2>Login here</h2>
-					<label><b>Username</b></label>
-					<input type="text" name="uname" placeholder="User name">
-					<label><b>Password</b></label>
-					<input type="text" name="pass" placeholder="Password">
-					<button type="submit">
-						<b>Login</b>
-					</button>
-				</form>
-			</div>
-			<div>
-				<form class="sign" action="admin/signup.php" method="post">
-					<h2>Sign up here</h2>
-					<label>Username</label>
-					<input type="text" name="uname" placeholder="User name">
-					<label>Email Add:</label>
-					<input type="text" name="Email" placeholder="Email">
-					<label>Password:</label>
-					<input type="text" name="Password" placeholder="Password">
-					<button type="submit">
-						<b>Sign up</b>
-					</button>
-				</form>
-			</div>
-		</section>
-	</section>
-</body>
-</html>
+<div class="banner">
+	<i class="logo fas fa-camera-retro"></i>
+	<!-- <img class="logo" src="img/camera-retro.svg" alt="City"> -->
+	<h1 class="headline">Camagru</h1>
+	<span class="tagline">A small Instagram-like site allowing you to create and share photo-montages.</span>
+</div><!--/.banner-->
+
+<div class="container clearfix">
+	<div class="secondary col">
+		<h2>Welcome!</h2>
+		<p>Cupcake ipsum dolor sit.</p>
+		<p>Cupcake ipsum dolor sit. Amet chocolate cake gummies jelly beans candy bonbon brownie candy. Gingerbread powder muffin. Icing cotton candy. Croissant icing pie ice cream brownie I love cheesecake cookie. Pastry chocolate pastry jelly croissant.</p>
+		<p>Cake sesame snaps sweet tart candy canes tiramisu I love oat cake chocolate bar. Jelly beans pastry brownie sugar plum pastry bear claw tiramisu tootsie roll. Tootsie roll wafer I love chocolate donuts.</p>
+	</div><!--/.secondary-->
+	
+	<div class="primary col">
+		<h2>Photo Example</h2>
+		<img class="feat-img" src="img/treats.svg" alt="Drinks and eats">
+		<p>Croissant macaroon pie brownie. Cookie marshmallow liquorice gingerbread caramels toffee I love chocolate. Wafer lollipop dessert. Bonbon jelly beans pudding dessert sugar plum. Marzipan toffee drag&#233;e chocolate bar candy toffee pudding I love. Gummi bears pie gingerbread lollipop.</p>
+	</div><!--/.primary-->
+	
+	<div class="tertiary col">
+		<h2>Some Important Facts</h2>
+		<p><strong>Plane: </strong>Tiramisu caramels gummies chupa chups lollipop muffin. Jujubes chocolate caramels cheesecake brownie lollipop drag&#233;e cheesecake.</p>
+		<p><strong>Train: </strong>Pie apple pie pudding I love wafer toffee liquorice sesame snaps lemon drops. Lollipop gummi bears dessert muffin I love fruitcake toffee pie.</p>
+		<p><strong>Car: </strong>Jelly cotton candy bonbon jelly-o jelly-o I love. I love sugar plum chocolate cake pie I love pastry liquorice.</p>
+	</div><!--/.tertiary-->	
+</div>
+
+<?php include 'inc/footer.php'; ?>

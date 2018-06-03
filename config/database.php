@@ -1,8 +1,8 @@
 <?php
 
 $DB_DSN = "localhost";
-$DB_USER = "camagru";
-$DB_PASSWORD = "admin";
+$DB_USER = "root";
+$DB_PASSWORD = "qwerty";
 // $DB_NAME = "camagru";
 
 if (!$connect = mysqli_connect($DB_DSN, $DB_USER, $DB_PASSWORD))
