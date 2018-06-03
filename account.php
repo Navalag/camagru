@@ -12,13 +12,13 @@ include 'inc/header.php';
 
 <div class="container clearfix">
 	
-	<div class="primary col">
+	<div class="account_primary col">
 		<h2>Photo Example</h2>
 		<img class="feat-img" src="img/treats.svg" alt="Drinks and eats">
 		<p>Croissant macaroon pie brownie. Cookie marshmallow liquorice gingerbread caramels toffee I love chocolate. Wafer lollipop dessert. Bonbon jelly beans pudding dessert sugar plum. Marzipan toffee drag&#233;e chocolate bar candy toffee pudding I love. Gummi bears pie gingerbread lollipop.</p>
 	</div><!--/.primary-->
 
-	<div class="secondary col">
+	<div class="account_secondary col">
 		<h2>Welcome!</h2>
 		<p>Cupcake ipsum dolor sit.</p>
 		<p>Cupcake ipsum dolor sit. Amet chocolate cake gummies jelly beans candy bonbon brownie candy. Gingerbread powder muffin. Icing cotton candy. Croissant icing pie ice cream brownie I love cheesecake cookie. Pastry chocolate pastry jelly croissant.</p>

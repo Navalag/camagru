@@ -130,6 +130,14 @@ img {
 		width: 50%;
 	}
 
+	.account_primary {
+		width: 60%;
+	}
+
+	.account_secondary {
+		width: 40%;
+	}
+
 	.main-nav {
 		float: right;
 	}
