@@ -68,11 +68,19 @@ img {
 	color: #093a58;
 }
 
+.dark-header a {
+	color: white;
+}
+
 /* ---- Layout Containers ---- */
 
 .main-header {
 	padding-top: .5em;
 	padding-bottom: .5em;
+}
+
+.dark-header {
+	background: #39cec3;
 }
 
 .banner,
@@ -85,6 +93,10 @@ img {
 	background: #3acec2;
 	padding: 3.2em 0;
 	margin-bottom: 60px;
+}
+
+.cont-wrap {
+	margin-top: 4% !important;
 }
 
 .col {
