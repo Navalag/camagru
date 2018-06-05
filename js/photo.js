@@ -5,6 +5,8 @@ window.addEventListener("DOMContentLoaded", function() {
 	var context = canvas.getContext('2d');
 	var video = document.getElementById('video');
 	var mediaConfig =  { video: true };
+	// var sampleImage = document.getElementById("ringoImage");
+	// var	canvasFromImg = convertImageToCanvas(sampleImage);
 	var errBack = function(e) {
 		console.log('An error has occurred!', e)
 	 };
@@ -35,39 +37,56 @@ window.addEventListener("DOMContentLoaded", function() {
 	// Trigger photo take
 	document.getElementById('snap').addEventListener('click', function() {
 		context.drawImage(video, 0, 0, 640, 480);
+		document.getElementById("pngHolder").appendChild(convertCanvasToImage(canvas));
 	});
 
 }, false);
 
+// document.getElementById("canvasHolder").appendChild(canvas);
 
-wo = window.onload;
-window.onload = function() {
-	// wo && wo.call(null);
-	
-	// Get the image
-	var sampleImage = document.getElementById("ringoImage");
-	var	canvas = convertImageToCanvas(sampleImage);
-	
-	// Actions
-	document.getElementById("canvasHolder").appendChild(canvas);
-	document.getElementById("pngHolder").appendChild(convertCanvasToImage(canvas));
-	
-	// Converts image to canvas; returns new canvas element
-	function convertImageToCanvas(image) {
-		var canvas = document.createElement("canvas");
-		canvas.width = image.width;
-		canvas.height = image.height;
-		canvas.getContext("2d").drawImage(image, 0, 0);
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
 
-		return canvas;
-	}
+var img1 = loadImage('http://upload.wikimedia.org/wikipedia/en/2/24/Lenna.png', main);
+var img2 = loadImage('http://introcs.cs.princeton.edu/java/31datatype/peppers.jpg', main);
 
-	// Converts canvas to an image
-	function convertCanvasToImage(canvas) {
-		var image = new Image();
-		image.src = canvas.toDataURL("image/png");
-		return image;
-	}
-};
+var imagesLoaded = 0;
+function main() {
+    imagesLoaded += 1;
 
+    if(imagesLoaded == 2) {
+        // composite now
+        ctx.drawImage(img1, 0, 0);
 
+        ctx.globalAlpha = 0.5;
+        ctx.drawImage(img2, 0, 0);
+    }
+}
+
+function loadImage(src, onload) {
+    // http://www.thefutureoftheweb.com/blog/image-onload-isnt-being-called
+    var img = new Image();
+
+    img.onload = onload;
+    img.src = src;
+
+    return img;
+}
+
+// Converts canvas to an image
+function convertCanvasToImage(canvas) {
+	var image = new Image();
+	image.src = canvas.toDataURL("image/png");
+
+	return image;
+}
+
+// Converts image to canvas; returns new canvas element
+function convertImageToCanvas(image) {
+	var canvas = document.createElement("canvas");
+	canvas.width = image.width;
+	canvas.height = image.height;
+	canvas.getContext("2d").drawImage(image, 0, 0);
+
+	return canvas;
+}
