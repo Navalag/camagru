@@ -47,8 +47,8 @@ window.addEventListener("DOMContentLoaded", function() {
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
-var img1 = loadImage('http://upload.wikimedia.org/wikipedia/en/2/24/Lenna.png', main);
-var img2 = loadImage('http://introcs.cs.princeton.edu/java/31datatype/peppers.jpg', main);
+var img1 = loadImage('img/treats.svg', main);
+var img2 = loadImage('img/city-logo.svg', main);
 
 var imagesLoaded = 0;
 function main() {
