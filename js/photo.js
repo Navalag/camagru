@@ -37,34 +37,51 @@ window.addEventListener("DOMContentLoaded", function() {
 	// Trigger photo take
 	document.getElementById('snap').addEventListener('click', function() {
 		context.drawImage(video, 0, 0, 640, 480);
-		document.getElementById("pngHolder").appendChild(convertCanvasToImage(canvas));
+		sendFile(convertCanvasToImage(canvas));
 	});
 
 }, false);
 
 // document.getElementById("canvasHolder").appendChild(canvas);
 
-var canvas = document.getElementById("canvas");
-var ctx = canvas.getContext("2d");
+// var canvas = document.getElementById("canvas");
+// var ctx = canvas.getContext("2d");
 
-var img1 = loadImage('img/treats.svg', main);
-var img2 = loadImage('img/city-logo.svg', main);
+// var img1 = loadImage('img/treats.svg', main);
+// var img2 = loadImage('img/city-logo.svg', main);
 
-var imagesLoaded = 0;
-function main() {
-    imagesLoaded += 1;
+// var imagesLoaded = 0;
+// function main() {
+//     imagesLoaded += 1;
 
-    if(imagesLoaded == 2) {
-        // composite now
-        ctx.drawImage(img1, 0, 0);
+//     if(imagesLoaded == 2) {
+//         // composite now
+//         ctx.drawImage(img1, 0, 0);
 
-        ctx.globalAlpha = 0.5;
-        ctx.drawImage(img2, 0, 0);
+//         ctx.globalAlpha = 0.5;
+//         ctx.drawImage(img2, 0, 0);
+//     }
+// }
+
+function sendFile(file) {
+  var uri = '../inc/camera.php';
+  var xhr = new XMLHttpRequest();
+  var fd = new FormData();
+
+  xhr.open('POST', uri, true);
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      console.log(xhr.responseText);
+      document.getElementById("pngHolder").appendChild(convertCanvasToImage(canvas));
+      //do what you want with the image name returned
+      //e.g update the interface
     }
+  };
+  fd.append('fileToUpload', file, 'chris1.png');
+  xhr.send(fd);
 }
 
 function loadImage(src, onload) {
-    // http://www.thefutureoftheweb.com/blog/image-onload-isnt-being-called
     var img = new Image();
 
     img.onload = onload;
@@ -77,6 +94,7 @@ function loadImage(src, onload) {
 function convertCanvasToImage(canvas) {
 	var image = new Image();
 	image.src = canvas.toDataURL("image/png");
+	console.log(image);
 
 	return image;
 }

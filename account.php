@@ -18,13 +18,17 @@ include 'inc/header.php';
 		<canvas id="canvas" width="640" height="480"></canvas>
 	</div><!--/.primary-->
 	
-
 	<div class="account_secondary col">
 		<h2>Welcome!</h2>
 		<p>Cupcake ipsum dolor sit.</p>
 		<p>Cupcake ipsum dolor sit. Amet chocolate cake gummies jelly beans candy bonbon brownie candy. Gingerbread powder muffin. Icing cotton candy. Croissant icing pie ice cream brownie I love cheesecake cookie. Pastry chocolate pastry jelly croissant.</p>
 		<p>Cake sesame snaps sweet tart candy canes tiramisu I love oat cake chocolate bar. Jelly beans pastry brownie sugar plum pastry bear claw tiramisu tootsie roll. Tootsie roll wafer I love chocolate donuts.</p>
 		<p id="pngHolder"></p>
+		<form action="inc/camera.php" method="post" enctype="multipart/form-data">
+		    Select image to upload:
+		    <input type="file" name="fileToUpload" id="fileToUpload">
+		    <input type="submit" value="Upload Image" name="submit">
+		</form>
 	</div><!--/.secondary-->
 	
 </div>
