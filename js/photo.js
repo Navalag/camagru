@@ -44,31 +44,34 @@ window.addEventListener("DOMContentLoaded", function() {
 
 // document.getElementById("canvasHolder").appendChild(canvas);
 
-// var canvas = document.getElementById("canvas");
-// var ctx = canvas.getContext("2d");
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
 
-// var img1 = loadImage('img/treats.svg', main);
-// var img2 = loadImage('img/city-logo.svg', main);
+var img1 = loadImage('img/treats.svg', main);
+var img2 = loadImage('img/city-logo.svg', main);
 
-// var imagesLoaded = 0;
-// function main() {
-//     imagesLoaded += 1;
+var imagesLoaded = 0;
+function main() {
+    imagesLoaded += 1;
 
-//     if(imagesLoaded == 2) {
-//         // composite now
-//         ctx.drawImage(img1, 0, 0);
+    if(imagesLoaded == 2) {
+        // composite now
+        ctx.drawImage(img1, 0, 0);
 
-//         ctx.globalAlpha = 0.5;
-//         ctx.drawImage(img2, 0, 0);
-//     }
-// }
+        ctx.globalAlpha = 0.5;
+        ctx.drawImage(img2, 0, 0);
+    }
+}
 
 function sendFile(file) {
   var uri = '../inc/camera.php';
   var xhr = new XMLHttpRequest();
   var fd = new FormData();
 
+  console.log(file);
   xhr.open('POST', uri, true);
+  var data = "img=" + file;
+  console.log(data);
   xhr.onreadystatechange = function() {
     if (xhr.readyState == 4 && xhr.status == 200) {
       console.log(xhr.responseText);
@@ -77,7 +80,8 @@ function sendFile(file) {
       //e.g update the interface
     }
   };
-  fd.append('fileToUpload', file, 'chris1.png');
+  fd.append('fileToUpload', data);
+  xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
   xhr.send(fd);
 }
 
@@ -94,7 +98,6 @@ function loadImage(src, onload) {
 function convertCanvasToImage(canvas) {
 	var image = new Image();
 	image.src = canvas.toDataURL("image/png");
-	console.log(image);
 
 	return image;
 }
