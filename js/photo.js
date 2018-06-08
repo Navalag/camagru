@@ -48,7 +48,6 @@ window.addEventListener("DOMContentLoaded", function() {
 		// console.log(formData);
 		var xhr = new XMLHttpRequest();
 		var img = "img=" + convertCanvasToImage(canvas);
-		console.log(img);
 		xhr.open("POST", "../inc/camera-photo/save_photo.php", true);
 		xhr.onreadystatechange = function() {
 		    if (xhr.readyState == 4 && xhr.status == 200) {
