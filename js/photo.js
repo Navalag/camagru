@@ -37,7 +37,29 @@ window.addEventListener("DOMContentLoaded", function() {
 	// Trigger photo take
 	document.getElementById('snap').addEventListener('click', function() {
 		context.drawImage(video, 0, 0, 640, 480);
-		sendFile(convertCanvasToImage(canvas));
+		// sendFile(convertCanvasToImage(canvas));
+
+		// var formData = new FormData();
+
+		// formData.append(
+		//     "file",
+		//     convertCanvasToImage(canvas)
+		// );
+		// console.log(formData);
+		var xhr = new XMLHttpRequest();
+		var img = "img=" + convertCanvasToImage(canvas);
+		console.log(img);
+		xhr.open("POST", "../inc/camera-photo/save_photo.php", true);
+		xhr.onreadystatechange = function() {
+		    if (xhr.readyState == 4 && xhr.status == 200) {
+		      console.log(xhr.responseText);
+		      document.getElementById("pngHolder").appendChild(convertCanvasToImage(canvas));
+		      //do what you want with the image name returned
+		      //e.g update the interface
+			}
+		};
+		xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+		xhr.send(img);
 	});
 
 }, false);
@@ -61,28 +83,6 @@ function main() {
         ctx.globalAlpha = 0.5;
         ctx.drawImage(img2, 0, 0);
     }
-}
-
-function sendFile(file) {
-  var uri = '../inc/camera.php';
-  var xhr = new XMLHttpRequest();
-  var fd = new FormData();
-
-  console.log(file);
-  xhr.open('POST', uri, true);
-  var data = "img=" + file;
-  console.log(data);
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState == 4 && xhr.status == 200) {
-      console.log(xhr.responseText);
-      document.getElementById("pngHolder").appendChild(convertCanvasToImage(canvas));
-      //do what you want with the image name returned
-      //e.g update the interface
-    }
-  };
-  fd.append('fileToUpload', data);
-  xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
-  xhr.send(fd);
 }
 
 function loadImage(src, onload) {
