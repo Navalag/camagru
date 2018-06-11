@@ -1,13 +1,13 @@
 <?php
 
-    // if (!isset($_SESSION)) {
-    //     session_start();
-    // }
-    // require_once('../get_data_base.php');
-    // require_once('../ft_check_user.php');
+    if (!isset($_SESSION)) {
+        session_start();
+    }
+    include('../../config/setup.php');
+
     $image_folder = "../../img/uploads/";
     $image_coded = $_POST['img'];
-    var_dump($_POST);
+    // var_dump($_POST);
     $img = str_replace('data:image/png;base64,', '', $image_coded);
     $img = str_replace(' ', '+', $img);
     $data = base64_decode($img);
