@@ -1,7 +1,8 @@
 <?php
 
-$DB_DSN = 'mysql:host=localhost;dbname=camagru;port=8080';
+$DB_DSN = 'mysql:host=localhost;';
 $DB_USER = 'root';
-$DB_PASSWORD = '1Marlboro1';
+$DB_PASSWORD = '123456';
+$DB_NAME = 'camagru';
 
 ?>
