@@ -1,6 +1,7 @@
-// Put event listeners into place
+/*
+** START SCRIPT AFTER PAGE LOADED
+*/
 window.addEventListener("DOMContentLoaded", function() {
-	// Grab elements, create settings, etc.
 	var canvas = document.getElementById('canvas');
 	var context = canvas.getContext('2d');
 	var video = document.getElementById('video');
@@ -10,8 +11,9 @@ window.addEventListener("DOMContentLoaded", function() {
 	var errBack = function(e) {
 		console.log('An error has occurred!', e)
 	 };
-
-	// Put video listeners into place
+	/*
+	** PUT VIDEO LISTENERS INTO PLASE
+	*/
 	if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 		navigator.mediaDevices.getUserMedia(mediaConfig).then(function(stream) {
 			video.src = window.URL.createObjectURL(stream);
@@ -33,10 +35,17 @@ window.addEventListener("DOMContentLoaded", function() {
 			video.play();
 		}, errBack);
 	}
-
-	// Trigger photo take
+	/*
+	** SNAP PHOTO
+	*/
 	document.getElementById('snap').addEventListener('click', function() {
 		context.drawImage(video, 0, 0, 640, 480);
+		context.drawImage(loadImage('../img/frame1.png'), 0, 0, 640, 480);
+	});
+	/*
+	** SAVE PHOTO TO SERVER VIA AJAX
+	*/
+	document.getElementById('save').addEventListener('click', function() {
 		var xhr = new XMLHttpRequest();
 		var img_from_canvas = canvas.toDataURL("image/png");
 		var img = "img=" + img_from_canvas;
@@ -50,36 +59,32 @@ window.addEventListener("DOMContentLoaded", function() {
 		xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
 		xhr.send(img);
 	});
-
 }, false);
 
 // document.getElementById("canvasHolder").appendChild(canvas);
 
-var canvas = document.getElementById("canvas");
-var ctx = canvas.getContext("2d");
+// var canvas = document.getElementById("canvas");
+// var ctx = canvas.getContext("2d");
 
-var img1 = loadImage('img/treats.svg', main);
-var img2 = loadImage('img/city-logo.svg', main);
+// var img1 = loadImage('../img/uploads/1528805387.png', main);
+// var img2 = loadImage('https://www.freepik.com/free-vector/elegant-frame-wedding-invitation-with-watercolor-flowers_2080319.htm', main);
 
-var imagesLoaded = 0;
-function main() {
-	 imagesLoaded += 1;
+// var imagesLoaded = 0;
+// function main() {
+// 	 imagesLoaded += 1;
+// 	 if(imagesLoaded == 2) {
+// 		ctx.drawImage(img1, 0, 0);
+// 		// ctx.globalAlpha = 0.5;
+// 		ctx.drawImage(img2, 0, 0);
+// 	}
+// }
 
-	 if(imagesLoaded == 2) {
-		  ctx.drawImage(img1, 0, 0);
+function loadImage(src) {
+	var img = new Image();
+	// img.onload = onload;
+	img.src = src;
 
-		  ctx.globalAlpha = 0.5;
-		  ctx.drawImage(img2, 0, 0);
-	 }
-}
-
-function loadImage(src, onload) {
-	 var img = new Image();
-
-	 img.onload = onload;
-	 img.src = src;
-
-	 return img;
+	return img;
 }
 
 // Converts canvas to an image

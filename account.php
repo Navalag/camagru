@@ -16,6 +16,7 @@ include 'inc/header.php';
 		<video id="video" width="640" height="480" autoplay></video>
 		<button id="snap">Snap Photo</button>
 		<canvas id="canvas" width="640" height="480"></canvas>
+		<button id="save">Save Photo</button>
 	</div><!--/.primary-->
 	
 	<div class="account_secondary col">
