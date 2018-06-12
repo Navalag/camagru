@@ -1,25 +1,42 @@
 <?php
 
-    if (!isset($_SESSION)) {
-        session_start();
-    }
-    include('../../config/setup.php');
+	if (!isset($_SESSION)) {
+		session_start();
+	}
+	include('../../config/setup.php');
 
-    $image_folder = "../../img/uploads/";
-    $image_coded = $_POST['img'];
-    // var_dump($_POST);
-    $img = str_replace('data:image/png;base64,', '', $image_coded);
-    $img = str_replace(' ', '+', $img);
-    $data = base64_decode($img);
-    $name = mktime() . ".png";
-    $file = $image_folder . $name;
-    file_put_contents($file, $data);
-    // $user = UserExist($_SESSION['loggued_on_user'], $pdo);
-    // $owner_id = $user['uid'];
-    // $path = "http://localhost:8100/user_photo/" . $name;
-    // $pdo->query("INSERT INTO `images` (`owner_id`, `src`) VALUES
-    //     ('$owner_id', '$path')");
-    // echo $path;
+	/*
+	** SAVE PHOTO TO SERVER FOLDER
+	*/
+	$image_folder = "../../img/uploads/";
+	$image_coded = $_POST['img'];
+	$img = str_replace('data:image/png;base64,', '', $image_coded);
+	$img = str_replace(' ', '+', $img);
+	$data = base64_decode($img);
+	$name = mktime() . ".png";
+	$file = $image_folder . $name;
+	file_put_contents($file, $data);
+	/*
+	** ADD PHOTO LINK TO DATABASE
+	*/
+	// $user = UserExist($_SESSION['loggued_on_user'], $pdo);
+	// $owner_id = $user['uid'];
+	$path = "http://localhost:8100/img/uploads/" . $name;
+	try {
+		$sql = "INSERT INTO `user_img` (`src`, `user_id`) 
+					VALUES ('$path', 1)";
+		$conn->exec($sql);
+		echo "New record created successfully<br>";
+		}
+	catch(PDOException $e)
+		{
+		echo $sql . "<br>" . $e->getMessage();
+		}
+	$conn = null;
+
+	 // $pdo->query("INSERT INTO `images` (`owner_id`, `src`) VALUES
+	 //     ('$owner_id', '$path')");
+	 // echo $path;
 
 // $pre_im = explode(',', $_POST["img"]);
 // $im = imagecreatefromstring(base64_decode($pre_im[1]));
