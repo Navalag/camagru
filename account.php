@@ -33,6 +33,6 @@ include 'inc/header.php';
 	
 </div>
 
-<script src="js/photo.js"></script>
+<script src="js/camera_handler.js"></script>
 
 <?php include 'inc/footer.php'; ?>

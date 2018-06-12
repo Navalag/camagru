@@ -14,8 +14,8 @@ window.addEventListener("DOMContentLoaded", function() {
 	// Put video listeners into place
 	if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 		navigator.mediaDevices.getUserMedia(mediaConfig).then(function(stream) {
-				video.src = window.URL.createObjectURL(stream);
-				video.play();
+			video.src = window.URL.createObjectURL(stream);
+			video.play();
 		});
 	} else if(navigator.getUserMedia) { // Standard
 		navigator.getUserMedia(mediaConfig, function(stream) {
@@ -37,25 +37,14 @@ window.addEventListener("DOMContentLoaded", function() {
 	// Trigger photo take
 	document.getElementById('snap').addEventListener('click', function() {
 		context.drawImage(video, 0, 0, 640, 480);
-		// sendFile(convertCanvasToImage(canvas));
-
-		// var formData = new FormData();
-
-		// formData.append(
-		//     "file",
-		//     convertCanvasToImage(canvas)
-		// );
-		// console.log(formData);
 		var xhr = new XMLHttpRequest();
 		var img_from_canvas = canvas.toDataURL("image/png");
 		var img = "img=" + img_from_canvas;
 		xhr.open("POST", "../inc/camera-photo/save_photo.php", true);
 		xhr.onreadystatechange = function() {
-		    if (xhr.readyState == 4 && xhr.status == 200) {
-		      console.log(xhr.responseText);
-		      document.getElementById("pngHolder").appendChild(convertCanvasToImage(canvas));
-		      //do what you want with the image name returned
-		      //e.g update the interface
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				console.log(xhr.responseText);
+				document.getElementById("pngHolder").appendChild(convertCanvasToImage(canvas));
 			}
 		};
 		xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
@@ -74,24 +63,23 @@ var img2 = loadImage('img/city-logo.svg', main);
 
 var imagesLoaded = 0;
 function main() {
-    imagesLoaded += 1;
+	 imagesLoaded += 1;
 
-    if(imagesLoaded == 2) {
-        // composite now
-        ctx.drawImage(img1, 0, 0);
+	 if(imagesLoaded == 2) {
+		  ctx.drawImage(img1, 0, 0);
 
-        ctx.globalAlpha = 0.5;
-        ctx.drawImage(img2, 0, 0);
-    }
+		  ctx.globalAlpha = 0.5;
+		  ctx.drawImage(img2, 0, 0);
+	 }
 }
 
 function loadImage(src, onload) {
-    var img = new Image();
+	 var img = new Image();
 
-    img.onload = onload;
-    img.src = src;
+	 img.onload = onload;
+	 img.src = src;
 
-    return img;
+	 return img;
 }
 
 // Converts canvas to an image

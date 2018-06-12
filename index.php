@@ -1,6 +1,7 @@
 <?php 
 
 session_start();
+include('config/setup.php');
 include("inc/functions.php");
 
 $pageTitle = "Camagru - small Instagram-like site allowing you to create and share photo-montages";
