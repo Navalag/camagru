@@ -124,8 +124,10 @@ img {
 #video,
 #canvas,
 #pngHolder {
-	border: 2px solid #f1f1f1;
+	border: 2px solid PaleVioletRed;
+	background-color: WhiteSmoke;
 }
+#canvas { display: none; }
 
 /* ================================= 
   Media Queries

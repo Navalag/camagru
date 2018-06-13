@@ -13,10 +13,18 @@ include 'inc/header.php';
 	
 	<div class="account_primary col">
 		<h2>You Look Grate!</h2>
-		<video id="video" width="640" height="480" autoplay></video>
+		<div id="media"></div>
+		<!-- <video id="video" width="640" height="480"></video>
+		<canvas id="canvas" width="640" height="480"></canvas> -->
+		<button id="start-video">Turn-on Camera</button>
 		<button id="snap">Snap Photo</button>
-		<canvas id="canvas" width="640" height="480"></canvas>
+		<button id="effect">Add Frame</button>
 		<button id="save">Save Photo</button>
+		<form action="inc/camera-photo/upload_photo.php" method="post" enctype="multipart/form-data">
+		    Select image to upload:
+		    <input type="file" name="fileToUpload" id="fileToUpload">
+		    <input type="submit" value="Upload Image" name="submit">
+		</form>
 	</div><!--/.primary-->
 	
 	<div class="account_secondary col">
@@ -25,11 +33,6 @@ include 'inc/header.php';
 		<p>Cupcake ipsum dolor sit. Amet chocolate cake gummies jelly beans candy bonbon brownie candy. Gingerbread powder muffin. Icing cotton candy. Croissant icing pie ice cream brownie I love cheesecake cookie. Pastry chocolate pastry jelly croissant.</p>
 		<p>Cake sesame snaps sweet tart candy canes tiramisu I love oat cake chocolate bar. Jelly beans pastry brownie sugar plum pastry bear claw tiramisu tootsie roll. Tootsie roll wafer I love chocolate donuts.</p>
 		<p id="pngHolder"></p>
-		<form action="inc/camera-photo/upload_photo.php" method="post" enctype="multipart/form-data">
-		    Select image to upload:
-		    <input type="file" name="fileToUpload" id="fileToUpload">
-		    <input type="submit" value="Upload Image" name="submit">
-		</form>
 	</div><!--/.secondary-->
 	
 </div>
