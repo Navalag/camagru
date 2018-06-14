@@ -99,6 +99,11 @@ img {
 	margin-top: 4% !important;
 }
 
+.media {
+	width: 640px;
+	height: 480px;
+}
+
 .col {
 	padding-right: 1em;
 	padding-left: 1em;

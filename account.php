@@ -13,7 +13,7 @@ include 'inc/header.php';
 	
 	<div class="account_primary col">
 		<h2>You Look Grate!</h2>
-		<div id="media"></div>
+		<div class="media"></div>
 		<!-- <video id="video" width="640" height="480"></video>
 		<canvas id="canvas" width="640" height="480"></canvas> -->
 		<button id="start-video">Turn-on Camera</button>

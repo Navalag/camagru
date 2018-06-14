@@ -3,7 +3,7 @@
 // var video = document.getElementById('video');
 // var mediaConfig =  { video: true };
 
-const mediaDiv = document.getElementById('media');
+const mediaDiv = document.querySelector('.media');
 
 const videoTag = document.createElement('video');
 videoTag.setAttribute("id", "video");
@@ -18,9 +18,10 @@ canvasTag.setAttribute("id", "canvas");
 canvasTag.setAttribute("width", "640");
 canvasTag.setAttribute("height", "480");
 const canvas = document.getElementById('canvas');
+mediaDiv.appendChild(canvasTag);
 
 // var sampleImage = document.getElementById("ringoImage");
-// var	canvasFromImg = convertImageToCanvas(sampleImage);
+// var canvasFromImg = convertImageToCanvas(sampleImage);
 /*
 ** PUT VIDEO LISTENERS INTO PLASE
 */
@@ -28,6 +29,7 @@ document.getElementById('start-video').addEventListener('click', function() {
 	var errBack = function(e) {
 		console.log('An error has occurred!', e)
 	};
+	mediaDiv.removeChild(canvasTag);
 	mediaDiv.appendChild(videoTag);
 	/*
 	** PUT VIDEO LISTENERS INTO PLASE
@@ -62,7 +64,7 @@ document.getElementById('start-video').addEventListener('click', function() {
 ** SNAP PHOTO
 */
 document.getElementById('snap').addEventListener('click', function() {
-	video.pause();
+	// video.pause();
 	mediaDiv.removeChild(videoTag);
 	mediaDiv.appendChild(canvasTag);
 	let context = canvas.getContext('2d');
