@@ -36,14 +36,37 @@ include 'inc/header.php';
 
 		<h2>Welcome!</h2>
 		<div class="output">
-			<img id="photo" alt="The screen capture will appear in this box."> 
+			<!-- <img id="photo" alt="The screen capture will appear in this box."> -->
+			<ul id="photo"></ul>
 		</div>
-		<!-- <p id="pngHolder"></p> -->
 
 	</div><!--/.secondary-->
 	
 </div>
 
 <script src="js/camera_handler_2.js"></script>
+<script src="js/edit_photo.js"></script>
 
 <?php include 'inc/footer.php'; ?>
+
+
+
+<!-- <body>
+	<div class="wrapper">
+		<header>
+			<h1>RSVP</h1>
+			<p>A Treehouse App</p>
+			<form id="registrar">
+				<input type="text" name="name" placeholder="Invite Someone">
+				<button type="submit" name="submit" value="submit">Submit</button>
+			</form>
+		</header>
+		
+		<div class="main">	
+			<h2>Invitees</h2>
+			<ul id="invitedList"></ul>	
+		</div>
+	</div>
+	<script type="text/javascript" src="app.js"></script>
+</body>
+</html> -->

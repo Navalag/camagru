@@ -29,12 +29,13 @@
 		startVideo = document.getElementById('startVideo');
 		snapPhoto = document.getElementById('snapPhoto');
 		addEffect = document.getElementById('effect');
+		savePhoto = document.getElementById('save');
 
 		startVideo.addEventListener('click', function() {
 			navigator.getMedia = ( navigator.getUserMedia ||
-										navigator.webkitGetUserMedia ||
-										navigator.mozGetUserMedia ||
-										navigator.msGetUserMedia);
+									navigator.webkitGetUserMedia ||
+									navigator.mozGetUserMedia ||
+									navigator.msGetUserMedia);
 
 			navigator.getMedia(
 				{
@@ -84,6 +85,11 @@
 			addFilterOnPhoto();
 			ev.preventDefault();
 		}, false);
+
+		savePhoto.addEventListener('click', function(ev){
+			saveImage();
+			ev.preventDefault();
+		}, false);
 		
 		clearphoto();
 	}
@@ -112,9 +118,6 @@
 			canvas.width = width;
 			canvas.height = height;
 			context.drawImage(video, 0, 0, width, height);
-		
-			// var data = canvas.toDataURL('image/png');
-			// photo.setAttribute('src', data);
 		} else {
 			clearphoto();
 		}
@@ -128,6 +131,21 @@
 			context.drawImage(img, 0, 0, width, height);
 		}, false);
 		img.src = '../img/frame1.png'; // Set source path
+	}
+
+	function saveImage() {
+		var xhr = new XMLHttpRequest();
+		var imgFromCanvas = canvas.toDataURL("image/png");
+		var img = "img=" + imgFromCanvas;
+		xhr.open("POST", "../inc/camera-photo/save_photo.php", true);
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				console.log(xhr.responseText);
+				photo.setAttribute('src', imgFromCanvas);
+			}
+		};
+		xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+		xhr.send(img);
 	}
 
 	// Set up our event listener to run the startup process
