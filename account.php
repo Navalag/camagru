@@ -45,7 +45,7 @@ include 'inc/header.php';
 </div>
 
 <script src="js/camera_handler_2.js"></script>
-<script src="js/edit_photo.js"></script>
+<!-- <script src="js/edit_photo.js"></script> -->
 
 <?php include 'inc/footer.php'; ?>
 

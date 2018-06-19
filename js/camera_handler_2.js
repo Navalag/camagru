@@ -22,10 +22,12 @@
 	var addEffect = null;
 	var savePhoto = null;
 
+	const ul = document.getElementById('photo');
+
 	function startup() {
 		video = document.getElementById('video');
 		canvas = document.getElementById('canvas');
-		photo = document.getElementById('photo');
+		// photo = document.getElementById('photo');
 		startVideo = document.getElementById('startVideo');
 		snapPhoto = document.getElementById('snapPhoto');
 		addEffect = document.getElementById('effect');
@@ -91,7 +93,7 @@
 			ev.preventDefault();
 		}, false);
 		
-		clearphoto();
+		// clearphoto();
 	}
 
 	// Fill the photo with an indication that none has been
@@ -103,7 +105,8 @@
 		context.fillRect(0, 0, canvas.width, canvas.height);
 
 		var data = canvas.toDataURL('image/png');
-		photo.setAttribute('src', data);
+		var li = createLI(data);
+		ul.appendChild(li);
 	}
 	
 	// Capture a photo by fetching the current contents of the video
@@ -141,12 +144,64 @@
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4 && xhr.status == 200) {
 				console.log(xhr.responseText);
-				photo.setAttribute('src', imgFromCanvas);
+				// photo.setAttribute('src', imgFromCanvas);
+				var li = createLI(imgFromCanvas);
+				ul.appendChild(li);
 			}
 		};
 		xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
 		xhr.send(img);
 	}
+
+	function createLI(src) {
+		function createElement(elementName, property, value) {
+			const element = document.createElement(elementName);
+			element[property] = value; 
+			return element;
+		}
+		
+		function appendToLI(elementName, property, value) {
+			const element = createElement(elementName, property, value);
+			li.appendChild(element);
+			return element;
+		}
+		
+		const li = document.createElement('li');
+		appendToLI('img', 'src', src);
+		appendToLI('button', 'textContent', 'remove');
+		return li;
+	}
+
+	ul.addEventListener('click', (e) => {
+		if (e.target.tagName === 'BUTTON') {
+			const button = e.target;
+			const li = button.parentNode;
+			const ul = li.parentNode;
+			const img = 
+			var xhr = new XMLHttpRequest();
+
+			xhr.open("POST", "../inc/camera-photo/delete_photo.php", true);
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState == 4 && xhr.status == 200) {
+					console.log(xhr.responseText);
+					ul.removeChild(li);
+				}
+			};
+			xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+			xhr.send(img);
+			
+			
+			// const action = button.textContent;
+			// const nameActions = {
+			// 	remove: () => {
+			// 		ul.removeChild(li);
+			// 	},
+			// };
+			
+			// // select and run action in button's name
+			// nameActions[action]();
+		}
+	});
 
 	// Set up our event listener to run the startup process
 	// once loading is complete.

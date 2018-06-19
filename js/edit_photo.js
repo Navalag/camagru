@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 		}
 	});
-	
+
 	function createLI(text) {
 		function createElement(elementName, property, value) {
 			const element = document.createElement(elementName);
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		appendToLI('button', 'textContent', 'remove');
 		return li;
 	}
-	
+
 	form.addEventListener('submit', (e) => {
 		e.preventDefault();
 		const text = input.value;
