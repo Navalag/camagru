@@ -15,7 +15,7 @@ include 'inc/header.php';
 		<h2>You Look Grate!</h2>
 		
 		<div class="camera">
-			<video id="video" autoplay>Video stream not available.</video>
+			<video id="video" width="640" height="480" autoplay>Video stream not available.</video>
 			<button id="startVideo">Turn on Camera</button>
 			<button id="snapPhoto">Take Photo</button>
 			<form action="inc/camera-photo/upload_photo.php" method="post" enctype="multipart/form-data">
@@ -24,9 +24,11 @@ include 'inc/header.php';
 				<input type="submit" value="Upload Image" name="submit">
 			</form>
 		</div>
-		<canvas id="canvas"></canvas>
-		<button id="effect">Add Frame</button>
-		<button id="save">Save Photo</button>
+		<div class="camera-canvas">
+			<canvas id="canvas" width="640" height="480"></canvas>
+			<button id="effect">Add Frame</button>
+			<button id="save">Save Photo</button>
+		</div>
 
 	</div><!--/.primary-->
 	

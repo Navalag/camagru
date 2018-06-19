@@ -19,6 +19,7 @@
 	var photo = null;
 	var startVideo = null;
 	var snapPhoto = null;
+	var addEffect = null;
 	var savePhoto = null;
 
 	function startup() {
@@ -121,28 +122,12 @@
 
 	function addFilterOnPhoto() {
 		var context = canvas.getContext('2d');
-		// var imagesLoaded = 0;
-		// var img = new Image();
-		// img.src = '../img/frame1.png';
-		var img1 = loadImage('../img/frame1.png', addEffect);
-		// img.onload = context.drawImage(img, 0, 0, width, height);
-	}
 
-	function loadImage(src, onload) {
-		var img = new Image();
-		img.onload = onload;
-		img.src = src;
-
-		return img;
-	}
-
-	function addEffect() {
-		// imagesLoaded += 1;
-		// if(imagesLoaded == 2) {
-			context.drawImage(img1, 0, 0, width, height);
-			// ctx.globalAlpha = 0.5;
-			// ctx.drawImage(img2, 0, 0);
-		// }
+		var img = new Image();   // Create new img element
+		img.addEventListener('load', function() {
+			context.drawImage(img, 0, 0, width, height);
+		}, false);
+		img.src = '../img/frame1.png'; // Set source path
 	}
 
 	// Set up our event listener to run the startup process
