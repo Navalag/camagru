@@ -37,7 +37,14 @@ include 'inc/header.php';
 		<h2>Welcome!</h2>
 		<div class="output">
 			<!-- <img id="photo" alt="The screen capture will appear in this box."> -->
-			<ul id="photo"></ul>
+			<ul id="photo">
+				<?php
+				$user_photo = get_user_photo_array();
+				foreach ($user_photo as $item) {
+					echo get_item_html($item);
+				}
+				?>
+			</ul>
 		</div>
 
 	</div><!--/.secondary-->

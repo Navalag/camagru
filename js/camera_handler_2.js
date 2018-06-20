@@ -177,18 +177,18 @@
 			const button = e.target;
 			const li = button.parentNode;
 			const ul = li.parentNode;
-			const img = 
-			var xhr = new XMLHttpRequest();
+			// const img = 
+			// var xhr = new XMLHttpRequest();
 
-			xhr.open("POST", "../inc/camera-photo/delete_photo.php", true);
-			xhr.onreadystatechange = function() {
-				if (xhr.readyState == 4 && xhr.status == 200) {
-					console.log(xhr.responseText);
-					ul.removeChild(li);
-				}
-			};
-			xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
-			xhr.send(img);
+			// xhr.open("POST", "../inc/camera-photo/delete_photo.php", true);
+			// xhr.onreadystatechange = function() {
+			// 	if (xhr.readyState == 4 && xhr.status == 200) {
+			// 		console.log(xhr.responseText);
+			// 		ul.removeChild(li);
+			// 	}
+			// };
+			// xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+			// xhr.send(img);
 			
 			
 			// const action = button.textContent;

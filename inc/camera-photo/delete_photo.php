@@ -24,7 +24,7 @@
 	$path = "http://localhost:8100/img/uploads/" . $name;
 	try {
 		$sql = "INSERT INTO `user_img` (`src`, `user_id`) 
-					VALUES ('$path', 1)";
+				VALUES ('$path', 1)";
 		$conn->exec($sql);
 		echo "New record created successfully<br>";
 		}

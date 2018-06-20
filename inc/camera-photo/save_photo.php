@@ -21,7 +21,7 @@
 	*/
 	// $user = UserExist($_SESSION['loggued_on_user'], $pdo);
 	// $owner_id = $user['uid'];
-	$path = "http://localhost:8100/img/uploads/" . $name;
+	$path = "http://localhost:8080/img/uploads/" . $name;
 	try {
 		$sql = "INSERT INTO `user_img` (`src`, `user_id`) 
 					VALUES ('$path', 1)";
