@@ -9,8 +9,7 @@
 			<link rel="stylesheet" href="../css/form.css">
 	</head>
 	<body>
-
-		<form action="index.html" method="post">
+		<form action="./registration.php" method="post">
 			
 			<h1>Sign Up</h1>
 				
@@ -25,14 +24,9 @@
 
 			<label for="repeat-password">Repeat Password:</label>
 			<input type="password" id="repeat-password" name="user_repeat_password">
-			
-			<label>Age:</label>
-			<input type="radio" id="under_18" value="under_18" name="user_age"><label for="under_18" class="light">Under 18</label><br>
-			<input type="radio" id="over_18" value="over_18" name="user_age"><label for="over_18" class="light">18 or Older</label>
-								
+
 			<button type="submit">Sign Up</button>
-			
+
 		</form>
-		
 	</body>
 </html>
