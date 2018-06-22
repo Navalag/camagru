@@ -1,6 +1,8 @@
 <?php 
 
-session_start();
+if (!isset($_SESSION)) {
+	session_start();
+}
 include('config/setup.php');
 include("inc/functions.php");
 

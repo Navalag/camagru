@@ -1,6 +1,8 @@
 <?php 
 
-session_start();
+if (!isset($_SESSION)) {
+	session_start();
+}
 include("inc/functions.php");
 
 $pageTitle = "Personal account - Camagru";
@@ -36,7 +38,6 @@ include 'inc/header.php';
 
 		<h2>Welcome!</h2>
 		<div class="output">
-			<!-- <img id="photo" alt="The screen capture will appear in this box."> -->
 			<ul id="photo">
 				<?php
 				$user_photo = get_user_photo_array();
@@ -55,25 +56,3 @@ include 'inc/header.php';
 <!-- <script src="js/edit_photo.js"></script> -->
 
 <?php include 'inc/footer.php'; ?>
-
-
-
-<!-- <body>
-	<div class="wrapper">
-		<header>
-			<h1>RSVP</h1>
-			<p>A Treehouse App</p>
-			<form id="registrar">
-				<input type="text" name="name" placeholder="Invite Someone">
-				<button type="submit" name="submit" value="submit">Submit</button>
-			</form>
-		</header>
-		
-		<div class="main">	
-			<h2>Invitees</h2>
-			<ul id="invitedList"></ul>	
-		</div>
-	</div>
-	<script type="text/javascript" src="app.js"></script>
-</body>
-</html> -->

@@ -93,7 +93,6 @@
 			ev.preventDefault();
 		}, false);
 		
-		// clearphoto();
 	}
 
 	// Fill the photo with an indication that none has been
@@ -190,17 +189,6 @@
 			};
 			xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
 			xhr.send(img);
-			
-			
-			// const action = button.textContent;
-			// const nameActions = {
-			// 	remove: () => {
-			// 		ul.removeChild(li);
-			// 	},
-			// };
-			
-			// // select and run action in button's name
-			// nameActions[action]();
 		}
 	});
 

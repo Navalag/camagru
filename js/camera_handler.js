@@ -127,8 +127,6 @@ document.getElementById('effect').addEventListener('click', function() {
 // var canvas = document.getElementById("canvas");
 // var ctx = canvas.getContext("2d");
 
-
-
 // Converts canvas to an image
 function convertCanvasToImage(canvas) {
 	var image = new Image();
