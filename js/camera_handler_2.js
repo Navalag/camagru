@@ -48,6 +48,7 @@
 					if (navigator.mozGetUserMedia) {
 						video.mozSrcObject = stream;
 					} else {
+						// video.srcObject = stream;
 						var vendorURL = window.URL || window.webkitURL;
 						video.src = vendorURL.createObjectURL(stream);
 					}

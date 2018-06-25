@@ -13,19 +13,19 @@
 			
 			<h1>Sign Up</h1>
 				
-			<label for="name">Nick-name:</label>
-			<input type="text" id="name" name="user_name">
+			<label for="name">Name:</label>
+			<input type="text" id="name" name="username">
 			
 			<label for="mail">Email:</label>
-			<input type="email" id="mail" name="user_email">
+			<input type="email" id="mail" name="email">
 			
 			<label for="password">Password:</label>
-			<input type="password" id="password" name="user_password">
+			<input type="password" id="password" name="password">
 
 			<label for="repeat-password">Repeat Password:</label>
-			<input type="password" id="repeat-password" name="user_repeat_password">
+			<input type="password" id="repeat-password" name="repeat_password">
 
-			<button type="submit">Sign Up</button>
+			<button type="submit" name="signup">Sign Up</button>
 
 		</form>
 	</body>

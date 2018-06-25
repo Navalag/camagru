@@ -1,12 +1,16 @@
 <?php 
 
-include("config/connect.php");
-include("inc/email_templates/email_template_1.php");
+include("./../config/connect.php");
+include("./email_templates/email_template_1.php");
 //check if the form has been submitted
+echo "test1<br>";
+var_dump($_POST);
 if(isset($_POST['signup'])){
+	echo "<br>test2<br>";
 	$username = $_POST['username'];
 	$password = $_POST['password'];
 	$email = $_POST['email'];
+	echo $username."<br>".$password."<br>".$email;
 
 	$action = array();
 	$action['result'] = null;
@@ -26,12 +30,13 @@ if(isset($_POST['signup'])){
 	}
 
 	if($action['result'] != 'error') {
+		echo "<br>test3<br>";
 		$password = md5($password);
 		try {
 			$sql = $conn->prepare("INSERT INTO `users` 
 					VALUES(NULL,'$username','$password','$email',0)");
-			$sql->exec();
-			echo "the user was added to the database";
+			$sql->execute();
+			echo "the user was added to the database<br>";
 			}
 		catch(PDOException $e)
 			{
@@ -40,6 +45,7 @@ if(isset($_POST['signup'])){
 			}
 	}
 	if ($action['result'] != 'error') {
+		echo "<br>test4<br>";
 		// get the new user id
 		// lastInsertId - Get the ID generated in the last query
 		$userid = $conn->lastInsertId();
@@ -50,12 +56,13 @@ if(isset($_POST['signup'])){
 		try {
 			$sql = $conn->prepare("INSERT INTO `confirm` 
 					VALUES(NULL,'$userid','$key','$email')");
-			$sql->exec();
+			$sql->execute();
+			echo "confirm table was updated<br>";
 			// let's send the email
 			if (email_template_1($email, $userid, $key)) {
-				echo "An Activation Code Is Sent To You Check You Emails";
+				echo "An Activation Code Is Sent To You Check You Emails<br>";
 			} else {
-				echo "Error: An Activation Code Did Not Send";
+				echo "Error: An Activation Code Did Not Send<br>";
 			}
 			}
 		catch(PDOException $e)
@@ -66,7 +73,7 @@ if(isset($_POST['signup'])){
 	}
 
 	$action['text'] = $text;
-
+	var_dump($action);
 }
 if(isset($_GET['id']) && isset($_GET['code']))
 {
