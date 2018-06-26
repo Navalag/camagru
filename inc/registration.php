@@ -3,14 +3,10 @@
 include("./../config/connect.php");
 include("./email_templates/email_template_1.php");
 //check if the form has been submitted
-echo "test1<br>";
-var_dump($_POST);
 if(isset($_POST['signup'])){
-	echo "<br>test2<br>";
 	$username = $_POST['username'];
 	$password = $_POST['password'];
 	$email = $_POST['email'];
-	echo $username."<br>".$password."<br>".$email;
 
 	$action = array();
 	$action['result'] = null;
@@ -30,7 +26,6 @@ if(isset($_POST['signup'])){
 	}
 
 	if($action['result'] != 'error') {
-		echo "<br>test3<br>";
 		$password = md5($password);
 		try {
 			$sql = $conn->prepare("INSERT INTO `users` 
@@ -41,11 +36,10 @@ if(isset($_POST['signup'])){
 		catch(PDOException $e)
 			{
 			$action['result'] = 'error';
-			array_push($text,'User could not be added to the database. Reason: ' . $e->getMessage());
+			$action['text'] = 'User could not be added to the database. Reason: ' . $e->getMessage();
 			}
 	}
 	if ($action['result'] != 'error') {
-		echo "<br>test4<br>";
 		// get the new user id
 		// lastInsertId - Get the ID generated in the last query
 		$userid = $conn->lastInsertId();
@@ -60,38 +54,50 @@ if(isset($_POST['signup'])){
 			echo "confirm table was updated<br>";
 			// let's send the email
 			if (email_template_1($email, $userid, $key)) {
-				echo "An Activation Code Is Sent To You Check You Emails<br>";
+				$action['result'] = 'success';
+				$action['text'] = "Thanks for signing up. Please check your email for confirmation!";
 			} else {
-				echo "Error: An Activation Code Did Not Send<br>";
+				$action['result'] = 'error';
+				$action['text'] = "Error: Could not send confirm email";
 			}
 			}
 		catch(PDOException $e)
 			{
 			$action['result'] = 'error';
-			array_push($text,'Confirm row was not added to the database. Reason: ' . $e->getMessage());
+			$action['text'] = 'Confirm row was not added to the database. Reason: ' . $e->getMessage();
 			}
 	}
 
 	$action['text'] = $text;
-	var_dump($action);
 }
 if(isset($_GET['id']) && isset($_GET['code']))
 {
-	$id=$_GET['id'];
-	$code=$_GET['id'];
-	mysql_connect('localhost','root','');
-	mysql_select_db('sample');
-	$select=mysql_query("select email,password from verify where id='$id' and code='$code'");
-	if(mysql_num_rows($select)==1)
-	{
-		while($row=mysql_fetch_array($select))
-		{
-			$email=$row['email'];
-			$password=$row['password'];
+	$id = $_GET['id'];
+	$code = $_GET['code'];
+
+	try {
+		$sql = $conn->prepare("SELECT * FROM `confirm` 
+						WHERE `userid` = '$id' AND `key` = '$code' LIMIT 1");
+		$sql->execute();
+		$check_key = $sql->setFetchMode(PDO::FETCH_ASSOC);
+		$check_key = $sql->fetchAll();
+		if (!empty($check_key)) {
+			$check_key = $check_key[0];
+			$sql = $conn->prepare("UPDATE `users` SET `active` = 1 
+						WHERE `id` = '$check_key[userid]' LIMIT 1");
+			$sql->execute();
+			$sql = $conn->prepare("DELETE FROM `confirm` 
+						WHERE `id` = '$check_key[id]' LIMIT 1");
+			$sql->execute();
 		}
-		$insert_user=mysql_query("insert into verified_user values('','$email','$password')");
-		$delete=mysql_query("delete from verify where id='$id' and code='$code'");
-	}
+		$action['result'] = 'success';
+		$action['text'] = 'User has been confirmed. Thank-You!';
+		}
+	catch(PDOException $e)
+		{
+		$action['result'] = 'error';
+		$action['text'] = 'The user could not be updated Reason: ' . $e->getMessage();
+		}
 }
 $conn = null;
 
