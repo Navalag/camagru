@@ -1,12 +1,10 @@
 <?php
 
 function email_template_1($email, $userid, $key) {
-	echo "<br>test5<br>";
 	$to = $email;
 	$subject = "Welcome to Camagru - a small Instagram-like site";
-	$body='Your Activation Code is '.$key.' Please Click On This <a href="http://localhost:8080/inc/registration.php?id='.$userid.'&code='.$key.'">link</a> to activate your account.';
+	$body='Your Activation Code is '.$key.' Please Click On This <a href="http://localhost:8080/inc/user_managment/registration.php?id='.$userid.'&code='.$key.'">link</a> to activate your account.';
 	$body = wordwrap($body,70);
-	echo "to -> $to <br>subject -> $subject <br>body -> $body <br>";
 
 	// Set preferences for Subject field
 	$subject_preferences = array(
@@ -26,6 +24,26 @@ function email_template_1($email, $userid, $key) {
 
 	// Send mail
 	return (mail($to, $subject, $body, $header));
+}
+
+function show_errors($action) {
+	$error = false;
+
+	if (!empty($action['result'])) {
+		$error = "<ul class=\"alert $action[result]\">"."\n";
+		if (is_array($action['text'])) {
+			//loop out each error
+			foreach ($action['text'] as $text) {
+				$error .= "<li><p>$text</p></li>"."\n";
+			}
+		} else {
+			//single error
+			$error .= "<li><p>$action[text]</p></li>";
+		}
+		$error .= "</ul>"."\n";
+	}
+	var_dump($error);
+	return $error;
 }
 
 ?>

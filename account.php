@@ -3,7 +3,7 @@
 if (!isset($_SESSION)) {
 	session_start();
 }
-include("inc/functions.php");
+include("inc/functions/page_content_func.php");
 
 $pageTitle = "Personal account - Camagru";
 $section = null;

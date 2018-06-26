@@ -140,7 +140,7 @@
 		var xhr = new XMLHttpRequest();
 		var imgFromCanvas = canvas.toDataURL("image/png");
 		var img = "img=" + imgFromCanvas;
-		xhr.open("POST", "../inc/camera-photo/save_photo.php", true);
+		xhr.open("POST", "../inc/edit_photo/save_photo.php", true);
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4 && xhr.status == 200) {
 				console.log(xhr.responseText);
@@ -181,7 +181,7 @@
 			const img = "img_id=" + img_alt;
 			const xhr = new XMLHttpRequest();
 
-			xhr.open("POST", "../inc/camera-photo/delete_photo.php", true);
+			xhr.open("POST", "../inc/edit_photo/delete_photo.php", true);
 			xhr.onreadystatechange = function() {
 				if (xhr.readyState == 4 && xhr.status == 200) {
 					console.log(xhr.responseText);

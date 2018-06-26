@@ -1,16 +1,17 @@
 <?php 
 
-include("./../config/connect.php");
-include("./email_templates/email_template_1.php");
+include("./../../config/connect.php");
+include("./../functions/user_managment_func.php");
+
+$action = array();
+$action['result'] = null;
+$text = array();
+
 //check if the form has been submitted
 if(isset($_POST['signup'])){
 	$username = $_POST['username'];
 	$password = $_POST['password'];
 	$email = $_POST['email'];
-
-	$action = array();
-	$action['result'] = null;
-	$text = array();
 
 	if(empty($username)) { 
 		$action['result'] = 'error';
@@ -36,7 +37,7 @@ if(isset($_POST['signup'])){
 		catch(PDOException $e)
 			{
 			$action['result'] = 'error';
-			$action['text'] = 'User could not be added to the database. Reason: ' . $e->getMessage();
+			array_push($text,'User could not be added to the database. Reason: ' . $e->getMessage());
 			}
 	}
 	if ($action['result'] != 'error') {
@@ -58,17 +59,19 @@ if(isset($_POST['signup'])){
 				$action['text'] = "Thanks for signing up. Please check your email for confirmation!";
 			} else {
 				$action['result'] = 'error';
-				$action['text'] = "Error: Could not send confirm email";
+				array_push($text,"Error: Could not send confirm email");
 			}
 			}
 		catch(PDOException $e)
 			{
 			$action['result'] = 'error';
-			$action['text'] = 'Confirm row was not added to the database. Reason: ' . $e->getMessage();
+			array_push($text,'Confirm row was not added to the database. Reason: ' . $e->getMessage());
 			}
 	}
 
-	$action['text'] = $text;
+	// $action['text'] = $text;
+	// $action = show_errors($action);
+	// echo $action;
 }
 if(isset($_GET['id']) && isset($_GET['code']))
 {
@@ -98,6 +101,9 @@ if(isset($_GET['id']) && isset($_GET['code']))
 		$action['result'] = 'error';
 		$action['text'] = 'The user could not be updated Reason: ' . $e->getMessage();
 		}
+	// $action['text'] = $text;
+	// $action = show_errors($action);
+	// echo $action;
 }
 $conn = null;
 

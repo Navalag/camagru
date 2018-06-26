@@ -9,10 +9,10 @@
 			<link rel="stylesheet" href="../css/form.css">
 	</head>
 	<body>
-		<form action="./registration.php" method="post">
+		<form action="./user_managment/registration.php" method="post">
 			
 			<h1>Sign Up</h1>
-				
+
 			<label for="name">Name:</label>
 			<input type="text" id="name" name="username">
 			

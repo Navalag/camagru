@@ -4,7 +4,7 @@ if (!isset($_SESSION)) {
 	session_start();
 }
 include('config/setup.php');
-include("inc/functions.php");
+include("inc/functions/page_content_func.php");
 
 $pageTitle = "Camagru - small Instagram-like site allowing you to create and share photo-montages";
 $section = "landing_page";
