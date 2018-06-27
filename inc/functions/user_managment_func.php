@@ -1,9 +1,9 @@
 <?php
 
-function email_template_1($email, $userid, $key) {
+function sendmail_template_1($email, $userid, $key) {
 	$to = $email;
 	$subject = "Welcome to Camagru - a small Instagram-like site";
-	$body='Your Activation Code is '.$key.' Please Click On This <a href="http://localhost:8080/inc/user_managment/registration.php?id='.$userid.'&code='.$key.'">link</a> to activate your account.';
+	$body='Your Activation Code is '.$key.' Please Click On This <a href="http://localhost:8080/inc/sign_up.php?id='.$userid.'&code='.$key.'">link</a> to activate your account.';
 	$body = wordwrap($body,70);
 
 	// Set preferences for Subject field
@@ -44,6 +44,13 @@ function show_errors($action) {
 	}
 	var_dump($error);
 	return $error;
+}
+
+function test_input($data) {
+	$data = trim($data);
+	$data = stripslashes($data);
+	$data = htmlspecialchars($data);
+	return $data;
 }
 
 ?>

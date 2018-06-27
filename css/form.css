@@ -109,6 +109,13 @@ label.light {
   border-radius: 100%;
 }
 
+span.message {
+  background: #ffeca4;
+  border: 1px solid #f16702;
+  padding: 1em;
+  width: 444px;
+}
+
 @media screen and (min-width: 480px) {
 
   form {
