@@ -34,7 +34,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 		$check_user = $sql->setFetchMode(PDO::FETCH_ASSOC);
 		$check_user = $sql->fetchAll();
 		if (empty($check_user)) {
-			$finalMessage = "Your Username or Password is invalid";
+			$finalMessage = "Incorrect username or password.";
 		} else {
 			session_start();
 			$_SESSION['Username'] = $check_user[0]["username"];
@@ -55,12 +55,12 @@ $conn = null;
 <!DOCTYPE html>
 <html>
 	<head>
-			<meta charset="utf-8">
-			<meta name="viewport" content="width=device-width, initial-scale=1.0">
-			<title>Sign Up Form</title>
-			<link rel="stylesheet" href="../css/normalize.css">
-			<link href='http://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
-			<link rel="stylesheet" href="../css/form.css">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Sign Up Form</title>
+		<link rel="stylesheet" href="../css/normalize.css">
+		<link href='http://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="../css/form.css">
 	</head>
 	<body>
 
@@ -77,6 +77,7 @@ $conn = null;
 			<input type="password" id="password" name="password">
 								
 			<button type="submit">Sign In</button>
+			<a href="forgot_password.php">Forgot password?</a>
 			
 		</form>
 		
