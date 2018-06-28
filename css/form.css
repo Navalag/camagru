@@ -109,7 +109,7 @@ label.light {
   border-radius: 100%;
 }
 
-span.message {
+p.message {
   background: #ffeca4;
   border: 1px solid #f16702;
   padding: 1em;

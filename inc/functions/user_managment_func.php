@@ -8,8 +8,8 @@ function sendmail_template_1($email, $userid, $key) {
 
 	// Set preferences for Subject field
 	$subject_preferences = array(
-		"input-charset" => $encoding,
-		"output-charset" => $encoding,
+		"input-charset" => "utf-8",
+		"output-charset" => "utf-8",
 		"line-length" => 76,
 		"line-break-chars" => "\r\n"
 	);

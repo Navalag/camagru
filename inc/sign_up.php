@@ -82,7 +82,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 			$finalMessage = 'User could not be added to the database. Reason: ' . $e->getMessage();
 			}
 	}
-	if (empty($finalMessage)) {
+	if (empty($finalMessage) && empty($nameErr) && empty($emailErr) && empty($passwordErr) && empty($repeatPasswordErr)) {
 		// get the new user id
 		// lastInsertId - Get the ID generated in the last query
 		$userid = $conn->lastInsertId();
@@ -155,23 +155,23 @@ $conn = null;
 			
 			<h1>Sign Up</h1>
 
-			<span class="message"><?php echo $finalMessage;?></span>
+			<p class="message"><?php echo $finalMessage;?></p>
 
 			<label for="name">Name:</label>
 			<input type="text" id="name" name="username" value="<?php echo $username;?>">
-			<span class="message">* <?php echo $nameErr;?></span>
+			<p class="message">* <?php echo $nameErr;?></p>
 			
 			<label for="mail">Email:</label>
 			<input type="email" id="mail" name="email" value="<?php echo $email;?>">
-			<span class="message">* <?php echo $emailErr;?></span>
+			<p class="message">* <?php echo $emailErr;?></p>
 			
 			<label for="password">Password:</label>
 			<input type="password" id="password" name="password">
-			<span class="message">* <?php echo $passwordErr;?></span>
+			<p class="message">* <?php echo $passwordErr;?></p>
 
 			<label for="repeat-password">Repeat Password:</label>
 			<input type="password" id="repeat-password" name="repeat_password">
-			<span class="message">* <?php echo $repeatPasswordErr;?></span>
+			<p class="message">* <?php echo $repeatPasswordErr;?></p>
 
 			<button type="submit" name="signup">Sign Up</button>
 
