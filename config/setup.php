@@ -9,7 +9,7 @@ try {
 	$sql = "CREATE DATABASE IF NOT EXISTS " . $DB_NAME . ";";
 	$sql .= "USE " . $DB_NAME . ";";
 	$conn->exec($sql);
-	echo "Database created successfully<br>";
+	// echo "Database created successfully<br>";
 	/* 
 	** CREATE user_img TABLE
 	*/
@@ -19,7 +19,7 @@ try {
 			user_id INT(6) NOT NULL
 			)";
 	$conn->exec($sql);
-	echo "Table user_img created successfully<br>";
+	// echo "Table user_img created successfully<br>";
 	/* 
 	** CREATE users TABLE
 	*/
@@ -31,7 +31,7 @@ try {
 			`active` binary(1) NOT NULL default '0'
 			)";
 	$conn->exec($sql);
-	echo "Table users created successfully<br>";
+	// echo "Table users created successfully<br>";
 	/* 
 	** CREATE confirm TABLE
 	*/
@@ -42,7 +42,7 @@ try {
 			`email` varchar(250) default NULL
 			)";
 	$conn->exec($sql);
-	echo "Table confirm created successfully<br>";
+	// echo "Table confirm created successfully<br>";
 	}
 catch (PDOException $e)
 	{

@@ -21,20 +21,29 @@ if (!isset($_SESSION)) {
 		<div class="container clearfix">
 
 			<?php if ($section == "landing_page") { ?>
+
 				<h1 class='name'><a href='/'>Camagru</a></h1>
+				
+			<?php } else { ?>
+
+				<h1 class='name'><a href='/'><i class='fas fa-camera-retro'></i> camagru</a></h1>
+
+			<?php } if (!isset($_SESSION['Username'])) { ?>
 
 				<ul class="main-nav">
 					<li><a href="inc/sign_in.php">Sign In</a></li>
 					<li><a href="inc/sign_up.php">Sign Up</a></li>
 				</ul>
+
 			<?php } else { ?>
-				<h1 class='name'><a href='/'><i class='fas fa-camera-retro'></i> camagru</a></h1>
+				
 				<ul class="main-nav">
-					<li><a href="#">Gallery</a></li>
-					<li><a href="#">My Profile</a></li>
+					<li><a href="/">Gallery</a></li>
+					<li><a href="account.php">My Profile</a></li>
 					<li><a href="#">Settings</a></li>
-					<li><a href="#">Sign out</a></li>
+					<li><a href="inc/user_managment/logout.php">Sign out</a></li>
 				</ul>
+
 			<?php } ?>
 
 		</div>

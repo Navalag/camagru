@@ -1,13 +1,16 @@
 <?php 
 
-if (!isset($_SESSION)) {
-	session_start();
-}
 include("inc/functions/page_content_func.php");
 
 $pageTitle = "Personal account - Camagru";
 $section = null;
 
+if (!isset($_SESSION)) {
+	session_start();
+}
+if (!isset($_SESSION['Username'])) {
+	header("location:http://localhost:8080");
+}
 include 'inc/header.php';
 ?>
 

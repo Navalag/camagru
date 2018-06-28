@@ -12,13 +12,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 	** BEGIN FORM VALIDATION
 	*/
 	if (empty($_POST["username"])) {
-    	$nameErr = "Please enter your Username";
-  	} else {
+		$nameErr = "Please enter your Username";
+	} else {
 		$username = test_input($_POST['username']);
 	}
 	if (empty($_POST["password"])) {
-    	$passwordErr = "Please enter your Password";
-  	} else {
+		$passwordErr = "Please enter your Password";
+	} else {
 		$password = test_input($_POST['password']);
 	}
 
@@ -36,6 +36,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 		if (empty($check_user)) {
 			$finalMessage = "Your Username or Password is invalid";
 		} else {
+			session_start();
+			$_SESSION['Username'] = $check_user[0]["username"];
 			header("location:http://localhost:8080/account.php");
 		}
 		}
