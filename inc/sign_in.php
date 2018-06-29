@@ -3,9 +3,9 @@
 include("./../config/connect.php");
 include("./functions/user_managment_func.php");
 
-$nameErr = $passwordErr = "";
+$nameErr = $passwordErr = $emailErr = "";
 $finalMessage = "";
-$username = $password = "";
+$username = $password = $email = "";
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 	/*
@@ -47,6 +47,46 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 		}
 	}
 }
+/*
+** FORGOT PASSWORD SCRIPT
+*/
+if (isset($_POST['email'])) {
+	if (empty($_POST["email"])) {
+		$emailErr = "Can't find that email, sorry.";
+	} else {
+		$email = test_input($_POST['email']);
+		// check if email exists in database
+		$sql = $conn->prepare("SELECT * FROM `users` 
+						WHERE `email` = '$email' LIMIT 1");
+		$sql->execute();
+		$check_email = $sql->setFetchMode(PDO::FETCH_ASSOC);
+		$check_email = $sql->fetchAll();
+		if (empty($check_email)) {
+			$emailErr = "Can't find that email, sorry.";
+		}
+	}
+	$new_password = random_str(10);
+	$hash_new_password = md5($new_password);
+	/*
+	** SEND EMAIL
+	*/
+	if (empty($emailErr)) {
+		if (sendmail_template_2($email, $new_password)) {
+			try {
+				$sql = "UPDATE `users` SET `password` = '$hash_new_password' 
+						WHERE `email` = '$email' LIMIT 1";
+				$conn->exec($sql);
+				}
+			catch (PDOException $e) 
+				{
+				$finalMessage = 'Database fail. Reason: ' . $e->getMessage();
+				}
+			$finalMessage = "Check your email for new password. If it doesn’t appear within a few minutes, check your spam folder.";
+		} else {
+			$finalMessage = "Error: Could not send email";
+		}
+	}
+}
 
 $conn = null;
 
@@ -66,6 +106,34 @@ $conn = null;
 
 		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
 			
+			<?php if (isset($_GET['forgot_pass']) || isset($_POST['email'])) { ?>
+
+			<h1>Reset your password</h1>
+
+			<p>Enter your email address and we will send you new password.</p>
+			<label for="mail">Email:</label>
+			<input type="email" id="mail" name="email">
+
+			<p class="message" style="
+				<?php 
+				if (empty($emailErr) && empty($finalMessage)){ 
+					echo "display: none;"; 
+				}
+				?>">
+				<?php 
+				if (!empty($emailErr)){ 
+					echo $emailErr; 
+				} else {
+					echo $finalMessage; 
+				}
+				?>		
+			</p>
+
+			<button type="submit">Send new password</button>
+			<a href="sign_in.php">Return to sign in</a>
+
+			<?php } else { ?>
+
 			<h1>Sign In</h1>
 			
 			<p class="message"><?php echo $finalMessage;?></p>
@@ -77,7 +145,9 @@ $conn = null;
 			<input type="password" id="password" name="password">
 								
 			<button type="submit">Sign In</button>
-			<a href="forgot_password.php">Forgot password?</a>
+			<a href="sign_in.php?forgot_pass=1">Forgot password?</a>
+
+			<?php } ?>
 			
 		</form>
 		
