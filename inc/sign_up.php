@@ -156,12 +156,13 @@ $conn = null;
 			<h1>Sign Up</h1>
 
 			<p class="message" style="
-			<?php 
-				if (empty($finalMessage)){ 
-					echo "display: none;"; 
-				}
-			?>
-			"><?php echo $finalMessage;?></p>
+				<?php 
+					if (empty($finalMessage)){ 
+						echo "display: none;"; 
+					}
+				?>">
+				<?php echo $finalMessage;?>
+			</p>
 
 			<label for="name">Name:</label>
 			<input type="text" id="name" name="username" value="<?php echo $username;?>">

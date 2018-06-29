@@ -1,6 +1,7 @@
 <?php 
 
 include("config/connect.php");
+include("inc/functions/user_managment_func.php");
 
 if (!isset($_SESSION)) {
 	session_start();
@@ -12,19 +13,26 @@ if (!isset($_SESSION['Username'])) {
 // $pageTitle = "Settings profile - Camagru";
 // $section = null;
 
+$nameErr = $passwordErr = $emailErr = "";
 $finalMessage = "";
 $username = $email = "";
 
+/*
+** SELECT USER INFO FROM DB, FILL WITH THAT NAME AND EMAIL
+*/
 try {
 	$sql = $conn->prepare("SELECT * FROM `users` 
 					WHERE `username` = '$_SESSION[Username]' LIMIT 1");
 	$sql->execute();
 	$user_info = $sql->setFetchMode(PDO::FETCH_ASSOC);
 	$user_info = $sql->fetchAll();
-	$user_info = $user_info[0];
-
-	$username = $user_info['username'];
-	$email = $user_info['email'];
+	if (empty($user_info)) {
+		$finalMessage = "Error!";
+	} else {
+		$user_info = $user_info[0];
+		$username = $user_info['username'];
+		$email = $user_info['email'];
+	}
 	}
 catch(PDOException $e)
 	{
@@ -32,20 +40,66 @@ catch(PDOException $e)
 	}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	// try {
-	// 	$sql = $conn->prepare("SELECT * FROM `users` 
-	// 					WHERE `username` = '$_SESSION['Username']' LIMIT 1");
-	// 	$sql->execute();
-	// 	$user_info = $sql->setFetchMode(PDO::FETCH_ASSOC);
-	// 	$user_info = $sql->fetchAll();
-	// 	$user_info = $user_info[0];
+	/*
+	** VALIDATE DATA BEFORE UPDATE PROFILE
+	*/
+	if (empty($_POST["username"])) {
+		$nameErr = "Name is required";
+	} else {
+		$new_username = test_input($_POST['username']);
+		if ($_POST['username'] != $username) {
+			// check if name only contains letters and whitespace
+			if (!preg_match("/^[a-zA-Z ]*$/",$new_username)) {
+				$nameErr = "Only letters and white space allowed"; 
+			}
+			// check if name exists in database
+			$sql = $conn->prepare("SELECT * FROM `users` 
+							WHERE `username` = '$new_username' LIMIT 1");
+			$sql->execute();
+			$check_user = $sql->setFetchMode(PDO::FETCH_ASSOC);
+			$check_user = $sql->fetchAll();
+			if (!empty($check_user)) {
+				$nameErr = "User with this username already exists";
+			}
+		}
+	}
 
-	// 	$finalMessage = 'User has been confirmed. Thank-You!';
-	// 	}
-	// catch(PDOException $e)
-	// 	{
-	// 	$finalMessage = 'Database failed! Reason: ' . $e->getMessage();
-	// 	}
+	if (empty($_POST["email"])) {
+		$emailErr = "Email is required";
+	} else {
+		$new_email = test_input($_POST['email']);
+		if ($_POST['email'] != $email) {
+			// check if e-mail address is well-formed
+			if (!filter_var($new_email, FILTER_VALIDATE_EMAIL)) {
+				$emailErr = "Invalid email format"; 
+			}
+			// check if email exists in database
+			$sql = $conn->prepare("SELECT * FROM `users` 
+							WHERE `email` = '$new_email' LIMIT 1");
+			$sql->execute();
+			$check_email = $sql->setFetchMode(PDO::FETCH_ASSOC);
+			$check_email = $sql->fetchAll();
+			if (!empty($check_email)) {
+				$emailErr = "This email already exists in our database";
+			}
+		}
+	}
+
+	/*
+	** UPDATE DATABASE WITH NEW VALUES
+	*/
+	if (empty($nameErr) && empty($emailErr) && empty($finalMessage)) {
+		try {
+			$sql = $conn->prepare("UPDATE `users` SET `username` = '$new_username', `email` = '$new_email' 
+						WHERE `username` = '$username' LIMIT 1");
+			$sql->execute();
+			$finalMessage = 'Your profile was updated!';
+			}
+		catch(PDOException $e)
+			{
+			$finalMessage = 'Database failed! Reason: ' . $e->getMessage();
+			}
+	}
 }
 
 ?>
@@ -65,16 +119,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
 		
 		<h1>Public profile</h1>
+
+		<p class="message" style="
+			<?php 
+				if (empty($finalMessage)){ 
+					echo "display: none;"; 
+				}
+			?>">
+			<?php echo $finalMessage;?>
+		</p>
 		
 		<fieldset>
 			
 			<legend><span class="number">1</span> Your basic info</legend>
 			
+			<p class="message" style="
+				<?php 
+					if (empty($nameErr)){ 
+						echo "display: none;"; 
+					}
+				?>">
+				<?php echo $nameErr;?>
+			</p>
 			<label for="name">Username:</label>
-			<input type="text" id="name" name="user_name" value="<?php echo $username; ?>">
+			<input type="text" id="name" name="username" value="<?php echo $username; ?>">
 			
+			<p class="message" style="
+				<?php 
+					if (empty($emailErr)){ 
+						echo "display: none;"; 
+					}
+				?>">
+				<?php echo $emailErr;?>
+			</p>
 			<label for="mail">Email:</label>
-			<input type="email" id="mail" name="user_email" value="<?php echo $email; ?>">
+			<input type="email" id="mail" name="email" value="<?php echo $email; ?>">
 		
 		</fieldset>
 
