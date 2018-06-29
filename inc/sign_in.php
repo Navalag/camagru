@@ -115,18 +115,19 @@ $conn = null;
 			<input type="email" id="mail" name="email">
 
 			<p class="message" style="
-				<?php 
+			<?php 
 				if (empty($emailErr) && empty($finalMessage)){ 
 					echo "display: none;"; 
 				}
-				?>">
-				<?php 
+			?>
+			">
+			<?php 
 				if (!empty($emailErr)){ 
 					echo $emailErr; 
 				} else {
 					echo $finalMessage; 
 				}
-				?>		
+			?>		
 			</p>
 
 			<button type="submit">Send new password</button>
@@ -136,7 +137,13 @@ $conn = null;
 
 			<h1>Sign In</h1>
 			
-			<p class="message"><?php echo $finalMessage;?></p>
+			<p class="message" style="
+			<?php 
+				if (empty($finalMessage)) {
+					echo "display: none;"; 
+				}
+			?>
+			"><?php echo $finalMessage;?></p>
 
 			<label for="name">Username:</label>
 			<input type="text" id="name" name="username">
@@ -146,6 +153,7 @@ $conn = null;
 								
 			<button type="submit">Sign In</button>
 			<a href="sign_in.php?forgot_pass=1">Forgot password?</a>
+			<a href="/">Back to main page</a>
 
 			<?php } ?>
 			

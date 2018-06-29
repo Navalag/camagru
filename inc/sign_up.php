@@ -155,26 +155,57 @@ $conn = null;
 			
 			<h1>Sign Up</h1>
 
-			<p class="message"><?php echo $finalMessage;?></p>
+			<p class="message" style="
+			<?php 
+				if (empty($finalMessage)){ 
+					echo "display: none;"; 
+				}
+			?>
+			"><?php echo $finalMessage;?></p>
 
 			<label for="name">Name:</label>
 			<input type="text" id="name" name="username" value="<?php echo $username;?>">
-			<p class="message">* <?php echo $nameErr;?></p>
+			<p class="message" style="
+			<?php 
+				if (empty($nameErr)){ 
+					echo "display: none;"; 
+				}
+			?>
+			"><?php echo $nameErr;?></p>
 			
 			<label for="mail">Email:</label>
 			<input type="email" id="mail" name="email" value="<?php echo $email;?>">
-			<p class="message">* <?php echo $emailErr;?></p>
+			<p class="message" style="
+			<?php 
+				if (empty($emailErr)){ 
+					echo "display: none;"; 
+				}
+			?>
+			"><?php echo $emailErr;?></p>
 			
 			<label for="password">Password:</label>
 			<input type="password" id="password" name="password">
-			<p class="message">* <?php echo $passwordErr;?></p>
+			<p class="message" style="
+			<?php 
+				if (empty($passwordErr)){ 
+					echo "display: none;"; 
+				}
+			?>
+			"><?php echo $passwordErr;?></p>
 
 			<label for="repeat-password">Repeat Password:</label>
 			<input type="password" id="repeat-password" name="repeat_password">
-			<p class="message">* <?php echo $repeatPasswordErr;?></p>
+			<p class="message" style="
+			<?php 
+				if (empty($repeatPasswordErr)){ 
+					echo "display: none;"; 
+				}
+			?>
+			"><?php echo $repeatPasswordErr;?></p>
 
 			<button type="submit" name="signup">Sign Up</button>
-
+			<a href="sign_in.php">Sign In</a>
+			<a href="/">Back to main page</a>
 		</form>
 	</body>
 </html>
