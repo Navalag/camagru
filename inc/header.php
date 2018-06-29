@@ -40,7 +40,7 @@ if (!isset($_SESSION)) {
 				<ul class="main-nav">
 					<li><a href="/">Gallery</a></li>
 					<li><a href="account.php">My Profile</a></li>
-					<li><a href="#">Settings</a></li>
+					<li><a href="settings.php">Settings</a></li>
 					<li><a href="inc/user_managment/logout.php">Sign out</a></li>
 				</ul>
 

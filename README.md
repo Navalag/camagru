@@ -15,3 +15,6 @@ How to debug PHP tutorial
 
 PHP Form Validation And Verification
 - https://www.phpjabbers.com/php-validation-and-verification-php27.html
+
+Generate random password PHP
+- https://stackoverflow.com/questions/6101956/generating-a-random-password-in-php/31284266#31284266
