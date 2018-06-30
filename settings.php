@@ -18,7 +18,7 @@ $finalMessage = "";
 $username = $email = "";
 
 /*
-** SELECT USER INFO FROM DB, FILL WITH THAT NAME AND EMAIL
+** SELECT USER INFO FROM DB, FILL WITH THIS INFO NAME AND EMAIL
 */
 try {
 	$sql = $conn->prepare("SELECT * FROM `users` 
@@ -32,6 +32,7 @@ try {
 		$user_info = $user_info[0];
 		$username = $user_info['username'];
 		$email = $user_info['email'];
+		$password = $user_info['password'];
 	}
 	}
 catch(PDOException $e)
@@ -85,14 +86,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		}
 	}
 
+	if (!empty($_POST["old_password"])) {
+		$old_password = test_input($_POST['old_password']);
+		$old_password = md5($old_password);
+		if ($old_password != $password) {
+			$passwordErr = "Old password incorrect.";
+		} else {
+			$new_password = test_input($_POST['new_password']);
+			// if (!preg_match("/^.*(?=.{8,})(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$/",$new_password)) {
+			// 	$passwordErr = "Password must be at least 8 characters and must contain at least one lower case letter, one upper case letter and one digit"; 
+			// }
+			if (empty($passwordErr)) {
+				$confirm_new_password = test_input($_POST['confirm_new_password']);
+				if ($new_password != $confirm_new_password) {
+					$passwordErr = "Passwords doesn't match";
+				} else {
+					$new_password = md5($new_password);
+					$password = $new_password;
+				}
+			}
+		}
+	}
+
 	/*
 	** UPDATE DATABASE WITH NEW VALUES
 	*/
-	if (empty($nameErr) && empty($emailErr) && empty($finalMessage)) {
+	if (empty($nameErr) && empty($emailErr) && empty($passwordErr) && empty($finalMessage)) {
 		try {
-			$sql = $conn->prepare("UPDATE `users` SET `username` = '$new_username', `email` = '$new_email' 
-						WHERE `username` = '$username' LIMIT 1");
+			$sql = $conn->prepare("UPDATE `users` 
+				SET `username` = '$new_username', `email` = '$new_email', `password` = '$password' 
+				WHERE `username` = '$username' LIMIT 1");
 			$sql->execute();
+			$_SESSION['Username'] = $new_username;
+			$username = $new_username;
+			$email = $new_email;
 			$finalMessage = 'Your profile was updated!';
 			}
 		catch(PDOException $e)
@@ -118,19 +145,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
 		
-		<h1>Public profile</h1>
+			<h1>Public profile</h1>
 
-		<p class="message" style="
-			<?php 
-				if (empty($finalMessage)){ 
-					echo "display: none;"; 
-				}
-			?>">
-			<?php echo $finalMessage;?>
-		</p>
-		
-		<fieldset>
+			<p class="message" style="
+				<?php 
+					if (empty($finalMessage)){ 
+						echo "display: none;"; 
+					}
+				?>">
+				<?php echo $finalMessage;?>
+			</p>
 			
+		<fieldset>
+				
 			<legend><span class="number">1</span> Your basic info</legend>
 			
 			<p class="message" style="
@@ -154,33 +181,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			</p>
 			<label for="mail">Email:</label>
 			<input type="email" id="mail" name="email" value="<?php echo $email; ?>">
-		
+
 		</fieldset>
-
-		<button type="submit">Update profile</button>
-		
-		</form>
-
-		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-				
 		<fieldset>
-			
+				
 			<legend><span class="number">2</span> Change password</legend>
-			
+
+			<p class="message" style="
+				<?php 
+					if (empty($passwordErr)){ 
+						echo "display: none;"; 
+					}
+				?>">
+				<?php echo $passwordErr;?>
+			</p>
+				
 			<label for="old_password">Old Password:</label>
-         <input type="password" id="old_password" name="old_password">
+	        <input type="password" id="old_password" name="old_password">
 
-         <label for="new_password">New Password:</label>
-         <input type="password" id="new_password" name="new_password">
+	        <label for="new_password">New Password:</label>
+	        <input type="password" id="new_password" name="new_password">
 
-         <label for="confirm_new_password">Confirm New Password:</label>
-         <input type="password" id="confirm_new_password" name="confirm_new_password">
-			
+	        <label for="confirm_new_password">Confirm New Password:</label>
+	        <input type="password" id="confirm_new_password" name="confirm_new_password">
+				
 		</fieldset>
-			
-		<button type="submit">Update password</button>
-		<a href="sign_in.php?forgot_pass=1">I forgot my password</a>
-		<br><br><a href="/">Back to main page</a>
+				
+			<button type="submit">Update profile</button>
+			<a href="inc/sign_in.php?forgot_pass=1">I forgot my password</a>
+			<br><br><a href="/">Back to main page</a>
 		
 		</form>
 
