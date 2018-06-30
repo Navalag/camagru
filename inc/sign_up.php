@@ -101,6 +101,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 				$finalMessage = "Thank You for registration. Please check your email for confirmation!";
 			} else {
 				$finalMessage = "Error: Could not send confirm email";
+				$sql = $conn->prepare("DELETE FROM `users` 
+							WHERE `username` = '$username' LIMIT 1");
+				$sql->execute();
+				$sql = $conn->prepare("DELETE FROM `confirm` 
+							WHERE `userid` = '$userid' LIMIT 1");
+				$sql->execute();
 			}
 			}
 		catch(PDOException $e)
