@@ -1,7 +1,10 @@
 <?php 
 
-include("./../config/connect.php");
-include("./functions/user_managment_func.php");
+include($_SERVER["DOCUMENT_ROOT"]."/config/connect.php");
+include($_SERVER["DOCUMENT_ROOT"]."/inc/functions/user_managment_func.php");
+
+$pageTitle = "Sign Up - Camagru";
+$section = null;
 
 $nameErr = $emailErr = $passwordErr = $repeatPasswordErr = "";
 $finalMessage = "";
@@ -144,9 +147,10 @@ if(isset($_GET['id']) && isset($_GET['code']))
 }
 $conn = null;
 
+include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 ?>
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 	<head>
 			<meta charset="utf-8">
@@ -156,7 +160,7 @@ $conn = null;
 			<link href='http://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
 			<link rel="stylesheet" href="../css/form.css">
 	</head>
-	<body>
+	<body> -->
 		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
 			
 			<h1>Sign Up</h1>
@@ -214,5 +218,7 @@ $conn = null;
 			<a href="sign_in.php">Sign In</a>
 			<a href="/">Back to main page</a>
 		</form>
-	</body>
-</html>
+
+<?php include($_SERVER["DOCUMENT_ROOT"].'/inc/footer.php'); ?>
+<!-- 	</body>
+</html> -->

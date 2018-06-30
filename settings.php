@@ -10,8 +10,8 @@ if (!isset($_SESSION['Username'])) {
 	header("location:http://localhost:8080");
 }
 
-// $pageTitle = "Settings profile - Camagru";
-// $section = null;
+$pageTitle = "Settings profile - Camagru";
+$section = null;
 
 $nameErr = $passwordErr = $emailErr = "";
 $finalMessage = "";
@@ -128,10 +128,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			}
 	}
 }
+$conn = null;
 
+include 'inc/header.php';
 ?>
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -141,7 +143,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		<link href='http://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="css/form.css">
 	</head>
-	<body>
+	<body> -->
 
 		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
 		
@@ -209,9 +211,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				
 			<button type="submit">Update profile</button>
 			<a href="inc/sign_in.php?forgot_pass=1">I forgot my password</a>
-			<br><br><a href="/">Back to main page</a>
+			<!-- <br><br><a href="/">Back to main page</a> -->
 		
 		</form>
 
-	</body>
-</html>
+<?php include 'inc/footer.php'; ?>
+<!-- 	</body>
+</html> -->
