@@ -23,8 +23,14 @@ file_put_contents($file, $img);
 // $owner_id = $user['uid'];
 $path = "http://localhost:8080/img/uploads/" . $name;
 try {
+	$sql = $conn->prepare("SELECT * FROM `users` 
+				WHERE `username` = '$_SESSION[Username]' LIMIT 1");
+	$sql->execute();
+	$user_info = $sql->setFetchMode(PDO::FETCH_ASSOC);
+	$user_info = $sql->fetchAll();
+	$user_info = $user_info[0];
 	$sql = "INSERT INTO `user_img` (`src`, `user_id`) 
-				VALUES ('$path', 1)";
+				VALUES ('$path', '$user_info[id]')";
 	$conn->exec($sql);
 	echo "New record created successfully<br>";
 	}

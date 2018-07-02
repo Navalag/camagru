@@ -18,3 +18,6 @@ PHP Form Validation And Verification
 
 Generate random password PHP
 - https://stackoverflow.com/questions/6101956/generating-a-random-password-in-php/31284266#31284266
+
+Resolving PHP relative path problem
+- http://yagudaev.com/posts/resolving-php-relative-path-problem/
