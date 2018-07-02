@@ -1,7 +1,7 @@
 <?php 
 
 include($_SERVER["DOCUMENT_ROOT"]."/config/connect.php");
-include($_SERVER["DOCUMENT_ROOT"]."/inc/functions/user_managment_func.php");
+include($_SERVER["DOCUMENT_ROOT"]."/inc/functions.php");
 
 $pageTitle = "Sign In - Camagru";
 $section = null;
@@ -96,73 +96,59 @@ $conn = null;
 include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 ?>
 
-<!-- <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Sign Up Form</title>
-		<link rel="stylesheet" href="../css/normalize.css">
-		<link href='http://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" href="../css/form.css">
-	</head>
-	<body> -->
+<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+	
+	<?php if (isset($_GET['forgot_pass']) || isset($_POST['email'])) { ?>
 
-		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-			
-			<?php if (isset($_GET['forgot_pass']) || isset($_POST['email'])) { ?>
+	<h1>Reset your password</h1>
 
-			<h1>Reset your password</h1>
+	<p>Enter your email address and we will send you new password.</p>
+	<label for="mail">Email:</label>
+	<input type="email" id="mail" name="email">
 
-			<p>Enter your email address and we will send you new password.</p>
-			<label for="mail">Email:</label>
-			<input type="email" id="mail" name="email">
+	<p class="message" style="
+	<?php 
+		if (empty($emailErr) && empty($finalMessage)){ 
+			echo "display: none;"; 
+		}
+	?>
+	">
+	<?php 
+		if (!empty($emailErr)){ 
+			echo $emailErr; 
+		} else {
+			echo $finalMessage; 
+		}
+	?>		
+	</p>
 
-			<p class="message" style="
-			<?php 
-				if (empty($emailErr) && empty($finalMessage)){ 
-					echo "display: none;"; 
-				}
-			?>
-			">
-			<?php 
-				if (!empty($emailErr)){ 
-					echo $emailErr; 
-				} else {
-					echo $finalMessage; 
-				}
-			?>		
-			</p>
+	<button type="submit">Send new password</button>
+	<a href="sign_in.php">Return to sign in</a>
 
-			<button type="submit">Send new password</button>
-			<a href="sign_in.php">Return to sign in</a>
+	<?php } else { ?>
 
-			<?php } else { ?>
+	<h1>Sign In</h1>
+	
+	<p class="message" style="
+	<?php 
+		if (empty($finalMessage)) {
+			echo "display: none;"; 
+		}
+	?>
+	"><?php echo $finalMessage;?></p>
 
-			<h1>Sign In</h1>
-			
-			<p class="message" style="
-			<?php 
-				if (empty($finalMessage)) {
-					echo "display: none;"; 
-				}
-			?>
-			"><?php echo $finalMessage;?></p>
+	<label for="name">Username:</label>
+	<input type="text" id="name" name="username">
+	
+	<label for="password">Password:</label>
+	<input type="password" id="password" name="password">
 
-			<label for="name">Username:</label>
-			<input type="text" id="name" name="username">
-			
-			<label for="password">Password:</label>
-			<input type="password" id="password" name="password">
-								
-			<button type="submit">Sign In</button>
-			<a href="sign_in.php?forgot_pass=1">Forgot password?</a>
-			<a href="/">Back to main page</a>
+	<button type="submit">Sign In</button>
+	<a href="/inc/sign_in.php?forgot_pass=1">Forgot password?</a>
+	<a href="/">Back to main page</a>
 
-			<?php } ?>
-			
-		</form>
+	<?php } ?>
+	
+</form>
 		
 <?php include($_SERVER["DOCUMENT_ROOT"].'/inc/footer.php'); ?>
-	<!-- </body>
-</html> -->

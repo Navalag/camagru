@@ -3,13 +3,13 @@
 if (!isset($_SESSION)) {
 	session_start();
 }
-include('config/setup.php');
-include("inc/functions/page_content_func.php");
+include($_SERVER["DOCUMENT_ROOT"]."/config/setup.php");
+include($_SERVER["DOCUMENT_ROOT"]."/inc/functions.php");
 
 $pageTitle = "Camagru - small Instagram-like site allowing you to create and share photo-montages";
 $section = "landing_page";
 
-include 'inc/header.php';
+include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 ?>
 
 <div class="banner">
@@ -41,4 +41,4 @@ include 'inc/header.php';
 	</div><!--/.tertiary-->	
 </div>
 
-<?php include 'inc/footer.php'; ?>
+<?php include($_SERVER["DOCUMENT_ROOT"].'/inc/footer.php'); ?>

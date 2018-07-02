@@ -1,9 +1,9 @@
 <?php
 
-include('connect.php');
+include($_SERVER["DOCUMENT_ROOT"].'/config/connect.php');
 
 try {
-	/* 
+	/*
 	** CREATE DATABASE
 	*/
 	$sql = "CREATE DATABASE IF NOT EXISTS " . $DB_NAME . ";";

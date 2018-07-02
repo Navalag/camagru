@@ -1,7 +1,5 @@
 <?php 
 
-include("inc/functions/page_content_func.php");
-
 $pageTitle = "Personal account - Camagru";
 $section = null;
 
@@ -11,7 +9,9 @@ if (!isset($_SESSION)) {
 if (!isset($_SESSION['Username'])) {
 	header("location:http://localhost:8080");
 }
-include 'inc/header.php';
+
+include($_SERVER["DOCUMENT_ROOT"]."/inc/functions.php");
+include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 ?>
 
 <div class="container cont-wrap clearfix">
@@ -58,4 +58,4 @@ include 'inc/header.php';
 <script src="js/camera_handler_2.js"></script>
 <!-- <script src="js/edit_photo.js"></script> -->
 
-<?php include 'inc/footer.php'; ?>
+<?php include($_SERVER["DOCUMENT_ROOT"].'/inc/footer.php'); ?>

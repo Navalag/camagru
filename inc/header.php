@@ -12,8 +12,8 @@ if (!isset($_SESSION)) {
 	<title><?php echo $pageTitle; ?></title>
 	<link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-	<link rel="stylesheet" href="css/normalize.css">
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="/css/normalize.css">
+	<link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 	
@@ -31,17 +31,17 @@ if (!isset($_SESSION)) {
 			<?php } if (!isset($_SESSION['Username'])) { ?>
 
 				<ul class="main-nav">
-					<li><a href="inc/sign_in.php">Sign In</a></li>
-					<li><a href="inc/sign_up.php">Sign Up</a></li>
+					<li><a href="/inc/sign_in.php">Sign In</a></li>
+					<li><a href="/inc/sign_up.php">Sign Up</a></li>
 				</ul>
 
 			<?php } else { ?>
 				
 				<ul class="main-nav">
 					<li><a href="/">Gallery</a></li>
-					<li><a href="account.php">My Profile</a></li>
-					<li><a href="settings.php">Settings</a></li>
-					<li><a href="inc/user_managment/logout.php">Sign out</a></li>
+					<li><a href="/account.php">My Profile</a></li>
+					<li><a href="/settings.php">Settings</a></li>
+					<li><a href="/inc/sign_out.php">Sign out</a></li>
 				</ul>
 
 			<?php } ?>

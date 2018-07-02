@@ -1,14 +1,14 @@
 <?php 
 
-include("config/connect.php");
-include("inc/functions/user_managment_func.php");
-
 if (!isset($_SESSION)) {
 	session_start();
 }
 if (!isset($_SESSION['Username'])) {
 	header("location:http://localhost:8080");
 }
+
+include($_SERVER["DOCUMENT_ROOT"]."/config/connect.php");
+include($_SERVER["DOCUMENT_ROOT"]."/inc/functions.php");
 
 $pageTitle = "Settings profile - Camagru";
 $section = null;
@@ -130,91 +130,76 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 $conn = null;
 
-include 'inc/header.php';
+include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 ?>
 
-<!-- <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Sign Up Form</title>
-		<link rel="stylesheet" href="css/normalize.css">
-		<link href='http://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" href="css/form.css">
-	</head>
-	<body> -->
+<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
 
-		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+	<h1>Public profile</h1>
+
+	<p class="message" style="
+		<?php 
+			if (empty($finalMessage)){ 
+				echo "display: none;"; 
+			}
+		?>">
+		<?php echo $finalMessage;?>
+	</p>
+	
+	<fieldset>
+			
+		<legend><span class="number">1</span> Your basic info</legend>
 		
-			<h1>Public profile</h1>
-
-			<p class="message" style="
-				<?php 
-					if (empty($finalMessage)){ 
-						echo "display: none;"; 
-					}
-				?>">
-				<?php echo $finalMessage;?>
-			</p>
-			
-		<fieldset>
-				
-			<legend><span class="number">1</span> Your basic info</legend>
-			
-			<p class="message" style="
-				<?php 
-					if (empty($nameErr)){ 
-						echo "display: none;"; 
-					}
-				?>">
-				<?php echo $nameErr;?>
-			</p>
-			<label for="name">Username:</label>
-			<input type="text" id="name" name="username" value="<?php echo $username; ?>">
-			
-			<p class="message" style="
-				<?php 
-					if (empty($emailErr)){ 
-						echo "display: none;"; 
-					}
-				?>">
-				<?php echo $emailErr;?>
-			</p>
-			<label for="mail">Email:</label>
-			<input type="email" id="mail" name="email" value="<?php echo $email; ?>">
-
-		</fieldset>
-		<fieldset>
-				
-			<legend><span class="number">2</span> Change password</legend>
-
-			<p class="message" style="
-				<?php 
-					if (empty($passwordErr)){ 
-						echo "display: none;"; 
-					}
-				?>">
-				<?php echo $passwordErr;?>
-			</p>
-				
-			<label for="old_password">Old Password:</label>
-	        <input type="password" id="old_password" name="old_password">
-
-	        <label for="new_password">New Password:</label>
-	        <input type="password" id="new_password" name="new_password">
-
-	        <label for="confirm_new_password">Confirm New Password:</label>
-	        <input type="password" id="confirm_new_password" name="confirm_new_password">
-				
-		</fieldset>
-				
-			<button type="submit">Update profile</button>
-			<a href="inc/sign_in.php?forgot_pass=1">I forgot my password</a>
-			<!-- <br><br><a href="/">Back to main page</a> -->
+		<p class="message" style="
+			<?php 
+				if (empty($nameErr)){ 
+					echo "display: none;"; 
+				}
+			?>">
+			<?php echo $nameErr;?>
+		</p>
+		<label for="name">Username:</label>
+		<input type="text" id="name" name="username" value="<?php echo $username; ?>">
 		
-		</form>
+		<p class="message" style="
+			<?php 
+				if (empty($emailErr)){ 
+					echo "display: none;"; 
+				}
+			?>">
+			<?php echo $emailErr;?>
+		</p>
+		<label for="mail">Email:</label>
+		<input type="email" id="mail" name="email" value="<?php echo $email; ?>">
 
-<?php include 'inc/footer.php'; ?>
-<!-- 	</body>
-</html> -->
+	</fieldset>
+	<fieldset>
+			
+		<legend><span class="number">2</span> Change password</legend>
+
+		<p class="message" style="
+			<?php 
+				if (empty($passwordErr)){ 
+					echo "display: none;"; 
+				}
+			?>">
+			<?php echo $passwordErr;?>
+		</p>
+			
+		<label for="old_password">Old Password:</label>
+		<input type="password" id="old_password" name="old_password">
+
+		<label for="new_password">New Password:</label>
+		<input type="password" id="new_password" name="new_password">
+
+		<label for="confirm_new_password">Confirm New Password:</label>
+		<input type="password" id="confirm_new_password" name="confirm_new_password">
+			
+	</fieldset>
+		
+	<button type="submit">Update profile</button>
+	<a href="/inc/sign_in.php?forgot_pass=1">I forgot my password</a>
+
+</form>
+
+<?php include($_SERVER["DOCUMENT_ROOT"].'/inc/footer.php'); ?>
