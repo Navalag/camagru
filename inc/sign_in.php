@@ -41,6 +41,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 		} else {
 			session_start();
 			$_SESSION['Username'] = $check_user[0]["username"];
+			$_SESSION['userID'] = $check_user[0]["id"];
 			header("location:http://localhost:8080/account.php");
 		}
 		}

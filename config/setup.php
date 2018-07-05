@@ -14,9 +14,9 @@ try {
 	** CREATE user_img TABLE
 	*/
 	$sql = "CREATE TABLE IF NOT EXISTS user_img (
-			img_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+			img_id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
 			src VARCHAR(255) NOT NULL,
-			user_id INT(6) NOT NULL
+			user_id INT(11) NOT NULL
 			)";
 	$conn->exec($sql);
 	// echo "Table user_img created successfully<br>";

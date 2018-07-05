@@ -267,6 +267,14 @@ p.message {
 		width: 50%;
 	}
 
+	.collage {
+		width: 50%;
+	}
+	.collage img {
+		border: 4px solid PaleVioletRed;
+		margin: 1.5em;
+	}
+
 	.account_primary {
 		width: 60%;
 	}

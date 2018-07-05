@@ -41,4 +41,15 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 	</div><!--/.tertiary-->	
 </div>
 
+<div class="container clearfix">
+
+	<?php
+	$catalog = get_all_photo_array();
+	foreach ($catalog as $item) {
+			echo get_div_item_html($item);
+	}
+	?>
+	
+</div>
+
 <?php include($_SERVER["DOCUMENT_ROOT"].'/inc/footer.php'); ?>

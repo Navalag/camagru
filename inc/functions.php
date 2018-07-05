@@ -15,13 +15,36 @@ function get_item_html($item) {
 			. "</li>";
 	return $output;
 }
+function get_div_item_html($item) {
+	$output = "<div class='collage col'><img src='" 
+			. $item["src"] . "' alt='" 
+			. $item["img_id"] . "' />" 
+			. "</div>";
+	return $output;
+}
+function get_all_photo_array() {
+	include("config/connect.php");
+
+	try {
+		$result = $conn->prepare(
+			"SELECT * FROM user_img"
+		);
+		$result->execute();
+		$catalog = $result->setFetchMode(PDO::FETCH_ASSOC);
+		$catalog = $result->fetchAll();
+	} catch (PDOException $e) {
+		echo "Unable to retrieved results";
+		exit;
+	}
+	return $catalog;
+}
 function get_user_photo_array() {
 	include("config/connect.php");
 
 	try {
 		$result = $conn->prepare(
-			"SELECT img_id, src, user_id 
-			FROM user_img"
+			"SELECT * FROM user_img 
+			WHERE `user_id` = $_SESSION[userID]"
 		);
 		$result->execute();
 		$catalog = $result->setFetchMode(PDO::FETCH_ASSOC);
