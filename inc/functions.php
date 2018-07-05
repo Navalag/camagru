@@ -15,6 +15,7 @@ function get_item_html($item) {
 			. "</li>";
 	return $output;
 }
+
 function get_div_item_html($item) {
 	$output = "<div class='collage col'><img src='" 
 			. $item["src"] . "' alt='" 
@@ -22,38 +23,83 @@ function get_div_item_html($item) {
 			. "</div>";
 	return $output;
 }
-function get_all_photo_array() {
-	include("config/connect.php");
+
+function get_single_user_photo_array($limit = null, $offset = 0) {
+	include($_SERVER["DOCUMENT_ROOT"]."/config/connect.php");
 
 	try {
-		$result = $conn->prepare(
-			"SELECT * FROM user_img"
-		);
-		$result->execute();
-		$catalog = $result->setFetchMode(PDO::FETCH_ASSOC);
-		$catalog = $result->fetchAll();
+		$sql = "SELECT * FROM user_img
+				WHERE `user_id` = $_SESSION[userID]
+				ORDER BY img_id DESC";
+		if (is_integer($limit)) {
+			$results = $conn->prepare($sql . " LIMIT ? OFFSET ?");
+			$results->bindParam(1,$limit,PDO::PARAM_INT);
+			$results->bindParam(2,$offset,PDO::PARAM_INT);
+		} else {
+			$results = $conn->prepare($sql);
+		}
+		$results->execute();
 	} catch (PDOException $e) {
 		echo "Unable to retrieved results";
 		exit;
 	}
-	return $catalog;
+	$gallery = $results->fetchAll();
+	return $gallery;
 }
-function get_user_photo_array() {
-	include("config/connect.php");
+
+function full_photo_gallery_array($limit = null, $offset = 0) {
+	include($_SERVER["DOCUMENT_ROOT"]."/config/connect.php");
+
+	try {
+		$sql = "SELECT * FROM user_img
+				ORDER BY img_id DESC";
+		if (is_integer($limit)) {
+			$results = $conn->prepare($sql . " LIMIT ? OFFSET ?");
+			$results->bindParam(1,$limit,PDO::PARAM_INT);
+			$results->bindParam(2,$offset,PDO::PARAM_INT);
+		} else {
+			$results = $conn->prepare($sql);
+		}
+		$results->execute();
+	} catch (Exception $e) {
+		 echo "Unable to retrieved results";
+		 exit;
+	}
+	
+	$gallery = $results->fetchAll();
+	return $gallery;
+}
+
+function count_all_photo() {
+	include($_SERVER["DOCUMENT_ROOT"]."/config/connect.php");
 
 	try {
 		$result = $conn->prepare(
-			"SELECT * FROM user_img 
-			WHERE `user_id` = $_SESSION[userID]"
+			"SELECT COUNT(img_id) FROM user_img"
 		);
 		$result->execute();
-		$catalog = $result->setFetchMode(PDO::FETCH_ASSOC);
-		$catalog = $result->fetchAll();
+		$count = $result->fetchColumn(0);
 	} catch (PDOException $e) {
 		echo "Unable to retrieved results";
 		exit;
 	}
-	return $catalog;
+	return $count;
+}
+function count_all_photo_for_user() {
+	include($_SERVER["DOCUMENT_ROOT"]."/config/connect.php");
+
+	try {
+		$result = $conn->prepare(
+			"SELECT COUNT(img_id) FROM user_img
+			 WHERE `user_id` = $_SESSION[userID]"
+		);
+		$result->execute();
+	} catch (PDOException $e) {
+		echo "Unable to retrieved results";
+		exit;
+	}
+	$count = $result->fetchColumn(0);
+	return $count;
 }
 
 /* =======================================================

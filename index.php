@@ -8,6 +8,45 @@ include($_SERVER["DOCUMENT_ROOT"]."/inc/functions.php");
 
 $pageTitle = "Camagru - small Instagram-like site allowing you to create and share photo-montages";
 $section = "landing_page";
+$items_per_page = 8;
+
+if (isset($_GET["pg"])) {
+	$current_page = filter_input(INPUT_GET,"pg",FILTER_SANITIZE_NUMBER_INT);
+}
+if (empty($current_page)) {
+	$current_page = 1;
+}
+
+$total_items = count_all_photo();
+$total_pages = 1;
+$offset = 0;
+if ($total_items > 0) {
+	$total_pages = ceil($total_items / $items_per_page);
+
+	// redirect too-large page numbers to the last page
+	if ($current_page > $total_pages) {
+		header("location:http://localhost:8080?pg=".$total_pages);
+	}
+	// redirect too-small page numbers to the first page
+	if ($current_page < 1) {
+		header("location:http://localhost:8080?pg=1");
+	}
+
+	//determine the offset (number of items to skip) for the current page
+	//for example: on page 3 with 8 item per page, the offset would be 16
+	$offset = ($current_page - 1) * $items_per_page;
+
+	$pagination = "<div class=\"pagination\">";
+	$pagination .= "Pages: ";
+	for ($i = 1; $i <= $total_pages; $i++) {
+		if ($i == $current_page) {
+			$pagination .= " <span>$i</span>";
+		} else {
+			$pagination .= " <a href='index.php?pg=$i'>$i</a>";
+		}
+	}
+	$pagination .= "</div>";
+}
 
 include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 ?>
@@ -44,9 +83,12 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 <div class="container clearfix">
 
 	<?php
-	$catalog = get_all_photo_array();
+	$catalog = full_photo_gallery_array($items_per_page,$offset);
 	foreach ($catalog as $item) {
-			echo get_div_item_html($item);
+		echo get_div_item_html($item);
+	}
+	if (isset($pagination)) {
+		echo $pagination;
 	}
 	?>
 	
