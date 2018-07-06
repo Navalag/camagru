@@ -21,3 +21,9 @@ Generate random password PHP
 
 Resolving PHP relative path problem
 - http://yagudaev.com/posts/resolving-php-relative-path-problem/
+
+Create comment box with PHP AJAX SQL
+- https://www.linkedin.com/pulse/step-instructions-create-website-comment-box-using-php-dash
+
+Implement likes unlikes with PHP SQL
+- http://codewithawa.com/posts/like-and-unlike-system-using-php-and-mysql-database

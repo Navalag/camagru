@@ -5,7 +5,6 @@ include($_SERVER["DOCUMENT_ROOT"]."/inc/functions.php");
 
 $name_entered = $_POST['name'];
 $comment_entered = $_POST['comment'];
-// $table= $_POST['webpage'];
 $date= date("m-d-Y");
 
 if ((!empty($name_entered)) && (!empty($comment_entered))) {
