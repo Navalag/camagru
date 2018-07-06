@@ -43,6 +43,17 @@ try {
 			)";
 	$conn->exec($sql);
 	// echo "Table confirm created successfully<br>";
+	/* 
+	** CREATE comments TABLE
+	*/
+	$sql = "CREATE TABLE IF NOT EXISTS `comments` (
+			`id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+			`name` varchar(50) NOT NULL default '',
+			`date` varchar(50) NOT NULL default '',
+			`comments` varchar(6000) NOT NULL default ''
+			)";
+	$conn->exec($sql);
+	// echo "Table comments created successfully<br>";
 	}
 catch (PDOException $e)
 	{

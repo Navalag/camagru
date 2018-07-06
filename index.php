@@ -146,6 +146,8 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 
 <script>
 
+window.addEventListener('load', submitcomment, false);
+
 function submitcomment() {
 	var request;
 	try {
@@ -166,17 +168,17 @@ function submitcomment() {
 			}
 		}
 
-	var webpage= location.href;
-	position = webpage.lastIndexOf("/"); 
-	var lastpart= webpage.substring(position + 1);
-	var period= lastpart.indexOf(".");
-	var complete= lastpart.substring(0, period);
-	complete= complete.replace(/-/g, "_");
+	// var webpage= location.href;
+	// position = webpage.lastIndexOf("/"); 
+	// var lastpart= webpage.substring(position + 1);
+	// var period= lastpart.indexOf(".");
+	// var complete= lastpart.substring(0, period);
+	// complete= complete.replace(/-/g, "_");
 
-	var url= "usercomments.php";
+	var url= "inc/comments_likes/comments.php";
 	var username= document.getElementById("name_entered").value;
 	var usercomment= document.getElementById("comment_entered").value;
-	var vars= "name="+username+"&comment="+usercomment+"&webpage="+complete;
+	var vars= "name="+username+"&comment="+usercomment;
 	request.open("POST", url, true);
 
 	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
