@@ -80,6 +80,35 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 	</div><!--/.tertiary-->	
 </div>
 
+
+<!-- display posts gotten from the database  -->
+<?php while ($row = mysqli_fetch_array($posts)) { ?>
+
+	<div class="post">
+		<?php echo $row['text']; ?>
+
+		<div style="padding: 2px; margin-top: 5px;">
+		<?php 
+			// determine if user has already liked this post
+			$results = mysqli_query($con, "SELECT * FROM likes WHERE userid=1 AND postid=".$row['id']."");
+
+			if (mysqli_num_rows($results) == 1 ): ?>
+				<!-- user already likes post -->
+				<span class="unlike fa fa-thumbs-up" data-id="<?php echo $row['id']; ?>"></span> 
+				<span class="like hide fa fa-thumbs-o-up" data-id="<?php echo $row['id']; ?>"></span> 
+			<?php else: ?>
+				<!-- user has not yet liked post -->
+				<span class="like fa fa-thumbs-o-up" data-id="<?php echo $row['id']; ?>"></span> 
+				<span class="unlike hide fa fa-thumbs-up" data-id="<?php echo $row['id']; ?>"></span> 
+			<?php endif ?>
+
+			<span class="likes_count"><?php echo $row['likes']; ?> likes</span>
+		</div>
+	</div>
+
+<?php } ?>
+
+
 <div class="container clearfix">
 
 	<table>

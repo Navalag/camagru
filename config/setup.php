@@ -16,7 +16,8 @@ try {
 	$sql = "CREATE TABLE IF NOT EXISTS user_img (
 			img_id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
 			src VARCHAR(255) NOT NULL,
-			user_id INT(11) NOT NULL
+			user_id INT(11) NOT NULL,
+			likes INT(11) NOT NULL
 			)";
 	$conn->exec($sql);
 	// echo "Table user_img created successfully<br>";
@@ -54,6 +55,16 @@ try {
 			)";
 	$conn->exec($sql);
 	// echo "Table comments created successfully<br>";
+	/* 
+	** CREATE likes TABLE
+	*/
+	$sql = "CREATE TABLE IF NOT EXISTS `likes` (
+			`id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+			`user_id` INT(11) NOT NULL,
+			`img_id` INT(11) NOT NULL
+			)";
+	$conn->exec($sql);
+	// echo "Table likes created successfully<br>";
 	}
 catch (PDOException $e)
 	{
