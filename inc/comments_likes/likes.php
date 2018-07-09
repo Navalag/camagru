@@ -8,9 +8,6 @@ include($_SERVER["DOCUMENT_ROOT"]."/inc/functions.php");
 
 if (isset($_POST['liked'])) {
 	$img_id = $_POST['img_id'];
-	// $result = mysqli_query($con, "SELECT * FROM `user_img` 
-	// 	WHERE `img_id`=$img_id");
-	// $row = mysqli_fetch_array($result);
 	try {
 		$sql = $conn->prepare("SELECT * FROM `user_img` 
 				WHERE `img_id` = $img_id LIMIT 1");
@@ -40,9 +37,6 @@ if (isset($_POST['liked'])) {
 		echo "Unable to retrieved results";
 		exit;
 	}
-
-	// mysqli_query($con, "INSERT INTO likes (userid, postid) VALUES (1, $img_id)");
-	// mysqli_query($con, "UPDATE posts SET likes=$n+1 WHERE id=$img_id");
 
 	echo $n+1;
 }
@@ -80,21 +74,7 @@ if (isset($_POST['unliked'])) {
 	}
 
 	echo $n-1;
-
-
-	// $img_id = $_POST['img_id'];
-	// $result = mysqli_query($con, "SELECT * FROM posts WHERE id=$img_id");
-	// $row = mysqli_fetch_array($result);
-	// $n = $row['likes'];
-
-	// mysqli_query($con, "DELETE FROM likes WHERE postid=$img_id AND userid=1");
-	// mysqli_query($con, "UPDATE posts SET likes=$n-1 WHERE id=$img_id");
-	
-	// echo $n-1;
-	// exit();
 }
 $conn = null;
-// Retrieve posts from the database
-// $posts = mysqli_query($con, "SELECT * FROM posts");
 
 ?>
