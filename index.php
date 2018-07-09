@@ -80,35 +80,6 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 	</div><!--/.tertiary-->	
 </div>
 
-
-<!-- display posts gotten from the database  -->
-<?php while ($row = mysqli_fetch_array($posts)) { ?>
-
-	<div class="post">
-		<?php echo $row['text']; ?>
-
-		<div style="padding: 2px; margin-top: 5px;">
-		<?php 
-			// determine if user has already liked this post
-			$results = mysqli_query($con, "SELECT * FROM likes WHERE userid=1 AND postid=".$row['id']."");
-
-			if (mysqli_num_rows($results) == 1 ): ?>
-				<!-- user already likes post -->
-				<span class="unlike fa fa-thumbs-up" data-id="<?php echo $row['id']; ?>"></span> 
-				<span class="like hide fa fa-thumbs-o-up" data-id="<?php echo $row['id']; ?>"></span> 
-			<?php else: ?>
-				<!-- user has not yet liked post -->
-				<span class="like fa fa-thumbs-o-up" data-id="<?php echo $row['id']; ?>"></span> 
-				<span class="unlike hide fa fa-thumbs-up" data-id="<?php echo $row['id']; ?>"></span> 
-			<?php endif ?>
-
-			<span class="likes_count"><?php echo $row['likes']; ?> likes</span>
-		</div>
-	</div>
-
-<?php } ?>
-
-
 <div class="container clearfix">
 
 	<table>
@@ -161,11 +132,44 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 	<br><br>
 	<div id="showcomments"></div>
 
+	<!-- display posts gotten from the database  -->
 	<?php
 	$catalog = full_photo_gallery_array($items_per_page,$offset);
 	foreach ($catalog as $item) {
-		echo get_div_item_html($item);
-	}
+		echo get_div_item_html($item); ?>
+
+		<!-- handel likes -->
+		<div style="padding: 2px; margin-top: 5px;">
+			<?php 
+			include($_SERVER["DOCUMENT_ROOT"]."/config/connect.php");
+
+			try {
+				$sql = $conn->prepare("SELECT * FROM `likes`
+				WHERE `user_id` = $_SESSION[userID] 
+				AND `img_id` = $item[img_id] LIMIT 1");
+				$sql->execute();
+			} catch (Exception $e) {
+				echo "Unable to retrieved results";
+				exit;
+			}
+			$result = $sql->setFetchMode(PDO::FETCH_ASSOC);
+			$result = $sql->fetchAll();
+			if (!empty($result)) { ?>
+				<!-- user already likes post -->
+				<span class="unlike fa fa-thumbs-up" data-id="<?php echo $item['img_id']; ?>"></span>
+				<span class="like hide fa fa-thumbs-o-up" data-id="<?php echo $item['img_id']; ?>"></span>
+			<?php } else { ?>
+				<!-- user has not yet liked post -->
+				<span class="like fa fa-thumbs-o-up" data-id="<?php echo $item['img_id']; ?>"></span> 
+				<span class="unlike hide fa fa-thumbs-up" data-id="<?php echo $item['img_id']; ?>"></span>
+			<?php }	
+			$conn = null;
+			?>
+
+			<span class="likes_count"><?php echo $item['likes']; ?> likes</span>
+		</div>
+	
+	<?php }
 	if (isset($pagination)) {
 		echo $pagination;
 	}
@@ -173,28 +177,6 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 	
 </div>
 
-<script>
-
-window.addEventListener('load', submitcomment, false);
-
-function submitcomment() {
-	var request = new XMLHttpRequest();
-	var url= "inc/comments_likes/comments.php";
-	var username= document.getElementById("name_entered").value;
-	var usercomment= document.getElementById("comment_entered").value;
-	var vars= "name="+username+"&comment="+usercomment;
-	request.open("POST", url, true);
-	request.onreadystatechange= function() {
-		if (request.readyState == 4 && request.status == 200) {
-			var return_data = request.responseText;
-			document.getElementById("showcomments").innerHTML = return_data;
-		}
-	}
-	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-	request.send(vars);
-}
-
-</script>
+<script src="js/comments_likes.js"></script>
 
 <?php include($_SERVER["DOCUMENT_ROOT"].'/inc/footer.php'); ?>
