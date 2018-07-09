@@ -123,7 +123,7 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 	<td>
 	</td>
 	<td>
-	<input type="submit" value="Comment" onclick="submitcomment();"/>
+	<input type="submit" value="Comment" onclick="submitComment()" />
 	</td>
 	</tr>
 
@@ -154,14 +154,23 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 			}
 			$result = $sql->setFetchMode(PDO::FETCH_ASSOC);
 			$result = $sql->fetchAll();
+			// var_dump($result);
 			if (!empty($result)) { ?>
 				<!-- user already likes post -->
-				<span class="unlike fa fa-thumbs-up" data-id="<?php echo $item['img_id']; ?>"></span>
-				<span class="like hide fa fa-thumbs-o-up" data-id="<?php echo $item['img_id']; ?>"></span>
+				<a class="like hide" data-id="<?php echo $item['img_id']; ?>">
+					<i class="far fa-heart"></i>
+				</a>
+				<a class="unlike" data-id="<?php echo $item['img_id']; ?>">
+					<i class="fas fa-heart"></i>
+				</a>
 			<?php } else { ?>
 				<!-- user has not yet liked post -->
-				<span class="like fa fa-thumbs-o-up" data-id="<?php echo $item['img_id']; ?>"></span> 
-				<span class="unlike hide fa fa-thumbs-up" data-id="<?php echo $item['img_id']; ?>"></span>
+				<a class="unlike hide" data-id="<?php echo $item['img_id']; ?>">
+					<i class="fas fa-heart"></i>
+				</a>
+				<a class="like" data-id="<?php echo $item['img_id']; ?>">
+					<i class="far fa-heart"></i>
+				</a>
 			<?php }	
 			$conn = null;
 			?>
@@ -177,6 +186,77 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 	
 </div>
 
-<script src="js/comments_likes.js"></script>
+<script>
+
+document.addEventListener('DOMContentLoaded', () => {
+	const like = document.querySelector('.like');
+	const unlike = document.querySelector('.unlike');
+	// const img_id = like.getAttribute('data-id');
+
+	like.addEventListener('click', function(ev) {
+		like_photo();
+		ev.preventDefault();
+	}, false);
+
+	unlike.addEventListener('click', function(ev) {
+		unlike_photo();
+		ev.preventDefault();
+	}, false);
+});
+window.addEventListener('load', submitComment, false);
+
+function like_photo() {
+	var request = new XMLHttpRequest();
+	var url = "inc/comments_likes/likes.php";
+	const img_id = like.getAttribute('data-id');
+	var vars = "liked=1&img_id="+img_id;
+	request.open("POST", url, true);
+	request.onreadystatechange = function() {
+		if (request.readyState == 4 && request.status == 200) {
+			var return_data = request.responseText;
+			document.querySelector(".likes_count").innerHTML = return_data + " likes";
+			like.className += " hide";
+			unlike.classList.remove('hide');
+		}
+	}
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	request.send(vars);
+}
+function unlike_photo() {
+	var request = new XMLHttpRequest();
+	var url = "inc/comments_likes/likes.php";
+	const img_id = unlike.getAttribute('data-id');
+	var vars = "unliked=1&img_id="+img_id;
+	request.open("POST", url, true);
+	request.onreadystatechange= function() {
+		if (request.readyState == 4 && request.status == 200) {
+			var return_data = request.responseText;
+			document.querySelector(".likes_count").innerHTML = return_data + " likes";
+			// like.style.display = 'none';
+			like.className += " hide";
+			unlike.classList.remove('hide');
+		}
+	}
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	request.send(vars);
+}
+function submitComment() {
+	var request = new XMLHttpRequest();
+	var url= "inc/comments_likes/comments.php";
+	var username= document.getElementById("name_entered").value;
+	var usercomment= document.getElementById("comment_entered").value;
+	var vars= "name="+username+"&comment="+usercomment;
+	request.open("POST", url, true);
+	request.onreadystatechange= function() {
+		if (request.readyState == 4 && request.status == 200) {
+			var return_data = request.responseText;
+			document.getElementById("showcomments").innerHTML = return_data;
+		}
+	}
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+	request.send(vars);
+}
+</script>
 
 <?php include($_SERVER["DOCUMENT_ROOT"].'/inc/footer.php'); ?>

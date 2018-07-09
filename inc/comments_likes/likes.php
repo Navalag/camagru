@@ -22,6 +22,7 @@ if (isset($_POST['liked'])) {
 	$result = $sql->setFetchMode(PDO::FETCH_ASSOC);
 	$result = $sql->fetchAll();
 	if (!empty($result)) {
+		$result = $result[0];
 		$n = $result['likes'];
 	} else {
 		echo "error";
@@ -58,6 +59,7 @@ if (isset($_POST['unliked'])) {
 	$result = $sql->setFetchMode(PDO::FETCH_ASSOC);
 	$result = $sql->fetchAll();
 	if (!empty($result)) {
+		$result = $result[0];
 		$n = $result['likes'];
 	} else {
 		echo "error";
@@ -65,8 +67,8 @@ if (isset($_POST['unliked'])) {
 	}
 	try {
 		$sql = $conn->prepare("DELETE FROM `likes`
-				WHERE `img_id`=$img_id 
-				AND `user_id`=$_SESSION[userID]");
+				WHERE `img_id`= $img_id 
+				AND `user_id`= $_SESSION[userID]");
 		$sql->execute();
 		$sql = $conn->prepare("UPDATE `user_img` 
 				SET `likes` = $n-1

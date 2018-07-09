@@ -238,14 +238,8 @@ p.message {
   width: 444px;
 }
 
-/* ---- Likes styles ---- */
+/* ---- Likes ---- */
 
-.post {
-	width: 30%;
-	margin: 10px auto;
-	border: 1px solid #cbcbcb;
-	padding: 5px 10px 0px 10px;
-}
 .like, .unlike, .likes_count {
 	color: blue;
 }

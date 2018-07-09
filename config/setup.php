@@ -17,7 +17,7 @@ try {
 			img_id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
 			src VARCHAR(255) NOT NULL,
 			user_id INT(11) NOT NULL,
-			likes INT(11) NOT NULL
+			likes INT(11) NOT NULL default 0
 			)";
 	$conn->exec($sql);
 	// echo "Table user_img created successfully<br>";

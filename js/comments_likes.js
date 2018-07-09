@@ -1,26 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
 	const like = document.querySelector('.like');
 	const unlike = document.querySelector('.unlike');
+	const submit_comment = document.getElementById('submit_comment');
 
-	submitComment();
-
-	function submitComment() {
-		var request = new XMLHttpRequest();
-		var url= "inc/comments_likes/comments.php";
-		var username= document.getElementById("name_entered").value;
-		var usercomment= document.getElementById("comment_entered").value;
-		var vars= "name="+username+"&comment="+usercomment;
-		request.open("POST", url, true);
-		request.onreadystatechange= function() {
-			if (request.readyState == 4 && request.status == 200) {
-				var return_data = request.responseText;
-				document.getElementById("showcomments").innerHTML = return_data;
-			}
-		}
-		request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-		request.send(vars);
-	}
+	submit_comment.addEventListener('submit', function(ev) {
+		submitComment();
+	}, false);
 
 	like.addEventListener('click', function(ev) {
 		like_photo();
@@ -34,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	function like_photo() {
 		var request = new XMLHttpRequest();
-		var url = "inc/comments_likes/likes.php";
+		var url = "../inc/comments_likes/likes.php";
 		var img_id = document.querySelector("data-id").value;
 		var vars = "liked=1&img_id="+img_id;
 		request.open("POST", url, true);
@@ -51,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 	function unlike_photo() {
 		var request = new XMLHttpRequest();
-		var url = "inc/comments_likes/likes.php";
+		var url = "../inc/comments_likes/likes.php";
 		var img_id = document.querySelector("data-id").value;
 		var vars = "unliked=1&img_id="+img_id;
 		request.open("POST", url, true);
@@ -67,6 +52,23 @@ document.addEventListener('DOMContentLoaded', () => {
 		request.send(vars);
 	}
 
+	function submitComment() {
+		var request = new XMLHttpRequest();
+		var url= "../inc/comments_likes/comments.php";
+		var username= document.getElementById("name_entered").value;
+		var usercomment= document.getElementById("comment_entered").value;
+		var vars= "name="+username+"&comment="+usercomment;
+		request.open("POST", url, true);
+		request.onreadystatechange= function() {
+			if (request.readyState == 4 && request.status == 200) {
+				var return_data = request.responseText;
+				document.getElementById("showcomments").innerHTML = return_data;
+			}
+		}
+		request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+		request.send(vars);
+	}
 
 	// $(document).ready(function(){
 	// 	// when the user clicks on like

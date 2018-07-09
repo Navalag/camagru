@@ -2,7 +2,7 @@
 
 $pageTitle = "Personal account - Camagru";
 $section = null;
-$items_per_page = 5;
+$items_per_page = 3;
 
 if (!isset($_SESSION)) {
 	session_start();
