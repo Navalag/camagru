@@ -6,45 +6,40 @@ window.addEventListener('load', submitComment, false);
 /*
 ** Add likes
 */
-document.addEventListener('DOMContentLoaded', () => {
-	const like_unlike = document.querySelector('.fa-heart');
-
-	like_unlike.addEventListener('click', function(ev) {
-		like_unlike_photo();
-		ev.preventDefault();
-	}, false);
-
-	function like_unlike_photo() {
-		const xhr = new XMLHttpRequest();
-		const url = "../inc/comments_likes/likes.php";
-		const img_id = like_unlike.getAttribute('data-id');
-		if (like_unlike.className === 'far fa-heart liked') {
-			// console.log("check 2");
-			var request = "unlike=1&img_id="+img_id;
-		} else {
-			// console.log(img_id);
-			var request = "like=1&img_id="+img_id;
-			// console.log(request);
-		}
-		xhr.open("POST", url, true);
-		xhr.onreadystatechange = function() {
-			if (xhr.readyState == 4 && xhr.status == 200) {
-				const likes_amount = xhr.responseText;
-				document.querySelector(".likes_count").innerHTML = likes_amount + " likes";
-				if (like_unlike.className === 'far fa-heart liked') {
-					like_unlike.classList.remove('liked');
-					like_unlike.classList.add('unliked');
-				} else {
-					like_unlike.classList.remove('unliked');
-					like_unlike.classList.add('liked');
-				}
+function like_unlike_photo(id) {
+	// console.log(event);
+	const like_unlike = document.querySelector('#likes' + id);
+	const xhr = new XMLHttpRequest();
+	const url = "../inc/comments_likes/likes.php";
+	const img_id = id;
+	// console.log(like_unlike);
+	// like_unlike = like_unlike[0];
+	if (like_unlike.className === 'far fa-heart liked') {
+		// console.log("check 2");
+		var request = "unlike=1&img_id="+img_id;
+	} else {
+		// console.log(img_id);
+		var request = "like=1&img_id="+img_id;
+		// console.log(request);
+	}
+	xhr.open("POST", url, true);
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			const likes_amount = xhr.responseText;
+			document.querySelector("#likes_count" + id).innerHTML = likes_amount + " likes";
+			if (like_unlike.className === 'far fa-heart liked') {
+				like_unlike.classList.remove('liked');
+				like_unlike.classList.add('unliked');
+			} else {
+				like_unlike.classList.remove('unliked');
+				like_unlike.classList.add('liked');
 			}
 		}
-		console.log(request);
-		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		xhr.send(request);
 	}
-});
+	console.log(request);
+	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhr.send(request);
+}
 
 /*
 ** Add coment to database and if success add on page without reload

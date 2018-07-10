@@ -210,21 +210,15 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 			// var_dump($result);
 			if (!empty($result)) { ?>
 				<!-- user already likes post -->
-				<i class="far fa-heart liked" data-id="<?php echo $item['img_id']; ?>"></i>
+				<i class="far fa-heart liked" id="likes<?php echo $item['img_id']; ?>" onclick="like_unlike_photo(<?php echo $item['img_id']; ?>)"></i>
 			<?php } else { ?>
 				<!-- user has not yet liked post -->
-				<i class="far fa-heart unliked" data-id="<?php echo $item['img_id']; ?>"></i>
+				<i class="far fa-heart unliked" id="likes<?php echo $item['img_id']; ?>" onclick="like_unlike_photo(<?php echo $item['img_id']; ?>)"></i>
 			<?php }
 			$conn = null;
 			?>
 
-			<span class="likes_count"><?php 
-				if (!empty($likes_amount)) {
-					echo $likes_amount;
-				} else {
-					echo $item['likes'];
-				} ?> likes
-			</span>
+			<span id="likes_count<?php echo $item['img_id']; ?>"><?php echo $item['likes']; ?> likes</span>
 
 		</div>
 	
