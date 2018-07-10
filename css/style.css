@@ -239,9 +239,29 @@ p.message {
 }
 
 /* ---- Likes ---- */
+.likes-block {
 
-.like, .unlike, .likes_count {
-	color: blue;
+}
+
+.likes_count {
+	color: DimGray;
+	font-size: 1.5em;
+}
+.far {
+	font-size: 1.5em;
+	cursor: pointer;
+}
+.liked.far {
+	font-weight: 600;
+	color: FireBrick;
+}
+.unliked.far {
+	font-weight: 400;
+	color: DimGray;
+}
+.unliked:hover {
+	font-weight: 600;
+	color: FireBrick;
 }
 .hide {
 	display: none;

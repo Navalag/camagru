@@ -51,78 +51,78 @@ if ($total_items > 0) {
 /* 
 ** LIKE SCRIPT
 */
-include($_SERVER["DOCUMENT_ROOT"]."/config/connect.php");
+// include($_SERVER["DOCUMENT_ROOT"]."/config/connect.php");
 // fix 2 bugs:
 // - $_SESSION[userID] when user does not log-in
 // - when $_GET/$_POST manualy execute few times
-if (isset($_GET['liked'])) {
-	$img_id = $_GET['img_id'];
-	try {
-		$sql = $conn->prepare("SELECT * FROM `user_img` 
-				WHERE `img_id` = $img_id LIMIT 1");
-		$sql->execute();
-	} catch (Exception $e) {
-		echo "Unable to retrieved results 1";
-		exit;
-	}
-	$result = $sql->setFetchMode(PDO::FETCH_ASSOC);
-	$result = $sql->fetchAll();
-	if (!empty($result)) {
-		$result = $result[0];
-		$likes_amount = $result['likes'];
-	} else {
-		echo "error";
-		exit();
-	}
-	try {
-		$sql = $conn->prepare("INSERT INTO `likes` (user_id, img_id)
-				VALUES ($_SESSION[userID], $img_id)");
-		$sql->execute();
-		$sql = $conn->prepare("UPDATE `user_img` 
-				SET `likes` = $likes_amount+1
-				WHERE img_id=$img_id");
-		$sql->execute();
-	} catch (Exception $e) {
-		echo "Unable to retrieved results 2";
-		exit;
-	}
-	$likes_amount++;
-}
-if (isset($_GET['unliked'])) {
-	$img_id = $_GET['img_id'];
-	try {
-		$sql = $conn->prepare("SELECT * FROM `user_img` 
-				WHERE `img_id` = $img_id LIMIT 1");
-		$sql->execute();
-	} catch (Exception $e) {
-		echo "Unable to retrieved results 3";
-		exit;
-	}
-	$result = $sql->setFetchMode(PDO::FETCH_ASSOC);
-	$result = $sql->fetchAll();
-	if (!empty($result)) {
-		$result = $result[0];
-		$likes_amount = $result['likes'];
-	} else {
-		echo "error";
-		exit();
-	}
-	try {
-		$sql = $conn->prepare("DELETE FROM `likes`
-				WHERE `img_id`= $img_id 
-				AND `user_id`= $_SESSION[userID]");
-		$sql->execute();
-		$sql = $conn->prepare("UPDATE `user_img` 
-				SET `likes` = $likes_amount-1
-				WHERE img_id=$img_id");
-		$sql->execute();
-	} catch (Exception $e) {
-		echo "Unable to retrieved results 4";
-		exit;
-	}
-	$likes_amount--;
-}
-$conn = null;
+// if (isset($_GET['liked'])) {
+// 	$img_id = $_GET['img_id'];
+// 	try {
+// 		$sql = $conn->prepare("SELECT * FROM `user_img` 
+// 				WHERE `img_id` = $img_id LIMIT 1");
+// 		$sql->execute();
+// 	} catch (Exception $e) {
+// 		echo "Unable to retrieved results 1";
+// 		exit;
+// 	}
+// 	$result = $sql->setFetchMode(PDO::FETCH_ASSOC);
+// 	$result = $sql->fetchAll();
+// 	if (!empty($result)) {
+// 		$result = $result[0];
+// 		$likes_amount = $result['likes'];
+// 	} else {
+// 		echo "error";
+// 		exit();
+// 	}
+// 	try {
+// 		$sql = $conn->prepare("INSERT INTO `likes` (user_id, img_id)
+// 				VALUES ($_SESSION[userID], $img_id)");
+// 		$sql->execute();
+// 		$sql = $conn->prepare("UPDATE `user_img` 
+// 				SET `likes` = $likes_amount+1
+// 				WHERE img_id=$img_id");
+// 		$sql->execute();
+// 	} catch (Exception $e) {
+// 		echo "Unable to retrieved results 2";
+// 		exit;
+// 	}
+// 	$likes_amount++;
+// }
+// if (isset($_GET['unliked'])) {
+// 	$img_id = $_GET['img_id'];
+// 	try {
+// 		$sql = $conn->prepare("SELECT * FROM `user_img` 
+// 				WHERE `img_id` = $img_id LIMIT 1");
+// 		$sql->execute();
+// 	} catch (Exception $e) {
+// 		echo "Unable to retrieved results 3";
+// 		exit;
+// 	}
+// 	$result = $sql->setFetchMode(PDO::FETCH_ASSOC);
+// 	$result = $sql->fetchAll();
+// 	if (!empty($result)) {
+// 		$result = $result[0];
+// 		$likes_amount = $result['likes'];
+// 	} else {
+// 		echo "error";
+// 		exit();
+// 	}
+// 	try {
+// 		$sql = $conn->prepare("DELETE FROM `likes`
+// 				WHERE `img_id`= $img_id 
+// 				AND `user_id`= $_SESSION[userID]");
+// 		$sql->execute();
+// 		$sql = $conn->prepare("UPDATE `user_img` 
+// 				SET `likes` = $likes_amount-1
+// 				WHERE img_id=$img_id");
+// 		$sql->execute();
+// 	} catch (Exception $e) {
+// 		echo "Unable to retrieved results 4";
+// 		exit;
+// 	}
+// 	$likes_amount--;
+// }
+// $conn = null;
 
 
 include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
@@ -192,7 +192,7 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 		echo get_div_item_html($item); ?>
 
 		<!-- handel likes -->
-		<div style="padding: 2px; margin-top: 5px;">
+		<div class="likes-block" style="padding: 2px; margin-top: 5px;">
 			<?php 
 			include($_SERVER["DOCUMENT_ROOT"]."/config/connect.php");
 
@@ -210,14 +210,10 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 			// var_dump($result);
 			if (!empty($result)) { ?>
 				<!-- user already likes post -->
-				<a class="unlike" data-id="<?php echo $item['img_id']; ?>" href="http://localhost:8080/?unliked=1&img_id=<?php echo $item['img_id']; ?>">
-					<i class="fas fa-heart"></i>
-				</a>
+				<i class="liked far fa-heart" data-id="<?php echo $item['img_id']; ?>"></i>
 			<?php } else { ?>
 				<!-- user has not yet liked post -->
-				<a class="like" data-id="<?php echo $item['img_id']; ?>" href="http://localhost:8080/?liked=1&img_id=<?php echo $item['img_id']; ?>">
-					<i class="far fa-heart"></i>
-				</a>
+				<i class="unliked far fa-heart" data-id="<?php echo $item['img_id']; ?>"></i>
 			<?php }
 			$conn = null;
 			?>
@@ -240,77 +236,6 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 	
 </div>
 
-<script>
-
-// document.addEventListener('DOMContentLoaded', () => {
-// 	const like = document.querySelector('.like');
-// 	const unlike = document.querySelector('.unlike');
-// 	// const img_id = like.getAttribute('data-id');
-
-// 	like.addEventListener('click', function(ev) {
-// 		like_photo();
-// 		ev.preventDefault();
-// 	}, false);
-
-// 	unlike.addEventListener('click', function(ev) {
-// 		unlike_photo();
-// 		ev.preventDefault();
-// 	}, false);
-// });
-window.addEventListener('load', submitComment, false);
-
-// function like_photo() {
-// 	var request = new XMLHttpRequest();
-// 	var url = "inc/comments_likes/likes.php";
-// 	const img_id = like.getAttribute('data-id');
-// 	var vars = "liked=1&img_id="+img_id;
-// 	request.open("POST", url, true);
-// 	request.onreadystatechange = function() {
-// 		if (request.readyState == 4 && request.status == 200) {
-// 			var return_data = request.responseText;
-// 			document.querySelector(".likes_count").innerHTML = return_data + " likes";
-// 			like.className += " hide";
-// 			unlike.classList.remove('hide');
-// 		}
-// 	}
-// 	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-// 	request.send(vars);
-// }
-// function unlike_photo() {
-// 	var request = new XMLHttpRequest();
-// 	var url = "inc/comments_likes/likes.php";
-// 	const img_id = unlike.getAttribute('data-id');
-// 	var vars = "unliked=1&img_id="+img_id;
-// 	request.open("POST", url, true);
-// 	request.onreadystatechange= function() {
-// 		if (request.readyState == 4 && request.status == 200) {
-// 			var return_data = request.responseText;
-// 			document.querySelector(".likes_count").innerHTML = return_data + " likes";
-// 			// like.style.display = 'none';
-// 			like.className += " hide";
-// 			unlike.classList.remove('hide');
-// 		}
-// 	}
-// 	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-// 	request.send(vars);
-// }
-function submitComment() {
-	var request = new XMLHttpRequest();
-	var url= "inc/comments_likes/comments.php";
-	var username= document.getElementById("name_entered").value;
-	var usercomment= document.getElementById("comment_entered").value;
-	var vars= "name="+username+"&comment="+usercomment;
-	request.open("POST", url, true);
-	request.onreadystatechange= function() {
-		if (request.readyState == 4 && request.status == 200) {
-			var return_data = request.responseText;
-			document.getElementById("showcomments").innerHTML = return_data;
-		}
-	}
-	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-	request.send(vars);
-}
-</script>
+<script src="js/comments_likes.js"></script>
 
 <?php include($_SERVER["DOCUMENT_ROOT"].'/inc/footer.php'); ?>

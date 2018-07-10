@@ -6,7 +6,7 @@ if (!isset($_SESSION)) {
 include($_SERVER["DOCUMENT_ROOT"]."/config/connect.php");
 include($_SERVER["DOCUMENT_ROOT"]."/inc/functions.php");
 
-if (isset($_POST['liked'])) {
+if (isset($_POST['like'])) {
 	$img_id = $_POST['img_id'];
 	try {
 		$sql = $conn->prepare("SELECT * FROM `user_img` 
@@ -26,7 +26,7 @@ if (isset($_POST['liked'])) {
 		exit();
 	}
 	try {
-		$sql = $conn->prepare("INSERT INTO `likes` (userid, postid)
+		$sql = $conn->prepare("INSERT INTO `likes` (user_id, img_id)
 				VALUES ($_SESSION[userID], $img_id)");
 		$sql->execute();
 		$sql = $conn->prepare("UPDATE `user_img` 
@@ -40,7 +40,7 @@ if (isset($_POST['liked'])) {
 
 	echo $n+1;
 }
-if (isset($_POST['unliked'])) {
+if (isset($_POST['unlike'])) {
 	$img_id = $_POST['img_id'];
 	try {
 		$sql = $conn->prepare("SELECT * FROM `user_img` 
