@@ -263,6 +263,10 @@ p.message {
 	font-weight: 600;
 	color: FireBrick;
 }
+/*.liked:hover {
+	font-weight: 400;
+	color: DimGray;
+}*/
 .hide {
 	display: none;
 }
