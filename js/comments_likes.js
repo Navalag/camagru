@@ -7,7 +7,7 @@ window.addEventListener('load', submitComment, false);
 ** Add likes
 */
 function like_unlike_photo(id) {
-	const like_unlike = document.querySelector('#likes' + id);
+	const like_unlike = document.querySelector('#img' + id);
 	const xhr = new XMLHttpRequest();
 	const url = "../inc/comments_likes/likes.php";
 	const img_id = id;

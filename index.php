@@ -48,81 +48,6 @@ if ($total_items > 0) {
 	$pagination .= "</div>";
 }
 
-/* 
-** LIKE SCRIPT
-*/
-// include($_SERVER["DOCUMENT_ROOT"]."/config/connect.php");
-
-// if (isset($_GET['liked'])) {
-// 	$img_id = $_GET['img_id'];
-// 	try {
-// 		$sql = $conn->prepare("SELECT * FROM `user_img` 
-// 				WHERE `img_id` = $img_id LIMIT 1");
-// 		$sql->execute();
-// 	} catch (Exception $e) {
-// 		echo "Unable to retrieved results 1";
-// 		exit;
-// 	}
-// 	$result = $sql->setFetchMode(PDO::FETCH_ASSOC);
-// 	$result = $sql->fetchAll();
-// 	if (!empty($result)) {
-// 		$result = $result[0];
-// 		$likes_amount = $result['likes'];
-// 	} else {
-// 		echo "error";
-// 		exit();
-// 	}
-// 	try {
-// 		$sql = $conn->prepare("INSERT INTO `likes` (user_id, img_id)
-// 				VALUES ($_SESSION[userID], $img_id)");
-// 		$sql->execute();
-// 		$sql = $conn->prepare("UPDATE `user_img` 
-// 				SET `likes` = $likes_amount+1
-// 				WHERE img_id=$img_id");
-// 		$sql->execute();
-// 	} catch (Exception $e) {
-// 		echo "Unable to retrieved results 2";
-// 		exit;
-// 	}
-// 	$likes_amount++;
-// }
-// if (isset($_GET['unliked'])) {
-// 	$img_id = $_GET['img_id'];
-// 	try {
-// 		$sql = $conn->prepare("SELECT * FROM `user_img` 
-// 				WHERE `img_id` = $img_id LIMIT 1");
-// 		$sql->execute();
-// 	} catch (Exception $e) {
-// 		echo "Unable to retrieved results 3";
-// 		exit;
-// 	}
-// 	$result = $sql->setFetchMode(PDO::FETCH_ASSOC);
-// 	$result = $sql->fetchAll();
-// 	if (!empty($result)) {
-// 		$result = $result[0];
-// 		$likes_amount = $result['likes'];
-// 	} else {
-// 		echo "error";
-// 		exit();
-// 	}
-// 	try {
-// 		$sql = $conn->prepare("DELETE FROM `likes`
-// 				WHERE `img_id`= $img_id 
-// 				AND `user_id`= $_SESSION[userID]");
-// 		$sql->execute();
-// 		$sql = $conn->prepare("UPDATE `user_img` 
-// 				SET `likes` = $likes_amount-1
-// 				WHERE img_id=$img_id");
-// 		$sql->execute();
-// 	} catch (Exception $e) {
-// 		echo "Unable to retrieved results 4";
-// 		exit;
-// 	}
-// 	$likes_amount--;
-// }
-// $conn = null;
-
-
 include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 ?>
 
@@ -158,72 +83,44 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 <div class="container clearfix">
 
 	<table>
-	<tr><td></td><td>
-	Name:
-	</td></tr>
-
-	<tr><td></td><td>
-	<input type="text" id="name_entered"/>
-	</td></tr>
-
-	<tr><td></td><td>
-	Comment:
-	</td></tr>
-
-	<tr><td></td><td>
-	<textarea cols="35" rows="6" id="comment_entered"></textarea>
-	</td></tr>
-
-	<tr><td></td><td>
-	<input type="submit" value="Comment" onclick="submitComment()" />
-	</td></tr>
-
+		<tr>
+			<td></td>
+			<td>Name:</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><input type="text" id="name_entered"/></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>Comment:</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><textarea cols="35" rows="6" id="comment_entered"></textarea></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><input type="submit" value="Comment" onclick="submitComment()" /></td>
+		</tr>
 	</table>
 
 	<br><br>
 	<div id="showcomments"></div>
 
-	<!-- display posts gotten from the database  -->
+	<!-- display posts, likes and comments gotten from the database  -->
 	<?php
 	$catalog = full_photo_gallery_array($items_per_page,$offset);
 	foreach ($catalog as $item) {
-		echo get_div_item_html($item); ?>
-
-		<!-- handel likes -->
-		<?php 
-		if (isset($_SESSION['Username'])) { ?>
-		<div class="likes-block">
-			<?php 
-			include($_SERVER["DOCUMENT_ROOT"]."/config/connect.php");
-
-			try {
-				$sql = $conn->prepare("SELECT * FROM `likes`
-				WHERE `user_id` = $_SESSION[userID] 
-				AND `img_id` = $item[img_id] LIMIT 1");
-				$sql->execute();
-			} catch (Exception $e) {
-				echo "Unable to retrieved results";
-				exit;
-			}
-			$result = $sql->setFetchMode(PDO::FETCH_ASSOC);
-			$result = $sql->fetchAll();
-			// var_dump($result);
-			if (!empty($result)) { ?>
-				<!-- user already likes post -->
-				<i class="far fa-heart liked" id="likes<?php echo $item['img_id']; ?>" onclick="like_unlike_photo(<?php echo $item['img_id']; ?>)"></i>
-			<?php } else { ?>
-				<!-- user has not yet liked post -->
-				<i class="far fa-heart unliked" id="likes<?php echo $item['img_id']; ?>" onclick="like_unlike_photo(<?php echo $item['img_id']; ?>)"></i>
-			<?php }
-			$conn = null;
-			?>
-
-			<span id="likes_count<?php echo $item['img_id']; ?>"><?php echo $item['likes']; ?> likes</span>
-
-		</div>
-		<?php } ?>
-	
-	<?php }
+		/*
+		** display all photo from database
+		*/
+		echo get_div_item_html($item); 
+		/*
+		** if user is registered - display likes and comments
+		*/
+		echo get_likes_div_html($item);
+	}
 	if (isset($pagination)) {
 		echo $pagination;
 	}

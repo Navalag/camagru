@@ -4,9 +4,6 @@
    PAGE CONTENT FUNCTIONS
    ======================================================= */
 
-/*
-** PAGE CONTENT FUNCTIONS
-*/
 function get_item_html($item) {
 	$output = "<li><img src='" 
 			. $item["src"] . "' alt='" 
@@ -15,7 +12,6 @@ function get_item_html($item) {
 			. "</li>";
 	return $output;
 }
-
 function get_div_item_html($item) {
 	$output = "<div class='collage col'><img src='" 
 			. $item["src"] . "' alt='" 
@@ -23,6 +19,62 @@ function get_div_item_html($item) {
 			. "</div>";
 	return $output;
 }
+
+/*
+** create block with like icons to display it on html page
+*/
+function get_likes_div_html($item) {
+	if (!isset($_SESSION)) {
+		session_start();
+	}
+	include($_SERVER["DOCUMENT_ROOT"]."/config/connect.php");
+	
+	$output = "";
+	/*
+	** check user session to prevent likes display when user
+	** is not authorized
+	*/
+	if (isset($_SESSION['Username'])) {
+		$output = "<div class='likes-block'>";
+		/*
+		** check `likes` table if user ulready like this img or not
+		*/
+		try {
+			$sql = $conn->prepare("SELECT * FROM `likes`
+			WHERE `user_id` = $_SESSION[userID] 
+			AND `img_id` = $item[img_id] LIMIT 1");
+			$sql->execute();
+		} catch (Exception $e) {
+			echo "Unable to retrieved results";
+			exit;
+		}
+		$result = $sql->setFetchMode(PDO::FETCH_ASSOC);
+		$result = $sql->fetchAll();
+		$conn = null;
+		if (!empty($result)) {
+			/*
+			** user already likes post
+			*/
+			$output .= "<i class='far fa-heart liked' id='img"
+				. $item['img_id'] . "' onclick='"
+				. "like_unlike_photo(" . $item['img_id'] . ")'></i>";
+		} else {
+			/*
+			** user has not yet liked post
+			*/
+			$output .= "<i class='far fa-heart unliked' id='img"
+				. $item['img_id'] . "' onclick='"
+				. "like_unlike_photo(" . $item['img_id'] . ")'></i>";
+		}
+		$output .= "<span id='likes_count".$item['img_id']."'>" 
+				. $item['likes']." likes</span></div>";
+	}
+	return $output;
+}
+
+/* =======================================================
+   PAGINATION FUNCTIONS
+   ======================================================= */
 
 function get_single_user_photo_array($limit = null, $offset = 0) {
 	include($_SERVER["DOCUMENT_ROOT"]."/config/connect.php");
@@ -70,6 +122,9 @@ function full_photo_gallery_array($limit = null, $offset = 0) {
 	return $gallery;
 }
 
+/*
+** count photo for pagination purpose on gallery page
+*/
 function count_all_photo() {
 	include($_SERVER["DOCUMENT_ROOT"]."/config/connect.php");
 
@@ -85,6 +140,10 @@ function count_all_photo() {
 	}
 	return $count;
 }
+
+/*
+** count photo for pagination purpose on account page
+*/
 function count_all_photo_for_user() {
 	include($_SERVER["DOCUMENT_ROOT"]."/config/connect.php");
 
