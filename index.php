@@ -52,9 +52,7 @@ if ($total_items > 0) {
 ** LIKE SCRIPT
 */
 // include($_SERVER["DOCUMENT_ROOT"]."/config/connect.php");
-// fix 2 bugs:
-// - $_SESSION[userID] when user does not log-in
-// - when $_GET/$_POST manualy execute few times
+
 // if (isset($_GET['liked'])) {
 // 	$img_id = $_GET['img_id'];
 // 	try {
@@ -192,7 +190,9 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 		echo get_div_item_html($item); ?>
 
 		<!-- handel likes -->
-		<div class="likes-block" style="padding: 2px; margin-top: 5px;">
+		<?php 
+		if (isset($_SESSION['Username'])) { ?>
+		<div class="likes-block">
 			<?php 
 			include($_SERVER["DOCUMENT_ROOT"]."/config/connect.php");
 
@@ -202,7 +202,7 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 				AND `img_id` = $item[img_id] LIMIT 1");
 				$sql->execute();
 			} catch (Exception $e) {
-				echo "Unable to retrieved results 5";
+				echo "Unable to retrieved results";
 				exit;
 			}
 			$result = $sql->setFetchMode(PDO::FETCH_ASSOC);
@@ -221,6 +221,7 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 			<span id="likes_count<?php echo $item['img_id']; ?>"><?php echo $item['likes']; ?> likes</span>
 
 		</div>
+		<?php } ?>
 	
 	<?php }
 	if (isset($pagination)) {

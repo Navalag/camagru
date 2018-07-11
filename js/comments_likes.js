@@ -7,20 +7,14 @@ window.addEventListener('load', submitComment, false);
 ** Add likes
 */
 function like_unlike_photo(id) {
-	// console.log(event);
 	const like_unlike = document.querySelector('#likes' + id);
 	const xhr = new XMLHttpRequest();
 	const url = "../inc/comments_likes/likes.php";
 	const img_id = id;
-	// console.log(like_unlike);
-	// like_unlike = like_unlike[0];
 	if (like_unlike.className === 'far fa-heart liked') {
-		// console.log("check 2");
 		var request = "unlike=1&img_id="+img_id;
 	} else {
-		// console.log(img_id);
 		var request = "like=1&img_id="+img_id;
-		// console.log(request);
 	}
 	xhr.open("POST", url, true);
 	xhr.onreadystatechange = function() {
@@ -36,7 +30,6 @@ function like_unlike_photo(id) {
 			}
 		}
 	}
-	console.log(request);
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhr.send(request);
 }
@@ -46,9 +39,9 @@ function like_unlike_photo(id) {
 */
 function submitComment() {
 	var request = new XMLHttpRequest();
-	var url= "../inc/comments_likes/comments.php";
-	var username= document.getElementById("name_entered").value;
-	var usercomment= document.getElementById("comment_entered").value;
+	var url = "../inc/comments_likes/comments.php";
+	var username = document.getElementById("name_entered").value;
+	var usercomment = document.getElementById("comment_entered").value;
 	var vars= "name="+username+"&comment="+usercomment;
 	request.open("POST", url, true);
 	request.onreadystatechange = function() {
@@ -58,6 +51,5 @@ function submitComment() {
 		}
 	}
 	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
 	request.send(vars);
 }
