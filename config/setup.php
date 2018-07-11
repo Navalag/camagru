@@ -49,6 +49,7 @@ try {
 	*/
 	$sql = "CREATE TABLE IF NOT EXISTS `comments` (
 			`id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+			`img_id` int(11) NOT NULL,
 			`name` varchar(50) NOT NULL default '',
 			`date` varchar(50) NOT NULL default '',
 			`comments` varchar(6000) NOT NULL default ''

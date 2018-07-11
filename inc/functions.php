@@ -29,6 +29,9 @@ function get_likes_div_html($item) {
 	}
 	include($_SERVER["DOCUMENT_ROOT"]."/config/connect.php");
 	
+	/*
+	** output variable will contain html code to return back on page
+	*/
 	$output = "";
 	/*
 	** check user session to prevent likes display when user
@@ -68,6 +71,50 @@ function get_likes_div_html($item) {
 		}
 		$output .= "<span id='likes_count".$item['img_id']."'>" 
 				. $item['likes']." likes</span></div>";
+	}
+	return $output;
+}
+
+/*
+** create block with comments
+*/
+function get_comments_block_html($item) {
+	if (!isset($_SESSION)) {
+		session_start();
+	}
+	include($_SERVER["DOCUMENT_ROOT"]."/config/connect.php");
+	
+	$output = "";
+	/*
+	** check user session to prevent comments display when user
+	** is not authorized
+	*/
+	if (isset($_SESSION['Username'])) {
+		$output = "<table><tr>"
+				. "<td></td>"
+				. "<td>Name:</td>"
+				. "</tr>"
+				. "<tr>"
+				. "<td></td>"
+				. "<td><input type='text' id='name_entered".$item['img_id']
+				. "'/></td>"
+				. "</tr>"
+				. "<tr>"
+				. "<td></td>"
+				. "<td>Comment:</td>"
+				. "</tr>"
+				. "<tr>"
+				. "<td></td>"
+				. "<td><textarea cols='35' rows='6' "
+				. "id='comment_entered".$item['img_id']."'></textarea></td>"
+				. "</tr>"
+				. "<tr>"
+				. "<td></td>"
+				. "<td><input type='submit' value='Comment' "
+				. "onclick='submitComment(".$item['img_id'].")' /></td>"
+				. "</tr>"
+				. "</table>"
+				. "<br><div id='showcomments".$item['img_id']."'></div>";
 	}
 	return $output;
 }

@@ -82,32 +82,6 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 
 <div class="container clearfix">
 
-	<table>
-		<tr>
-			<td></td>
-			<td>Name:</td>
-		</tr>
-		<tr>
-			<td></td>
-			<td><input type="text" id="name_entered"/></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td>Comment:</td>
-		</tr>
-		<tr>
-			<td></td>
-			<td><textarea cols="35" rows="6" id="comment_entered"></textarea></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td><input type="submit" value="Comment" onclick="submitComment()" /></td>
-		</tr>
-	</table>
-
-	<br><br>
-	<div id="showcomments"></div>
-
 	<!-- display posts, likes and comments gotten from the database  -->
 	<?php
 	$catalog = full_photo_gallery_array($items_per_page,$offset);
@@ -120,6 +94,7 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 		** if user is registered - display likes and comments
 		*/
 		echo get_likes_div_html($item);
+		echo get_comments_block_html($item);
 	}
 	if (isset($pagination)) {
 		echo $pagination;

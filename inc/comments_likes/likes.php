@@ -46,7 +46,7 @@ if (isset($_POST['like']) && isset($_POST['img_id'])) {
 	/*
 	** stop script with error message if necessary
 	*/
-	if (!empty($result) && empty($check_user)) {
+	if ((!empty($result)) && empty($check_user)) {
 		$result = $result[0];
 		$likes_amount = $result['likes'];
 	} else {
@@ -109,7 +109,7 @@ if (isset($_POST['unlike']) && isset($_POST['img_id'])) {
 	/*
 	** stop script with error message if necessary
 	*/
-	if (!empty($result) && !empty($check_user)) {
+	if ((!empty($result)) && (!empty($check_user))) {
 		$result = $result[0];
 		$likes_amount = $result['likes'];
 	} else {

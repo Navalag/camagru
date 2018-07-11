@@ -1,7 +1,7 @@
 /*
 ** Add listener to load all comments from database after page load
 */
-window.addEventListener('load', submitComment, false);
+// window.addEventListener('load', submitComment, false);
 
 /*
 ** Add likes
@@ -37,17 +37,18 @@ function like_unlike_photo(id) {
 /*
 ** Add coment to database and if success add on page without reload
 */
-function submitComment() {
+function submitComment(id) {
 	var request = new XMLHttpRequest();
 	var url = "../inc/comments_likes/comments.php";
-	var username = document.getElementById("name_entered").value;
-	var usercomment = document.getElementById("comment_entered").value;
-	var vars= "name="+username+"&comment="+usercomment;
+	var username = document.getElementById("name_entered" + id).value;
+	var usercomment = document.getElementById("comment_entered" + id).value;
+	var img_id = id;
+	var vars= "name="+username+"&comment="+usercomment+"&img_id="+img_id;
 	request.open("POST", url, true);
 	request.onreadystatechange = function() {
 		if (request.readyState == 4 && request.status == 200) {
 			var return_data = request.responseText;
-			document.getElementById("showcomments").innerHTML = return_data;
+			document.getElementById("showcomments" + id).innerHTML = return_data;
 		}
 	}
 	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
