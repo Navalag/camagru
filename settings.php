@@ -18,7 +18,7 @@ $finalMessage = "";
 $username = $email = "";
 
 /*
-** SELECT USER INFO FROM DB, FILL WITH THIS INFO NAME AND EMAIL
+** select user info from DB, fill with this info name, email and password
 */
 try {
 	$sql = $conn->prepare("SELECT * FROM `users` 
@@ -34,15 +34,14 @@ try {
 		$email = $user_info['email'];
 		$password = $user_info['password'];
 	}
-	}
-catch(PDOException $e)
-	{
+}
+catch(PDOException $e) {
 	$finalMessage = 'Database failed! Reason: ' . $e->getMessage();
-	}
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	/*
-	** VALIDATE DATA BEFORE UPDATE PROFILE
+	** validate data before updating profile
 	*/
 	if (empty($_POST["username"])) {
 		$nameErr = "Name is required";

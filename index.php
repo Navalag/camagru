@@ -8,7 +8,15 @@ include($_SERVER["DOCUMENT_ROOT"]."/inc/functions.php");
 
 $pageTitle = "Camagru - small Instagram-like site allowing you to create and share photo-montages";
 $section = "landing_page";
+
+/*
+** BEGIN OF PAGINATION SCRIPT
+*/
+
 $items_per_page = 8;
+$total_items = count_all_photo();
+$total_pages = 1;
+$offset = 0;
 
 if (isset($_GET["pg"])) {
 	$current_page = filter_input(INPUT_GET,"pg",FILTER_SANITIZE_NUMBER_INT);
@@ -16,24 +24,26 @@ if (isset($_GET["pg"])) {
 if (empty($current_page)) {
 	$current_page = 1;
 }
-
-$total_items = count_all_photo();
-$total_pages = 1;
-$offset = 0;
 if ($total_items > 0) {
 	$total_pages = ceil($total_items / $items_per_page);
 
-	// redirect too-large page numbers to the last page
+	/*
+	** redirect too-large page numbers to the last page
+	*/
 	if ($current_page > $total_pages) {
 		header("location:http://localhost:8080?pg=".$total_pages);
 	}
-	// redirect too-small page numbers to the first page
+	/*
+	** redirect too-small page numbers to the first page
+	*/
 	if ($current_page < 1) {
 		header("location:http://localhost:8080?pg=1");
 	}
 
-	//determine the offset (number of items to skip) for the current page
-	//for example: on page 3 with 8 item per page, the offset would be 16
+	/*
+	** determine the offset (number of items to skip) for the current page
+	** for example: on page 3 with 8 item per page, the offset would be 16
+	*/
 	$offset = ($current_page - 1) * $items_per_page;
 
 	$pagination = "<div class=\"pagination\">";
@@ -46,6 +56,7 @@ if ($total_items > 0) {
 		}
 	}
 	$pagination .= "</div>";
+	/* end of pagination */
 }
 
 include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
@@ -53,7 +64,6 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 
 <div class="banner">
 	<i class="logo fas fa-camera-retro"></i>
-	<!-- <img class="logo" src="img/camera-retro.svg" alt="City"> -->
 	<h1 class="headline">Camagru</h1>
 	<span class="tagline">A small Instagram-like site allowing you to create and share photo-montages.</span>
 </div><!--/.banner-->
