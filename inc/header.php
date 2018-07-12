@@ -18,34 +18,28 @@ if (!isset($_SESSION)) {
 </head>
 <body>
 	
-	<header class="main-header <?php if ($section != "landing_page") { echo "dark-header"; }?>">
+	<header class="main-header">
 		<div class="container clearfix">
-
-			<?php if ($section == "landing_page") { ?>
-
-				<h1 class='name'><a href='/'>Camagru</a></h1>
 				
-			<?php } else { ?>
+			<h1 class='name'><a href='/'><i class='fas fa-camera-retro'></i> camagru</a></h1>
 
-				<h1 class='name'><a href='/'><i class='fas fa-camera-retro'></i> camagru</a></h1>
+		<?php if (!isset($_SESSION['Username'])) { ?>
 
-			<?php } if (!isset($_SESSION['Username'])) { ?>
+			<ul class="main-nav">
+				<li><a href="/inc/sign_in.php">Sign In</a></li>
+				<li><a href="/inc/sign_up.php">Sign Up</a></li>
+			</ul>
 
-				<ul class="main-nav">
-					<li><a href="/inc/sign_in.php">Sign In</a></li>
-					<li><a href="/inc/sign_up.php">Sign Up</a></li>
-				</ul>
-
-			<?php } else { ?>
+		<?php } else { ?>
 				
-				<ul class="main-nav">
-					<li><a href="/">Gallery</a></li>
-					<li><a href="/account.php">My Profile</a></li>
-					<li><a href="/settings.php">Settings</a></li>
-					<li><a href="/inc/sign_out.php">Sign out</a></li>
-				</ul>
+			<ul class="main-nav">
+				<li><a href="/">Gallery</a></li>
+				<li><a href="/account.php">My Profile</a></li>
+				<li><a href="/settings.php">Settings</a></li>
+				<li><a href="/inc/sign_out.php">Sign out</a></li>
+			</ul>
 
-			<?php } ?>
+		<?php } ?>
 
 		</div>
 	</header><!--/.main-header-->
