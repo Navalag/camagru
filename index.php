@@ -41,8 +41,10 @@ if ($total_items > 0) {
 	}
 
 	/*
-	** determine the offset (number of items to skip) for the current page
-	** for example: on page 3 with 8 item per page, the offset would be 16
+	** determine the offset (number of items to skip)
+	** for the current page
+	** for example: on page 3 with 8 item per page,
+	** the offset would be 16
 	*/
 	$offset = ($current_page - 1) * $items_per_page;
 

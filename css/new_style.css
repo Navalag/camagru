@@ -1,0 +1,61 @@
+/*
+	Colors:
+	#645180 - dark violet (header, borders, headers);
+	#e7e3ed - light violet (body);
+
+	#7c669e - button;
+	#57476f - button hover;
+	#584770 - menu hover;
+
+	#57476f - error message
+
+	#7d669e - paragphs;
+*/
+
+/* ================================= 
+	Base Element Styles
+==================================== */
+
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-size: 1rem;
+	font-family: 'Varela Round', sans-serif;
+	line-height: 1.5;
+	font-weight: 400;
+	color: #645180;
+	background: #e7e3ed;
+	margin: 0;
+}
+
+p {
+	font-size: 1rem;
+	margin-bottom: 1.8rem;
+	color: #7d669e;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a {
+	color: #645180;
+	margin: 0;
+}
+
+h1 {
+  font-size: 2.25rem;
+}
+
+a {
+	text-decoration: none;
+}
+
+img {
+	max-width: 100%;
+}

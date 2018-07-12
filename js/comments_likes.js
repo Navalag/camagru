@@ -1,9 +1,4 @@
 /*
-** Add listener to load all comments from database after page load
-*/
-// window.addEventListener('load', submitComment, false);
-
-/*
 ** Add likes
 */
 function like_unlike_photo(id) {

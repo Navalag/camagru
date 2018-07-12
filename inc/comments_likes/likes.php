@@ -5,8 +5,7 @@ if (!isset($_SESSION)) {
 }
 include($_SERVER["DOCUMENT_ROOT"]."/config/connect.php");
 include($_SERVER["DOCUMENT_ROOT"]."/inc/functions.php");
-// fix 2 bugs:
-// - when $_GET/$_POST manualy execute few times
+
 /*
 ** There are two cases here:
 ** - if user like photo

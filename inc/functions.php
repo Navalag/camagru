@@ -96,7 +96,8 @@ function get_comments_block_html($item) {
 				. "</tr>"
 				. "<tr>"
 				. "<td></td>"
-				. "<td><input type='text' id='name_entered".$item['img_id']
+				. "<td><input type='text' id='name_entered"
+				. $item['img_id']
 				. "'/></td>"
 				. "</tr>"
 				. "<tr>"
@@ -106,12 +107,14 @@ function get_comments_block_html($item) {
 				. "<tr>"
 				. "<td></td>"
 				. "<td><textarea cols='35' rows='6' "
-				. "id='comment_entered".$item['img_id']."'></textarea></td>"
+				. "id='comment_entered".$item['img_id']
+				. "'></textarea></td>"
 				. "</tr>"
 				. "<tr>"
 				. "<td></td>"
 				. "<td><input type='submit' value='Comment' "
-				. "onclick='submitComment(".$item['img_id'].")' /></td>"
+				. "onclick='submitComment(".$item['img_id']
+				. ")' /></td>"
 				. "</tr>"
 				. "</table>"
 				. "<br><div id='showcomments".$item['img_id']."'></div>";
