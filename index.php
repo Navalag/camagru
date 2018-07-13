@@ -64,52 +64,40 @@ if ($total_items > 0) {
 include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 ?>
 
-<div class="banner">
-	<!-- <i class="logo fas fa-camera-retro"></i> -->
-	<h1 class="headline">Welcome!</h1>
-	<span class="tagline">Camagru is a small Instagram-like site allowing you to create and share photo-montages.</span>
-	<form class="form-container form-add" method="post" action="task.php">
-	<table>
-		<tbody>
-			<tr>
-				<th>
-					<label for="project_id">Project<span class="required">*</span></label>
-				</th>
-				<td>
-					<select name="project_id" id="project_id">
-						<option value="">Select One</option>
-	                </select>
-				</td>
-			</tr>
-			<tr>
-				<th>
-					<label for="title">Title<span class="required">*</span></label>
-				</th>
-				<td>
-					<input type="text" id="title" name="title" value="">
-				</td>
-			</tr>
-			<tr>
-				<th>
-					<label for="date">Date<span class="required">*</span></label>
-				</th>
-				<td>
-					<input type="text" id="date" name="date" value="" placeholder="mm/dd/yyyy">
-				</td>
-			</tr>
-			<tr>
-				<th>
-					<label for="time">Time<span class="required">*</span></label>
-				</th>
-				<td>
-					<input type="text" id="time" name="time" value=""> minutes
-				</td>
-			</tr>
-		</tbody>
-	</table>
-	<input class="button button--primary button--topic-php" type="submit" value="Submit">
-	</form>
-</div><!--/.banner-->
+<div class="container clearfix">
+	<div class="primary col">
+
+		<h1 class="headline">Welcome! <i class="emoji-header em em-sunny"></i></h1>
+		<h2 class="tagline">Camagru is a small Instagram-like site <i class="em em-camera"></i> allowing you to create and share photo-montages.</h2>
+		<h2 class="tagline">Simply make photo, add funny effects and leave your footprint in history of the project.</h2>
+		<h2>Enjoy!! <i class="emoji-header em em-yellow_heart"></i> <i class="emoji-header em em-star-struck"></i></h2>
+
+	</div>
+
+	<div class="secondary col">
+
+		<form class="form-container form-add" method="post" action="inc/sing_in.php">
+
+			<h1>Quick Sign In</h1>
+			<table>
+				<tbody>
+					<tr>
+						<label for="name">Username:</label>
+						<input type="text" id="name" name="username">
+					</tr>
+					<tr>
+						<label for="password">Password:</label>
+						<input type="password" id="password" name="password">
+					</tr>
+				</tbody>
+			</table>
+
+			<input class="button" type="submit" value="Sign In">
+
+		</form>
+
+	</div><!-- /.secondary .col -->
+</div><!--/.container-->
 
 <!-- <div class="container clearfix">
 	<div class="secondary col">
@@ -136,23 +124,25 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 <div class="container clearfix">
 
 	<!-- display posts, likes and comments gotten from the database  -->
-	<?php
-	$catalog = full_photo_gallery_array($items_per_page,$offset);
-	foreach ($catalog as $item) {
-		/*
-		** display all photo from database
-		*/
-		echo get_div_item_html($item); 
-		/*
-		** if user is registered - display likes and comments
-		*/
-		echo get_likes_div_html($item);
-		echo get_comments_block_html($item);
-	}
-	if (isset($pagination)) {
-		echo $pagination;
-	}
-	?>
+	<ul class="img-container">
+		<?php
+		$catalog = full_photo_gallery_array($items_per_page,$offset);
+		foreach ($catalog as $item) {
+			/*
+			** display all photo from database
+			*/
+			echo get_div_item_html($item); 
+			/*
+			** if user is registered - display likes and comments
+			*/
+			echo get_likes_div_html($item);
+			echo get_comments_block_html($item);
+		}
+		if (isset($pagination)) {
+			echo $pagination;
+		}
+		?>
+	</ul>
 	
 </div>
 

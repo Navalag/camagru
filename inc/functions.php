@@ -13,10 +13,10 @@ function get_item_html($item) {
 	return $output;
 }
 function get_div_item_html($item) {
-	$output = "<div class='collage col'><img src='" 
+	$output = "<li class='collage col'><img src='" 
 			. $item["src"] . "' alt='" 
 			. $item["img_id"] . "' />" 
-			. "</div>";
+			. "</li>";
 	return $output;
 }
 

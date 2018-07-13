@@ -153,3 +153,48 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 </form>
 		
 <?php include($_SERVER["DOCUMENT_ROOT"].'/inc/footer.php'); ?>
+
+
+
+
+
+
+
+<!-- <table>
+	<tbody>
+		<tr>
+			<th>
+				<label for="project_id">Project<span class="required">*</span></label>
+			</th>
+			<td>
+				<select name="project_id" id="project_id">
+					<option value="">Select One</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th>
+				<label for="title">Title<span class="required">*</span></label>
+			</th>
+			<td>
+				<input type="text" id="title" name="title" value="">
+			</td>
+		</tr>
+		<tr>
+			<th>
+				<label for="date">Date<span class="required">*</span></label>
+			</th>
+			<td>
+				<input type="text" id="date" name="date" value="" placeholder="mm/dd/yyyy">
+			</td>
+		</tr>
+		<tr>
+			<th>
+				<label for="time">Time<span class="required">*</span></label>
+			</th>
+			<td>
+				<input type="text" id="time" name="time" value=""> minutes
+			</td>
+		</tr>
+	</tbody>
+</table> -->
