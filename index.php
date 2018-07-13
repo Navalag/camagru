@@ -128,6 +128,8 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 		<?php
 		$catalog = full_photo_gallery_array($items_per_page,$offset);
 		foreach ($catalog as $item) {
+		?>
+		<li class='collage col'> <?php 
 			/*
 			** display all photo from database
 			*/
@@ -136,7 +138,9 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 			** if user is registered - display likes and comments
 			*/
 			echo get_likes_div_html($item);
-			echo get_comments_block_html($item);
+			echo get_comments_block_html($item); ?>
+		</li>
+		<?php 
 		}
 		if (isset($pagination)) {
 			echo $pagination;

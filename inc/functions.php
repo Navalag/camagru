@@ -13,10 +13,9 @@ function get_item_html($item) {
 	return $output;
 }
 function get_div_item_html($item) {
-	$output = "<li class='collage col'><img src='" 
+	$output = "<img src='" 
 			. $item["src"] . "' alt='" 
-			. $item["img_id"] . "' />" 
-			. "</li>";
+			. $item["img_id"] . "' />";
 	return $output;
 }
 
@@ -69,7 +68,7 @@ function get_likes_div_html($item) {
 				. $item['img_id'] . "' onclick='"
 				. "like_unlike_photo(" . $item['img_id'] . ")'></i>";
 		}
-		$output .= "<span id='likes_count".$item['img_id']."'>" 
+		$output .= "<span class='count_like' id='likes_count".$item['img_id']."'>" 
 				. $item['likes']." likes</span></div>";
 	}
 	return $output;
@@ -90,34 +89,30 @@ function get_comments_block_html($item) {
 	** is not authorized
 	*/
 	if (isset($_SESSION['Username'])) {
-		$output = "<table><tr>"
-				. "<td></td>"
-				. "<td>Name:</td>"
+		$output = "<div id='showcomments".$item['img_id']
+				. "'></div>"
+				. "<table><tbody><tr>"
+				. "<th>Name:</th>"
 				. "</tr>"
 				. "<tr>"
-				. "<td></td>"
 				. "<td><input type='text' id='name_entered"
 				. $item['img_id']
 				. "'/></td>"
 				. "</tr>"
 				. "<tr>"
-				. "<td></td>"
-				. "<td>Comment:</td>"
+				. "<th>Comment:</th>"
 				. "</tr>"
 				. "<tr>"
-				. "<td></td>"
 				. "<td><textarea cols='35' rows='6' "
 				. "id='comment_entered".$item['img_id']
 				. "'></textarea></td>"
 				. "</tr>"
 				. "<tr>"
-				. "<td></td>"
 				. "<td><input type='submit' value='Comment' "
 				. "onclick='submitComment(".$item['img_id']
 				. ")' /></td>"
 				. "</tr>"
-				. "</table>"
-				. "<br><div id='showcomments".$item['img_id']."'></div>";
+				. "</tbody></table>";
 	}
 	return $output;
 }

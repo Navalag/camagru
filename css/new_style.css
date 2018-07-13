@@ -416,12 +416,20 @@ span.required {
 /* ---- Likes ---- */
 
 .likes-block {
-
+	width: 100%;
+	padding-left: 4em;
+	padding-bottom: 1em;
+}
+.liked,
+.unliked {
+	/*width: 100%;*/
 }
 
-.likes_count {
-	color: DimGray;
-	font-size: 1.5em;
+.count_like {
+	color: #645180;
+	letter-spacing: .5px;
+	font-size: 1em;
+	padding-left: 10px;
 }
 .far {
 	font-size: 1.5em;
@@ -439,10 +447,6 @@ span.required {
 	font-weight: 600;
 	color: FireBrick;
 }
-/*.liked:hover {
-	font-weight: 400;
-	color: DimGray;
-}*/
 .hide {
 	display: none;
 }
