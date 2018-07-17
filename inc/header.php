@@ -22,22 +22,22 @@ if (!isset($_SESSION)) {
 	<header class="main-header">
 		<div class="container clearfix">
 				
-			<h1 class='name'><a href='/'><i class='fas fa-camera-retro'></i> camagru</a></h1>
+			<h1 class='name'><a class='logo' href='/'><i class='fas fa-camera-retro'></i> camagru</a></h1>
 
 		<?php if (!isset($_SESSION['Username'])) { ?>
 
 			<ul class="main-nav">
-				<li><a href="/inc/sign_in.php">Sign In</a></li>
-				<li><a href="/inc/sign_up.php">Sign Up</a></li>
+				<li><a class="nav-link" href="/inc/sign_in.php">Sign In</a></li>
+				<li><a class="nav-link" href="/inc/sign_up.php">Sign Up</a></li>
 			</ul>
 
 		<?php } else { ?>
 				
 			<ul class="main-nav">
-				<li><a href="/">Gallery</a></li>
-				<li><a href="/account.php">My Profile</a></li>
-				<li><a href="/settings.php">Settings</a></li>
-				<li><a href="/inc/sign_out.php">Sign out</a></li>
+				<li><a class="nav-link" href="/">Gallery</a></li>
+				<li><a class="nav-link" href="/account.php">My Profile</a></li>
+				<li><a class="nav-link" href="/settings.php">Settings</a></li>
+				<li><a class="nav-link" href="/inc/sign_out.php">Sign out</a></li>
 			</ul>
 
 		<?php } ?>

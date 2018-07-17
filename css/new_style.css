@@ -63,22 +63,19 @@ img {
 	font-size: 1.5em;
 	margin: 0;
 }
-.name a {
-	color: #fff;
-}
 .name:hover {
 	background: #57476f;
 }
 
-.main-nav {
-	margin-top: 5px;
+.logo {
+	padding: .45rem 1rem .5rem;
+	color: #fff;
 }
 
 .name a,
 .main-nav a {
 	text-align: center;
 	display: block;
-	padding: 12px 15px;
 }
 
 .main-nav a {
@@ -94,11 +91,13 @@ img {
 	background: #584770;
 }
 
+.nav-link {
+	padding: 1rem;
+}
+
 /* ---- Layout Containers ---- */
 
 .main-header {
-	/*padding-top: .5em;*/
-	/*padding-bottom: .5em;*/
 	background: #645180;
 }
 
@@ -532,6 +531,7 @@ span.required {
 
 	.main-nav {
 		float: right;
+		list-style: none;
 	}
 
 	.main-nav li {
