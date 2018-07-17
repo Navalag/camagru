@@ -66,6 +66,9 @@ img {
 .name a {
 	color: #fff;
 }
+.name:hover {
+	background: #57476f;
+}
 
 .main-nav {
 	margin-top: 5px;
@@ -75,7 +78,7 @@ img {
 .main-nav a {
 	text-align: center;
 	display: block;
-	padding: 10px 15px;
+	padding: 12px 15px;
 }
 
 .main-nav a {
@@ -83,6 +86,7 @@ img {
 	font-weight: bold;
 	color: #fff;
 	text-transform: uppercase;
+	letter-spacing: .5px;
 }
 
 .main-nav a:hover {
@@ -93,8 +97,8 @@ img {
 /* ---- Layout Containers ---- */
 
 .main-header {
-	padding-top: .5em;
-	padding-bottom: .5em;
+	/*padding-top: .5em;*/
+	/*padding-bottom: .5em;*/
 	background: #645180;
 }
 
@@ -532,7 +536,6 @@ span.required {
 
 	.main-nav li {
 		display: inline-block;
-		margin-left: 15px;
 	}
 
 	.tagline {
