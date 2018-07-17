@@ -1,5 +1,6 @@
 /*
 	Colors:
+
 	#645180 - dark violet (header, borders, headers);
 	#e7e3ed - light violet (body);
 
@@ -109,6 +110,7 @@ img {
 .img-container {
 	background-color:#f4f2f7;
 	border-radius:4px;
+	margin: 1em;
 }
 
 .col {
@@ -117,8 +119,13 @@ img {
 
 .collage img {
 	width: 100%;
-	border: 3px solid #645180;
-	/*margin: 2%;*/
+	border: 1px solid #9885b2;
+	background: #9885b2;
+}
+
+.col.collage {
+	padding: 0;
+	margin-bottom: 2em;
 }
 
 .main-footer {
@@ -413,20 +420,15 @@ span.required {
 	text-align:left;
 }
 
-/* ---- Likes ---- */
+/* ---- Like-Comment icons ---- */
 
-.likes-block {
+.likes-comments {
 	width: 100%;
-	padding-left: 4em;
-	padding-bottom: 1em;
-}
-.liked,
-.unliked {
-	/*width: 100%;*/
+	padding: .5em 3em;
+	padding-top: .5em;
 }
 
 .count_like {
-	color: #645180;
 	letter-spacing: .5px;
 	font-size: 1em;
 	padding-left: 10px;
@@ -441,18 +443,32 @@ span.required {
 }
 .unliked.far {
 	font-weight: 400;
-	color: DimGray;
+	/*color: DimGray;*/
 }
 .unliked:hover {
 	font-weight: 600;
 	color: FireBrick;
 }
-.hide {
-	display: none;
+
+.fa-comment {
+	float: right;
 }
-.fa-thumbs-up, .fa-thumbs-o-up {
-	transform: rotateY(-180deg);
-	font-size: 1.3em;
+
+/* ---- Comments ---- */
+
+.comment {
+	background: #efecf3;
+	border-radius: 4px;
+	padding: .5em;
+	margin: .5em 0;
+	border: 1px solid #9885b2;
+}
+
+.count_comment {
+	letter-spacing: .5px;
+	font-size: 1em;
+	padding-right: 10px;
+	float: right;
 }
 
 /* ================================= 
@@ -485,8 +501,7 @@ span.required {
 
 	.img-container {
 		padding: 1.5em;
-		margin-top: 3em;
-		margin-bottom: 0 auto;
+		margin-top: 2em;
 	}
 
 	.name,

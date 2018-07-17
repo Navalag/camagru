@@ -35,15 +35,18 @@ function like_unlike_photo(id) {
 function submitComment(id) {
 	var request = new XMLHttpRequest();
 	var url = "../inc/comments_likes/comments.php";
-	var username = document.getElementById("name_entered" + id).value;
 	var usercomment = document.getElementById("comment_entered" + id).value;
 	var img_id = id;
-	var vars= "name="+username+"&comment="+usercomment+"&img_id="+img_id;
+	var vars= "comment="+usercomment+"&img_id="+img_id;
 	request.open("POST", url, true);
 	request.onreadystatechange = function() {
 		if (request.readyState == 4 && request.status == 200) {
 			var return_data = request.responseText;
-			document.getElementById("showcomments" + id).innerHTML = return_data;
+			var i = return_data.indexOf(" ");
+			var comments_amount = return_data.substr(0, i);
+			var comments_body = return_data.substr(i);
+			document.getElementById("comment_count" + id).innerHTML = comments_amount + " comments";
+			document.getElementById("showcomments" + id).innerHTML = comments_body;
 		}
 	}
 	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

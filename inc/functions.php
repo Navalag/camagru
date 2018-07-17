@@ -37,7 +37,7 @@ function get_likes_div_html($item) {
 	** is not authorized
 	*/
 	if (isset($_SESSION['Username'])) {
-		$output = "<div class='likes-block'>";
+		$output = "<div class='likes-comments'>";
 		/*
 		** check `likes` table if user ulready like this img or not
 		*/
@@ -68,8 +68,13 @@ function get_likes_div_html($item) {
 				. $item['img_id'] . "' onclick='"
 				. "like_unlike_photo(" . $item['img_id'] . ")'></i>";
 		}
-		$output .= "<span class='count_like' id='likes_count".$item['img_id']."'>" 
-				. $item['likes']." likes</span></div>";
+		$output .= "<span class='count_like' id='likes_count".$item['img_id']."'>"
+				. $item['likes']." likes</span>"
+				. "<i class='far fa-comment' onclick='"
+				. "submitComment(".$item['img_id'].")'></i>"
+				. "<span class='count_comment' id='comment_count".$item['img_id']."'>"
+				. $item['comments']." comments</span>"
+				. "</div>";
 	}
 	return $output;
 }
@@ -92,18 +97,18 @@ function get_comments_block_html($item) {
 		$output = "<div id='showcomments".$item['img_id']
 				. "'></div>"
 				. "<table><tbody><tr>"
-				. "<th>Name:</th>"
-				. "</tr>"
-				. "<tr>"
-				. "<td><input type='text' id='name_entered"
-				. $item['img_id']
-				. "'/></td>"
-				. "</tr>"
+				// . "<th>Name:</th>"
+				// . "</tr>"
+				// . "<tr>"
+				// . "<td><input type='text' id='name_entered"
+				// . $item['img_id']
+				// . "'/></td>"
+				// . "</tr>"
 				. "<tr>"
 				. "<th>Comment:</th>"
 				. "</tr>"
 				. "<tr>"
-				. "<td><textarea cols='35' rows='6' "
+				. "<td><textarea cols='30' rows='2' "
 				. "id='comment_entered".$item['img_id']
 				. "'></textarea></td>"
 				. "</tr>"
