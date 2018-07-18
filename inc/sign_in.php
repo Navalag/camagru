@@ -97,7 +97,7 @@ $conn = null;
 include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 ?>
 
-<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+<form class="form-container" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
 	
 	<?php if (isset($_GET['forgot_pass']) || isset($_POST['email'])) { ?>
 
@@ -107,23 +107,8 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 	<label for="mail">Email:</label>
 	<input type="email" id="mail" name="email">
 
-	<p class="message" style="
-	<?php 
-		if (empty($emailErr) && empty($finalMessage)){ 
-			echo "display: none;"; 
-		}
-	?>
-	">
-	<?php 
-		if (!empty($emailErr)){ 
-			echo $emailErr; 
-		} else {
-			echo $finalMessage; 
-		}
-	?>		
-	</p>
-
-	<button type="submit">Send new password</button>
+	<input class="button" type="submit" value="Send new password">
+	<!-- <button type="submit">Send new password</button> -->
 	<a href="sign_in.php">Return to sign in</a>
 
 	<?php } else { ?>
@@ -144,9 +129,10 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 	<label for="password">Password:</label>
 	<input type="password" id="password" name="password">
 
-	<button type="submit">Sign In</button>
+	<input class="button" type="submit" value="Sign In">
+	<!-- <button type="submit">Sign In</button> -->
+	
 	<a href="/inc/sign_in.php?forgot_pass=1">Forgot password?</a>
-	<a href="/">Back to main page</a>
 
 	<?php } ?>
 	
@@ -159,42 +145,43 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 
 
 
-
-<!-- <table>
-	<tbody>
-		<tr>
-			<th>
-				<label for="project_id">Project<span class="required">*</span></label>
-			</th>
-			<td>
-				<select name="project_id" id="project_id">
-					<option value="">Select One</option>
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<th>
-				<label for="title">Title<span class="required">*</span></label>
-			</th>
-			<td>
-				<input type="text" id="title" name="title" value="">
-			</td>
-		</tr>
-		<tr>
-			<th>
-				<label for="date">Date<span class="required">*</span></label>
-			</th>
-			<td>
-				<input type="text" id="date" name="date" value="" placeholder="mm/dd/yyyy">
-			</td>
-		</tr>
-		<tr>
-			<th>
-				<label for="time">Time<span class="required">*</span></label>
-			</th>
-			<td>
-				<input type="text" id="time" name="time" value=""> minutes
-			</td>
-		</tr>
-	</tbody>
-</table> -->
+<!-- <form class="form-container">
+	<table>
+		<tbody>
+			<tr>
+				<th>
+					<label for="project_id">Project<span class="required">*</span></label>
+				</th>
+				<td>
+					<select name="project_id" id="project_id">
+						<option value="">Select One</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>
+					<label for="title">Title<span class="required">*</span></label>
+				</th>
+				<td>
+					<input type="text" id="title" name="title" value="">
+				</td>
+			</tr>
+			<tr>
+				<th>
+					<label for="date">Date<span class="required">*</span></label>
+				</th>
+				<td>
+					<input type="text" id="date" name="date" value="" placeholder="mm/dd/yyyy">
+				</td>
+			</tr>
+			<tr>
+				<th>
+					<label for="time">Time<span class="required">*</span></label>
+				</th>
+				<td>
+					<input type="text" id="time" name="time" value=""> minutes
+				</td>
+			</tr>
+		</tbody>
+	</table>	
+</form> -->

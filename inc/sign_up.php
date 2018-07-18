@@ -150,7 +150,7 @@ $conn = null;
 include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 ?>
 
-<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+<form class="form-container" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
 	
 	<h1>Sign Up</h1>
 
@@ -203,9 +203,10 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 	?>
 	"><?php echo $repeatPasswordErr;?></p>
 
-	<button type="submit" name="signup">Sign Up</button>
-	<a href="/inc/sign_in.php">Sign In</a>
-	<a href="/">Back to main page</a>
+	<input class="button" type="submit" value="Sign Up">
+	<!-- <button type="submit" name="signup">Sign Up</button> -->
+	<a href="/inc/sign_in.php">Already have acount? Sign In.</a>
+
 </form>
 
 <?php include($_SERVER["DOCUMENT_ROOT"].'/inc/footer.php'); ?>

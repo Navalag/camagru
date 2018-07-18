@@ -162,13 +162,14 @@ img {
 
 /* ---- Forms ---- */
 
-/*form {
+form {
 	max-width: 300px;
 	margin: 10px auto;
 	padding: 10px 20px;
-	background: #f4f7f8;
+	/*background: #f4f7f8;*/
 	border-radius: 8px;
 }
+/*
 
 input[type="text"],
 input[type="password"],
@@ -269,9 +270,10 @@ p.message {
 /* ---- Button ---- */
 
 .button {
-	background:#7D669E;
-	border-color:#7D669E;
-	color:#fff
+	background: #7D669E;
+	border-color: #7D669E;
+	color: #fff;
+	margin-top: 1em;
 }
 .button:hover,
 .button:focus,
@@ -280,9 +282,9 @@ p.message {
 	border-color:#645180;
 	color:#fff;
 }
-.button:last-child {
+/*.button:last-child {
 	margin-right:0;
-}
+}*/
 
 /*.button--primary {
 	background-color:#5fcf80;
@@ -341,7 +343,9 @@ p.message {
 	}
 }
 .form-container a {
-	color:#9885b2
+	color:#9885b2;
+	margin: .5em 0;
+  display: inline-block;
 }
 .form-container a:hover,
 .form-container a:focus,
@@ -388,9 +392,9 @@ td {
 th {
 	font-size:.875rem;
 }
-thead th {
+/*thead th {
 	background-color:#f7f6f9 !important;
-}
+}*/
 input {
 	border-radius: 4px;
 	box-shadow: none;
@@ -411,7 +415,12 @@ span.required {
 	color:#ed5a5a;
 }
 
-
+/*.forgot-pass {
+	float: right;
+}
+#not-block {
+	display: inline;
+}*/
 
 /* ---- Alert message ---- */
 

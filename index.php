@@ -13,7 +13,7 @@ $section = "landing_page";
 ** BEGIN OF PAGINATION SCRIPT
 */
 
-$items_per_page = 8;
+$items_per_page = 5;
 $total_items = count_all_photo();
 $total_pages = 1;
 $offset = 0;
@@ -79,18 +79,18 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 		<form class="form-container form-add" method="post" action="inc/sing_in.php">
 
 			<h1>Quick Sign In</h1>
-			<table>
-				<tbody>
-					<tr>
+			<!-- <table> -->
+				<!-- <tbody> -->
+					<!-- <tr> -->
 						<label for="name">Username:</label>
 						<input type="text" id="name" name="username">
-					</tr>
-					<tr>
+					<!-- </tr> -->
+					<!-- <tr> -->
 						<label for="password">Password:</label>
 						<input type="password" id="password" name="password">
-					</tr>
-				</tbody>
-			</table>
+					<!-- </tr> -->
+				<!-- </tbody> -->
+			<!-- </table> -->
 
 			<input class="button" type="submit" value="Sign In">
 

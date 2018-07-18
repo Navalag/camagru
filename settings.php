@@ -132,7 +132,7 @@ $conn = null;
 include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 ?>
 
-<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+<form class="form-container" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
 
 	<h1>Public profile</h1>
 
@@ -196,7 +196,8 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 			
 	</fieldset>
 		
-	<button type="submit">Update profile</button>
+	<!-- <button type="submit">Update profile</button> -->
+	<input class="button" type="submit" value="Update profile">
 	<a href="/inc/sign_in.php?forgot_pass=1">I forgot my password</a>
 
 </form>
