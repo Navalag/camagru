@@ -119,7 +119,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$_SESSION['Username'] = $new_username;
 			$username = $new_username;
 			$email = $new_email;
-			$finalMessage = 'Your profile was updated!';
+			$finalMessage = 'Your profile has been updated!';
 			}
 		catch(PDOException $e)
 			{
@@ -132,23 +132,25 @@ $conn = null;
 include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 ?>
 
-<form class="form-container" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+<div class="container clearfix">
 
-	<h1>Public profile</h1>
+	<h1 class="header-center">Edit Your Profile</h1>
 
-	<p class="message" style="
-		<?php 
-			if (empty($finalMessage)){ 
-				echo "display: none;"; 
-			}
-		?>">
-		<?php echo $finalMessage;?>
-	</p>
-	
-	<fieldset>
-			
-		<legend><span class="number">1</span> Your basic info</legend>
-		
+	<div class="alerts form-table" style="
+			<?php 
+				if (empty($finalMessage) && empty($nameErr) 
+					&& empty($emailErr) && empty($passwordErr)){ 
+					echo "display: none;"; 
+				}
+			?>">
+		<p class="message" style="
+			<?php 
+				if (empty($finalMessage)){ 
+					echo "display: none;"; 
+				}
+			?>">
+			<?php echo $finalMessage;?>
+		</p>
 		<p class="message" style="
 			<?php 
 				if (empty($nameErr)){ 
@@ -157,9 +159,6 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 			?>">
 			<?php echo $nameErr;?>
 		</p>
-		<label for="name">Username:</label>
-		<input type="text" id="name" name="username" value="<?php echo $username; ?>">
-		
 		<p class="message" style="
 			<?php 
 				if (empty($emailErr)){ 
@@ -168,14 +167,6 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 			?>">
 			<?php echo $emailErr;?>
 		</p>
-		<label for="mail">Email:</label>
-		<input type="email" id="mail" name="email" value="<?php echo $email; ?>">
-
-	</fieldset>
-	<fieldset>
-			
-		<legend><span class="number">2</span> Change password</legend>
-
 		<p class="message" style="
 			<?php 
 				if (empty($passwordErr)){ 
@@ -184,8 +175,28 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 			?>">
 			<?php echo $passwordErr;?>
 		</p>
-			
-		<label for="old_password">Old Password:</label>
+	</div>
+</div>
+
+<form class="form-container form-table" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+
+	<fieldset>
+
+		<legend>Your basic info</legend>
+
+		<label for="name">Username:</label>
+		<input type="text" id="name" name="username" value="<?php echo $username; ?>">
+
+		<label for="mail">Email:</label>
+		<input type="email" id="mail" name="email" value="<?php echo $email; ?>">
+
+	</fieldset>
+	<fieldset>
+
+		<legend>Change password</legend>
+
+		<label class="inline-block--lable" for="old_password">Old Password:</label>
+		<a class="right-align--link" href="/inc/sign_in.php?forgot_pass=1">I forgot my password</a>
 		<input type="password" id="old_password" name="old_password">
 
 		<label for="new_password">New Password:</label>
@@ -193,12 +204,10 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 
 		<label for="confirm_new_password">Confirm New Password:</label>
 		<input type="password" id="confirm_new_password" name="confirm_new_password">
-			
+
 	</fieldset>
-		
-	<!-- <button type="submit">Update profile</button> -->
+
 	<input class="button" type="submit" value="Update profile">
-	<a href="/inc/sign_in.php?forgot_pass=1">I forgot my password</a>
 
 </form>
 

@@ -110,7 +110,10 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 		<input type="email" id="mail" name="email">
 
 		<input class="button" type="submit" value="Send new password">
-		<a href="sign_in.php">Return to sign in</a>
+
+		<?php if (!isset($_SESSION['Username'])) { ?>
+			<a href="sign_in.php">Return to sign in</a>
+		<?php } ?>
 
 	<?php } else { ?>
 
@@ -139,7 +142,7 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 
 </form>
 
-<?php if (!isset($_GET['forgot_pass']) || !isset($_POST['email'])) { ?>
+<?php if (!isset($_SESSION['Username'])) { ?>
 
 	<form class="form-container form-appendex">
 		<span class="form-text">New at Camagru? </span><a href="/inc/sign_up.php">Create an account.</a>

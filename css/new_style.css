@@ -8,7 +8,8 @@
 	#57476f - button hover;
 	#584770 - menu hover;
 
-	#57476f - error message
+	#57476f - error message;
+	#36b55c - success message;
 
 	#7d669e - paragphs;
 */
@@ -151,6 +152,11 @@ img {
 .tagline {
 	font-size: 1.8em;
 	font-weight: 400;
+}
+.header-center {
+	margin-top: 1.5em;
+	margin-bottom: 0;
+	text-align: center;
 }
 
 #video,
@@ -324,12 +330,26 @@ input {
 	width:100%;
 	/*border-style: none;*/
 }
+
+/*  ----  Additional Form Atributes -----  */
+
 label {
 	margin: .6em 0 .6em;
 	display: block;
 	font-size:1em;
 	font-weight:bold;
 	color:#645180;
+}
+
+fieldset {
+	margin: 1.5em 0.5em 1.5em;
+	padding: 0px 0.9em 1.6em;
+	border: solid 1px #9885b2;
+}
+
+legend {
+	font-size: 1.5em;
+	font-weight: lighter;
 }
 
 .button {
@@ -367,8 +387,8 @@ label {
 .form-container a {
 	color: #9885b2;
 	margin: .5em 0;
-  display: inline-block;
-  font-size: .95em;
+	display: inline-block;
+	font-size: .95em;
 }
 .form-container a:hover,
 .form-container a:focus,
@@ -382,6 +402,10 @@ label {
 	}
 }
 
+.form-table {
+	max-width: 480px;
+}
+
 .form-appendex {
 	margin-top: .5em;
 	font-size: .89em;
@@ -393,14 +417,28 @@ span.required {
 	color:#ed5a5a;
 }
 
-/* ---- Alert message ---- */
+.inline-block--lable {
+	display: inline-block;
+}
+.right-align--link {
+	float: right;
+	font-size: 1em !important;
+}
+
+/*  ---- Alert messages ----*/
+
+.alerts {
+	margin: 0 auto;
+}
 
 .message {
-	background-color:#ed5a5a;
-	border-radius:4px;
-	padding:1.5rem;
-	color:#fff;
-	text-align:left;
+	background-color: #ed5a5a;
+	border-radius: 4px;
+	padding: 1.5em;
+	color: #fff;
+	text-align: left;
+	margin-bottom: 0;
+	margin-top: 1em;
 }
 
 /*.form-report {
