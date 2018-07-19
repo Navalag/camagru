@@ -97,47 +97,56 @@ $conn = null;
 include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 ?>
 
+<!-- alert message must before form. Make it later -->
+
 <form class="form-container" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
 	
 	<?php if (isset($_GET['forgot_pass']) || isset($_POST['email'])) { ?>
 
-	<h1>Reset your password</h1>
+		<h2>Reset your password</h2>
+		<p>Enter your email address and we will send you new password.</p>
 
-	<p>Enter your email address and we will send you new password.</p>
-	<label for="mail">Email:</label>
-	<input type="email" id="mail" name="email">
+		<label for="mail">Email:</label>
+		<input type="email" id="mail" name="email">
 
-	<input class="button" type="submit" value="Send new password">
-	<!-- <button type="submit">Send new password</button> -->
-	<a href="sign_in.php">Return to sign in</a>
+		<input class="button" type="submit" value="Send new password">
+		<a href="sign_in.php">Return to sign in</a>
 
 	<?php } else { ?>
 
-	<h1>Sign In</h1>
-	
-	<p class="message" style="
-	<?php 
-		if (empty($finalMessage)) {
-			echo "display: none;"; 
-		}
-	?>
-	"><?php echo $finalMessage;?></p>
+		<h1>Sign In</h1>
+		
+		<p class="message" style="
+			<?php 
+				if (empty($finalMessage)) {
+					echo "display: none;"; 
+				}
+			?>
+			"><?php echo $finalMessage;?>
+		</p>
 
-	<label for="name">Username:</label>
-	<input type="text" id="name" name="username">
-	
-	<label for="password">Password:</label>
-	<input type="password" id="password" name="password">
+		<label for="name">Username:</label>
+		<input type="text" id="name" name="username">
+		
+		<label for="password">Password:</label>
+		<input type="password" id="password" name="password">
 
-	<input class="button" type="submit" value="Sign In">
-	<!-- <button type="submit">Sign In</button> -->
-	
-	<a href="/inc/sign_in.php?forgot_pass=1">Forgot password?</a>
+		<input class="button" type="submit" value="Sign In">
+		
+		<a href="/inc/sign_in.php?forgot_pass=1">Forgot password?</a>
 
 	<?php } ?>
-	
+
 </form>
-		
+
+<?php if (!isset($_GET['forgot_pass']) || !isset($_POST['email'])) { ?>
+
+	<form class="form-container form-appendex">
+		<span class="form-text">New at Camagru? </span><a href="/inc/sign_up.php">Create an account.</a>
+	</form>
+
+<?php } ?>
+
 <?php include($_SERVER["DOCUMENT_ROOT"].'/inc/footer.php'); ?>
 
 

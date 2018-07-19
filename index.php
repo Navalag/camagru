@@ -76,7 +76,7 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 
 	<div class="secondary col">
 
-		<form class="form-container form-add" method="post" action="inc/sing_in.php">
+		<form class="form-container" method="post" action="inc/sing_in.php">
 
 			<h1>Quick Sign In</h1>
 			<!-- <table> -->

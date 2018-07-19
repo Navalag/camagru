@@ -86,8 +86,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 			}
 	}
 	if (empty($finalMessage) && empty($nameErr) && empty($emailErr) && empty($passwordErr) && empty($repeatPasswordErr)) {
-		// get the new user id
-		// lastInsertId - Get the ID generated in the last query
+		/*
+		** get the new user id
+		** lastInsertId - Get the ID generated in the last query
+		*/
 		$userid = $conn->lastInsertId();
 		//create a random key
 		$key = $username . $email . date('mY');
@@ -150,7 +152,7 @@ $conn = null;
 include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 ?>
 
-<form class="form-container" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+<form class="form-container wide-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
 	
 	<h1>Sign Up</h1>
 
@@ -163,49 +165,52 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 		<?php echo $finalMessage;?>
 	</p>
 
-	<label for="name">Name:</label>
+	<label for="name">Name: <span class="required">*</span></label>
 	<input type="text" id="name" name="username" value="<?php echo $username;?>">
 	<p class="message" style="
-	<?php 
-		if (empty($nameErr)){ 
-			echo "display: none;"; 
-		}
-	?>
-	"><?php echo $nameErr;?></p>
+		<?php 
+			if (empty($nameErr)){ 
+				echo "display: none;"; 
+			}
+		?>
+		"><?php echo $nameErr;?>
+	</p>
 	
-	<label for="mail">Email:</label>
+	<label for="mail">Email: <span class="required">*</span></label>
 	<input type="email" id="mail" name="email" value="<?php echo $email;?>">
 	<p class="message" style="
-	<?php 
-		if (empty($emailErr)){ 
-			echo "display: none;"; 
-		}
-	?>
-	"><?php echo $emailErr;?></p>
+		<?php 
+			if (empty($emailErr)){ 
+				echo "display: none;"; 
+			}
+		?>
+		"><?php echo $emailErr;?>
+	</p>
 	
-	<label for="password">Password:</label>
+	<label for="password">Password: <span class="required">*</span></label>
 	<input type="password" id="password" name="password">
 	<p class="message" style="
-	<?php 
-		if (empty($passwordErr)){ 
-			echo "display: none;"; 
-		}
-	?>
-	"><?php echo $passwordErr;?></p>
+		<?php 
+			if (empty($passwordErr)){ 
+				echo "display: none;"; 
+			}
+		?>
+		"><?php echo $passwordErr;?>
+	</p>
 
-	<label for="repeat-password">Repeat Password:</label>
+	<label for="repeat-password">Repeat Password: <span class="required">*</span></label>
 	<input type="password" id="repeat-password" name="repeat_password">
 	<p class="message" style="
-	<?php 
-		if (empty($repeatPasswordErr)){ 
-			echo "display: none;"; 
-		}
-	?>
-	"><?php echo $repeatPasswordErr;?></p>
+		<?php 
+			if (empty($repeatPasswordErr)){ 
+				echo "display: none;"; 
+			}
+		?>
+		"><?php echo $repeatPasswordErr;?>
+	</p>
 
 	<input class="button" type="submit" value="Sign Up">
-	<!-- <button type="submit" name="signup">Sign Up</button> -->
-	<a href="/inc/sign_in.php">Already have acount? Sign In.</a>
+	<span class="form-text">Already have an acount? </span><a href="/inc/sign_in.php">Sign In</a>
 
 </form>
 
