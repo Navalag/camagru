@@ -70,19 +70,44 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 	<div class="account_primary col">
 		<h2>You Look Grate!</h2>
 		
-		<!-- <div class="camera"> -->
+		<div class="camera">
 			<video id="video" width="640" height="480" autoplay>Video stream not available.</video>
 			<canvas id="canvas" width="640" height="480" style="display: none;"></canvas>
+
 			<input class="button" id="startVideo" type="button" value="Turn on Camera">
-			<input class="button" id="snapPhoto" type="button" value="Take Photo">
-			<form action="inc/camera-photo/upload_photo.php" method="post" enctype="multipart/form-data">
+
+			<form class="upload-file--form" action="inc/camera-photo/upload_photo.php" method="post" enctype="multipart/form-data">
 				Select image to upload:
 				<input type="file" name="fileToUpload" id="fileToUpload">
 				<input type="submit" value="Upload Image" name="submit">
 			</form>
-		<!-- </div> -->
+		</div>
+			<input class="button" id="snapPhoto" type="button" value="Take Photo">
+		
+		<h2 style="text-align:center">Slideshow Gallery</h2>
 		<div class="camera-canvas">
 			
+			<div class="row">
+			    <div class="column">
+			      <img class="demo cursor" src="img/img_woods.jpg" style="width:100%" onclick="currentSlide(1)" alt="The Woods">
+			    </div>
+			    <div class="column">
+			      <img class="demo cursor" src="img/img_5terre.jpg" style="width:100%" onclick="currentSlide(2)" alt="Cinque Terre">
+			    </div>
+			    <div class="column">
+			      <img class="demo cursor" src="img/img_mountains.jpg" style="width:100%" onclick="currentSlide(3)" alt="Mountains and fjords">
+			    </div>
+			    <div class="column">
+			      <img class="demo cursor" src="img/img_lights.jpg" style="width:100%" onclick="currentSlide(4)" alt="Northern Lights">
+			    </div>
+			    <div class="column">
+			      <img class="demo cursor" src="img/img_nature.jpg" style="width:100%" onclick="currentSlide(5)" alt="Nature and sunrise">
+			    </div>    
+			    <div class="column">
+			      <img class="demo cursor" src="img/img_snow.jpg" style="width:100%" onclick="currentSlide(6)" alt="Snowy Mountains">
+			    </div>
+			</div>
+
 			<input class="button" id="effect" type="button" value="Add Frame">
 			<input class="button" id="save" type="button" value="Save Photo">
 		</div>
