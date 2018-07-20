@@ -70,20 +70,21 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 	<div class="account_primary col">
 		<h2>You Look Grate!</h2>
 		
-		<div class="camera">
+		<!-- <div class="camera"> -->
 			<video id="video" width="640" height="480" autoplay>Video stream not available.</video>
-			<button id="startVideo">Turn on Camera</button>
-			<button id="snapPhoto">Take Photo</button>
+			<canvas id="canvas" width="640" height="480" style="display: none;"></canvas>
+			<input class="button" id="startVideo" type="button" value="Turn on Camera">
+			<input class="button" id="snapPhoto" type="button" value="Take Photo">
 			<form action="inc/camera-photo/upload_photo.php" method="post" enctype="multipart/form-data">
 				Select image to upload:
 				<input type="file" name="fileToUpload" id="fileToUpload">
 				<input type="submit" value="Upload Image" name="submit">
 			</form>
-		</div>
+		<!-- </div> -->
 		<div class="camera-canvas">
-			<canvas id="canvas" width="640" height="480"></canvas>
-			<button id="effect">Add Frame</button>
-			<button id="save">Save Photo</button>
+			
+			<input class="button" id="effect" type="button" value="Add Frame">
+			<input class="button" id="save" type="button" value="Save Photo">
 		</div>
 
 	</div><!--/.primary-->
