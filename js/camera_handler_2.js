@@ -133,7 +133,7 @@
 		img.addEventListener('load', function() {
 			context.drawImage(img, 0, 0, width, height);
 		}, false);
-		img.src = '../img/frame1.png'; // Set source path
+		img.src = '../img/frame3.png'; // Set source path
 	}
 
 	function saveImage() {

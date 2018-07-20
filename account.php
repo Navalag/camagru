@@ -65,10 +65,10 @@ if ($total_items > 0) {
 include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 ?>
 
-<div class="container cont-wrap clearfix">
+<div class="container cont-wrap clearfix account-container">
 	
 	<div class="account_primary col">
-		<h2>You Look Grate!</h2>
+		<h2 class="account-page--header">You Look Grate!</h2>
 		
 		<div class="camera">
 			<video id="video" width="640" height="480" autoplay>Video stream not available.</video>
@@ -110,13 +110,14 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 
 			<input class="button" id="effect" type="button" value="Add Frame">
 			<input class="button" id="save" type="button" value="Save Photo">
+
 		</div>
 
 	</div><!--/.primary-->
 	
 	<div class="account_secondary col">
 
-		<h2>Welcome!</h2>
+		<h2 class="account-page--header">Enjoy Your Photo!</h2>
 		<div class="output">
 			<ul id="photo">
 				<?php

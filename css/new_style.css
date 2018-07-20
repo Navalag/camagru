@@ -117,6 +117,12 @@ img {
 	margin: 1em;
 }
 
+.account-container {
+	background-color:#f4f2f7;
+	border-radius:4px;
+	padding: 1em;
+}
+
 .col {
 	padding: 1em;
 }
@@ -158,13 +164,16 @@ img {
 	margin-bottom: 0;
 	text-align: center;
 }
+.account-page--header {
+	margin-top: 0;
+}
 
 video {
 	max-width: 100%;
 }
 
 #startVideo {
-	background: #fff;
+	background: #f4f2f7;
   color: #7D669E;
   width: 300px;
 	position: absolute;
@@ -177,7 +186,7 @@ video {
 #video,
 #canvas,
 #pngHolder {
-	border: 2px solid #645180;
+	border: 1px solid #645180;
 	background-color: #645180;
 }
 
@@ -512,7 +521,7 @@ legend {
 }
 
 .upload-file--form {
-	background: #fff;
+	background: #f4f2f7;
 	position: absolute;
 	top: 52%;
 	left: 50%;
@@ -732,11 +741,11 @@ th {
 	}
 
 	.account_primary {
-		width: 66%;
+		width: 68%;
 	}
 
 	.account_secondary {
-		width: 34%;
+		width: 32%;
 	}
 
 	/*.container {
