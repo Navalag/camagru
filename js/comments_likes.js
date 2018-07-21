@@ -32,6 +32,9 @@ function like_unlike_photo(id) {
 /*
 ** Add coment to database and if success add on page without reload
 */
+
+// fix bug when click on show comments buttom activates submit comment function
+
 function submitComment(id) {
 	var request = new XMLHttpRequest();
 	var url = "../inc/comments_likes/comments.php";

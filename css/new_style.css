@@ -192,6 +192,27 @@ video {
 
 /*   ---- Account page styles ----   */
 
+/* Add a pointer when hovering over the thumbnail images */
+.cursor {
+  cursor: pointer;
+}
+
+/* Six columns side by side */
+.column {
+  float: left;
+  width: 16.66%;
+}
+
+/* Add a transparency effect for thumnbail images */
+.demo {
+  opacity: 0.6;
+}
+
+/*.active,*/
+.demo:hover {
+  opacity: 1;
+}
+
 /*img {
   vertical-align: middle;
 }*/
@@ -205,11 +226,6 @@ video {
 /*.mySlides {
   display: none;
 }*/
-
-/* Add a pointer when hovering over the thumbnail images */
-.cursor {
-  cursor: pointer;
-}
 
 /* Next & previous buttons */
 /*.prev,
@@ -229,10 +245,10 @@ video {
 }*/
 
 /* Position the "next button" to the right */
-.next {
+/*.next {
   right: 0;
   border-radius: 3px 0 0 3px;
-}
+}*/
 
 /* On hover, add a black background color with a little bit see-through */
 /*.prev:hover,
@@ -257,27 +273,11 @@ video {
   color: white;
 }*/
 
-.row:after {
+/*.row:after {
   content: "";
   display: table;
   clear: both;
-}
-
-/* Six columns side by side */
-.column {
-  float: left;
-  width: 16.66%;
-}
-
-/* Add a transparency effect for thumnbail images */
-.demo {
-  opacity: 0.6;
-}
-
-/*.active,*/
-.demo:hover {
-  opacity: 1;
-}
+}*/
 
 
 /* ================================= 

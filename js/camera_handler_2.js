@@ -84,36 +84,42 @@
 			ev.preventDefault();
 		}, false);
 
-		addEffect.addEventListener('click', function(ev){
-			addFilterOnPhoto();
-			ev.preventDefault();
-		}, false);
+		// addEffect.addEventListener('click', function(ev){
+		// 	addFilterOnPhoto();
+		// 	ev.preventDefault();
+		// }, false);
 
 		savePhoto.addEventListener('click', function(ev){
 			saveImage();
 			ev.preventDefault();
 		}, false);
-		
+
 	}
 
 	// Fill the photo with an indication that none has been
 	// captured.
 
-	function clearphoto() {
-		var context = canvas.getContext('2d');
-		context.fillStyle = "#AAA";
-		context.fillRect(0, 0, canvas.width, canvas.height);
+	// Remove clear photo function because no need to save
+	// empty canvas to the collection.
 
-		var data = canvas.toDataURL('image/png');
-		var li = createLI(data);
-		ul.appendChild(li);
-	}
+	// function clearphoto() {
+	// 	var context = canvas.getContext('2d');
+	// 	context.fillStyle = "#AAA";
+	// 	context.fillRect(0, 0, canvas.width, canvas.height);
+
+	// 	var data = canvas.toDataURL('image/png');
+	// 	var li = createLI(data);
+	// 	ul.appendChild(li);
+	// }
 	
-	// Capture a photo by fetching the current contents of the video
-	// and drawing it into a canvas, then converting that to a PNG
-	// format data URL. By drawing it on an offscreen canvas and then
-	// drawing that to the screen, we can change its size and/or apply
-	// other changes before drawing it.
+	/* 
+	** Capture a photo by fetching the current contents 
+	** of the video and drawing it into a canvas,
+	** then converting that to a PNG format data URL.
+	** By drawing it on an offscreen canvas and then
+	** drawing that to the screen, we can change its size
+	** and/or apply other changes before drawing it.
+	*/
 
 	function takePicture() {
 		var context = canvas.getContext('2d');
@@ -121,19 +127,23 @@
 			canvas.width = width;
 			canvas.height = height;
 			context.drawImage(video, 0, 0, width, height);
-		} else {
-			clearphoto();
-		}
+		} 
+		// Remove else condition because no need to save
+		// empty canvas to the collection.
+		// Now it only works when user turn on camera.
+		// else {
+		// 	clearphoto();
+		// }
 	}
 
-	function addFilterOnPhoto() {
+	function addFilterOnPhoto(path) {
 		var context = canvas.getContext('2d');
 
 		var img = new Image();   // Create new img element
 		img.addEventListener('load', function() {
 			context.drawImage(img, 0, 0, width, height);
 		}, false);
-		img.src = '../img/frame3.png'; // Set source path
+		img.src = path; // Set source path
 	}
 
 	function saveImage() {
@@ -197,3 +207,13 @@
 	// once loading is complete.
 	window.addEventListener('load', startup, false);
 })();
+
+// function addFilterOnPhoto(path) {
+// 	var context = canvas.getContext('2d');
+
+// 	var img = new Image();   // Create new img element
+// 	img.addEventListener('load', function() {
+// 		context.drawImage(img, 0, 0, 640, 480);
+// 	}, false);
+// 	img.src = path; // Set source path
+// }
