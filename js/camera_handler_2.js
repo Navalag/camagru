@@ -1,4 +1,4 @@
-(function() {
+// (function() {
 	// The width and height of the captured photo. We will set the
 	// width to the value defined here, but the height will be
 	// calculated based on the aspect ratio of the input stream.
@@ -30,10 +30,15 @@
 		// photo = document.getElementById('photo');
 		startVideo = document.getElementById('startVideo');
 		snapPhoto = document.getElementById('snapPhoto');
+		uploadForm = document.getElementById('upload-form');
 		addEffect = document.getElementById('effect');
 		savePhoto = document.getElementById('save');
 
 		startVideo.addEventListener('click', function() {
+			canvas.style.display = 'none';
+			startVideo.style.display = 'none';
+			uploadForm.style.display = 'none';
+			video.style.display = '';
 			navigator.getMedia = ( navigator.getUserMedia ||
 									navigator.webkitGetUserMedia ||
 									navigator.mozGetUserMedia ||
@@ -79,7 +84,10 @@
 			}, false);
 		});
 
-		snapPhoto.addEventListener('click', function(ev){
+		snapPhoto.addEventListener('click', function(ev) {
+			video.style.display = 'none';
+			video.pause();
+			canvas.style.display = '';
 			takePicture();
 			ev.preventDefault();
 		}, false);
@@ -136,15 +144,15 @@
 		// }
 	}
 
-	function addFilterOnPhoto(path) {
-		var context = canvas.getContext('2d');
+	// function addFilterOnPhoto(path) {
+	// 	var context = canvas.getContext('2d');
 
-		var img = new Image();   // Create new img element
-		img.addEventListener('load', function() {
-			context.drawImage(img, 0, 0, width, height);
-		}, false);
-		img.src = path; // Set source path
-	}
+	// 	var img = new Image();   // Create new img element
+	// 	img.addEventListener('load', function() {
+	// 		context.drawImage(img, 0, 0, width, height);
+	// 	}, false);
+	// 	img.src = path; // Set source path
+	// }
 
 	function saveImage() {
 		var xhr = new XMLHttpRequest();
@@ -206,14 +214,15 @@
 	// Set up our event listener to run the startup process
 	// once loading is complete.
 	window.addEventListener('load', startup, false);
-})();
+// })();
 
-// function addFilterOnPhoto(path) {
-// 	var context = canvas.getContext('2d');
+function addFilterOnPhoto(path) {
+	var context = canvas.getContext('2d');
 
-// 	var img = new Image();   // Create new img element
-// 	img.addEventListener('load', function() {
-// 		context.drawImage(img, 0, 0, 640, 480);
-// 	}, false);
-// 	img.src = path; // Set source path
-// }
+	var img = new Image();   // Create new img element
+	img.addEventListener('load', function() {
+		context.drawImage(img, 0, 0, 640, 480);
+	}, false);
+	img.src = path; // Set source path
+	savePhoto.removeAttribute('disabled');
+}

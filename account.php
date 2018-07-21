@@ -76,7 +76,7 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 
 			<input class="button" id="startVideo" type="button" value="Turn on Camera">
 
-			<form class="upload-file--form" action="inc/camera-photo/upload_photo.php" method="post" enctype="multipart/form-data">
+			<form class="upload-file--form" id="upload-form" action="inc/camera-photo/upload_photo.php" method="post" enctype="multipart/form-data">
 				Select image to upload:
 				<input type="file" name="fileToUpload" id="fileToUpload">
 				<input type="submit" value="Upload Image" name="submit">
@@ -89,13 +89,13 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 			
 			<div class="clearfix">
 			    <div class="column">
-			      <img class="demo cursor" src="img/img_woods.jpg" style="width:100%" onclick="addFilterOnPhoto('img/img_woods.jpg')" alt="The Woods">
+			      <img class="demo cursor" src="img/frame1.png" style="width:100%" onclick="addFilterOnPhoto('img/frame1.png')" alt="The Woods">
 			    </div>
 			    <div class="column">
-			      <img class="demo cursor" src="img/img_5terre.jpg" style="width:100%" onclick="addFilterOnPhoto('img/img_5terre.jpg')" alt="Cinque Terre">
+			      <img class="demo cursor" src="img/frame2.png" style="width:100%" onclick="addFilterOnPhoto('img/frame2.png')" alt="Cinque Terre">
 			    </div>
 			    <div class="column">
-			      <img class="demo cursor" src="img/img_mountains.jpg" style="width:100%" onclick="addFilterOnPhoto('img/img_mountains.jpg')" alt="Mountains and fjords">
+			      <img class="demo cursor" src="img/frame3.png" style="width:100%" onclick="addFilterOnPhoto('img/frame3.png')" alt="Mountains and fjords">
 			    </div>
 			    <div class="column">
 			      <img class="demo cursor" src="img/img_lights.jpg" style="width:100%" onclick="addFilterOnPhoto('img/img_lights.jpg')" alt="Northern Lights">
@@ -109,7 +109,7 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 			</div>
 
 			<input class="button" id="effect" type="button" value="Add Frame">
-			<input class="button" id="save" type="button" value="Save Photo">
+			<input class="button" id="save" type="button" value="Save Photo" disabled>
 
 		</div>
 

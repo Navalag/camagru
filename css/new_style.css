@@ -183,10 +183,12 @@ video {
 	-ms-transform: translate(-50%, -50%);
 }
 
-#video,
-#canvas,
-#pngHolder {
+#video {
 	border: 1px solid #645180;
+	background-color: #645180;
+}
+
+#canvas {
 	background-color: #645180;
 }
 
