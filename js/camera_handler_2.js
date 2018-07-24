@@ -63,12 +63,10 @@ function startup() {
 	uploadForm = document.getElementById('upload-form');
 	addEffect = document.getElementById('effect');
 	savePhoto = document.getElementById('save');
-
 	/*
 	** Listener for TurnOn Camera button
 	*/
 	startVideo.addEventListener('click', turnOnCamera);
-
 	/*
 	** Listener for TakePhoto button
 	*/
@@ -79,7 +77,6 @@ function startup() {
 		takePicture();
 		ev.preventDefault();
 	}, false);
-
 	/*
 	** Listener for SavePhoto button
 	*/
