@@ -11,6 +11,7 @@ var height = 0;
 ** video from the camera. Obviously, we start at false.
 */
 var streaming = false;
+var localstream;
 
 /*
 ** The various HTML elements we need to configure or control. These
@@ -108,6 +109,7 @@ function turnOnCamera() {
 			audio: false
 		},
 		function(stream) {
+			localstream = stream;
 			if (navigator.mozGetUserMedia) {
 				video.mozSrcObject = stream;
 			} else {
@@ -153,10 +155,35 @@ function turnOnCamera() {
 */
 function takePicture() {
 	var context = canvas.getContext('2d');
+	var imgs = cameraDiv.querySelectorAll(".temp");
+	var imgsLenght = imgs.length;
+	var parentPos = video.getBoundingClientRect();
+	var i = 0;
+
 	if (width && height) {
 		canvas.width = width;
 		canvas.height = height;
 		context.drawImage(video, 0, 0, width, height);
+
+		while (imgsLenght > i) {
+			width = imgs[i].width;
+			height = imgs[i].height;
+
+			var childrenPos = imgs[i].getBoundingClientRect(),
+				relativePos = {};
+
+			relativePos.top = childrenPos.top - parentPos.top;
+			relativePos.left = childrenPos.left - parentPos.left;
+			context.drawImage(imgs[i], relativePos.left, relativePos.top, width, height);
+			i++;
+		}
+
+		video.src = "";
+		localstream.getTracks()[0].stop();
+		while (imgsLenght > 0) {
+			imgs[imgsLenght - 1].parentNode.removeChild(imgs[imgsLenght - 1]);
+			imgsLenght--;
+		}
 	}
 }
 
@@ -191,32 +218,31 @@ function addFilterOnPhoto(path) {
 		var isDown = false;
 
 		img.addEventListener('mousedown', function(e) {
-		    isDown = true;
-		    offset = [
-		        	  img.offsetLeft - e.clientX,
-		        	  img.offsetTop - e.clientY
-		    		 ];
+			isDown = true;
+			offset = [
+					  img.offsetLeft - e.clientX,
+					  img.offsetTop - e.clientY
+					 ];
 		}, true);
 
 		document.addEventListener('mouseup', function() {
-		    isDown = false;
+			isDown = false;
 		}, true);
 
 		document.addEventListener('mousemove', function(event) {
-		    event.preventDefault();
-		    if (isDown) {
-		        mousePosition = {
+			event.preventDefault();
+			if (isDown) {
+				mousePosition = {
 
-		            x : event.clientX,
-		            y : event.clientY
+					x : event.clientX,
+					y : event.clientY
 
-		        };
-		        img.style.left = (mousePosition.x + offset[0]) + 'px';
-		        img.style.top = (mousePosition.y + offset[1]) + 'px';
-		    }
+				};
+				img.style.left = (mousePosition.x + offset[0]) + 'px';
+				img.style.top = (mousePosition.y + offset[1]) + 'px';
+			}
 		}, true);
 	}
-
 	/*
 	** Create new img tag on page.
 	** This img will make a preview of effects on video stream.
@@ -235,7 +261,7 @@ function addFilterOnPhoto(path) {
 */
 removeLast.addEventListener("click", function(ev) {
 	var imgs = document.getElementsByClassName('temp');
-	var imgsLenght = cameraDiv.querySelectorAll(".temp").length;
+	var imgsLenght = imgs.length;
 
 	if (imgsLenght > 0) {
 		imgs[imgsLenght - 1].parentNode.removeChild(imgs[imgsLenght - 1]);
@@ -248,7 +274,7 @@ removeLast.addEventListener("click", function(ev) {
 */
 sizeUpEffect.addEventListener("click", function(ev) {
 	var imgs = document.getElementsByClassName('temp');
-	var imgsLenght = cameraDiv.querySelectorAll(".temp").length;
+	var imgsLenght = imgs.length;
 	var target;
 	var width;
 	var height;
@@ -272,7 +298,7 @@ sizeUpEffect.addEventListener("click", function(ev) {
 */
 sizeDownEffect.addEventListener("click", function(ev) {
 	var imgs = document.getElementsByClassName('temp');
-	var imgsLenght = cameraDiv.querySelectorAll(".temp").length;
+	var imgsLenght = imgs.length;
 	var target;
 	var width;
 	var height;
