@@ -23,8 +23,10 @@ var startVideo = null;
 var snapPhoto = null;
 var addEffect = null;
 var savePhoto = null;
+var cameraDiv = null;
 
-const ul = document.getElementById('photo');
+var ul = document.getElementById('photo');
+// var photoMontages = document.getElementsByClassName('demo')[0];
 
 /*
 ** When user click on remove button in user photo gallery
@@ -63,6 +65,7 @@ function startup() {
 	uploadForm = document.getElementById('upload-form');
 	addEffect = document.getElementById('effect');
 	savePhoto = document.getElementById('save');
+	cameraDiv = document.getElementById('cameraDiv');
 	/*
 	** Listener for TurnOn Camera button
 	*/
@@ -159,16 +162,108 @@ function takePicture() {
 ** Activate this function when user click on frame or picture button
 ** user wants to add on canvas
 */
-function addFilterOnPhoto(path) {
-	var context = canvas.getContext('2d');
+// function addFilterOnPhoto(path) {
+// 	var context = canvas.getContext('2d');
 
-	var img = new Image();   // Create new img element
-	img.addEventListener('load', function() {
-		context.drawImage(img, 0, 0, 640, 480);
-	}, false);
-	img.src = path; // Set source path
-	savePhoto.removeAttribute('disabled');
+// 	var img = new Image();   // Create new img element
+// 	img.addEventListener('load', function() {
+// 		context.drawImage(img, 0, 0, 640, 480);
+// 	}, false);
+// 	img.src = path; // Set source path
+// 	savePhoto.removeAttribute('disabled');
+// }
+
+
+function addFilterOnPhoto(path) {
+	function createIMG(src) {
+		const img = document.createElement('img');
+		img.setAttribute('src', src);
+		img.setAttribute('class', 'temp');
+		return img;
+	}
+	function dragAndDrop(img) {
+		var mousePosition;
+		var offset = [0,0];
+		var isDown = false;
+
+		img.addEventListener('mousedown', function(e) {
+		    isDown = true;
+		    offset = [
+		        	  img.offsetLeft - e.clientX,
+		        	  img.offsetTop - e.clientY
+		    		 ];
+		}, true);
+
+		document.addEventListener('mouseup', function() {
+		    isDown = false;
+		}, true);
+
+		document.addEventListener('mousemove', function(event) {
+		    event.preventDefault();
+		    if (isDown) {
+		        mousePosition = {
+
+		            x : event.clientX,
+		            y : event.clientY
+
+		        };
+		        img.style.left = (mousePosition.x + offset[0]) + 'px';
+		        img.style.top = (mousePosition.y + offset[1]) + 'px';
+		    }
+		}, true);
+	}
+
+	const img_copy = createIMG(path);
+	snapPhoto.removeAttribute('disabled');
+	cameraDiv.appendChild(img_copy);
+	dragAndDrop(img_copy);
 }
+/*
+** Activate script when user clicks on one of the superposable images
+*/
+// photoMontages.onclick = function(event) {
+// 	var target = event.target;
+// 	if (target.className === 'demo cursor' && target.tagName == 'IMG') {
+// 		var img_copy = target.cloneNode(true);
+// 		snapPhoto.removeAttribute('disabled');
+// 		img_copy.classList.add('temp');
+// 		document.getElementById('camera').appendChild(img_copy);
+// 		dragAndDrop(img_copy);
+// 	}
+
+// 	function dragAndDrop(img) {
+// 		var mousePosition;
+// 		var offset = [0,0];
+// 		var isDown = false;
+
+// 		img.addEventListener('mousedown', function(e) {
+// 		    isDown = true;
+// 		    offset = [
+// 		        img.offsetLeft - e.clientX,
+// 		        img.offsetTop - e.clientY
+// 		    	];
+// 		}, true);
+
+// 		document.addEventListener('mouseup', function() {
+// 		    isDown = false;
+// 		}, true);
+
+// 		document.addEventListener('mousemove', function(event) {
+// 		    event.preventDefault();
+// 		    if (isDown) {
+// 		        mousePosition = {
+
+// 		            x : event.clientX,
+// 		            y : event.clientY
+
+// 		        };
+// 		        image.style.left = (mousePosition.x + offset[0]) + 'px';
+// 		        image.style.top  = (mousePosition.y + offset[1]) + 'px';
+// 		    }
+// 		}, true);
+		
+// 	}
+// }
 
 /*
 ** This function add captured photo to side block woth user saved photo

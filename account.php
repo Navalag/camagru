@@ -70,7 +70,7 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 	<div class="account_primary col">
 		<h2 class="account-page--header">You Look Grate!</h2>
 		
-		<div class="camera">
+		<div class="camera" id='cameraDiv'>
 			<video style="display: none;" id="video" width="640" height="480" autoplay>Video stream not available.</video>
 			<canvas id="canvas" width="640" height="480"></canvas>
 
@@ -82,33 +82,33 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 				<input type="submit" value="Upload Image" name="submit">
 			</form>
 		</div>
-			<input class="button" id="snapPhoto" type="button" value="Take Photo">
 		
 		<h2 style="text-align:center">Slideshow Gallery</h2>
 		<div class="camera-canvas">
 			
 			<div class="clearfix">
 			    <div class="column">
-			      <img class="demo cursor" src="img/frame1.png" style="width:100%" onclick="addFilterOnPhoto('img/frame1.png')" alt="The Woods">
+			      <img class="demo cursor" src="img/frame1.png" onclick="addFilterOnPhoto('img/frame1.png')" alt="The Woods">
 			    </div>
 			    <div class="column">
-			      <img class="demo cursor" src="img/frame2.png" style="width:100%" onclick="addFilterOnPhoto('img/frame2.png')" alt="Cinque Terre">
+			      <img class="demo cursor" src="img/frame2.png" onclick="addFilterOnPhoto('img/frame2.png')" alt="Cinque Terre">
 			    </div>
 			    <div class="column">
-			      <img class="demo cursor" src="img/frame3.png" style="width:100%" onclick="addFilterOnPhoto('img/frame3.png')" alt="Mountains and fjords">
+			      <img class="demo cursor" src="img/frame3.png" onclick="addFilterOnPhoto('img/frame3.png')" alt="Mountains and fjords">
 			    </div>
 			    <div class="column">
-			      <img class="demo cursor" src="img/img_lights.jpg" style="width:100%" onclick="addFilterOnPhoto('img/img_lights.jpg')" alt="Northern Lights">
+			      <img class="demo cursor" src="img/img_lights.jpg" onclick="addFilterOnPhoto('img/img_lights.jpg')" alt="Northern Lights">
 			    </div>
 			    <div class="column">
-			      <img class="demo cursor" src="img/img_nature.jpg" style="width:100%" onclick="addFilterOnPhoto('img/img_nature.jpg')" alt="Nature and sunrise">
+			      <img class="demo cursor" src="img/img_nature.jpg" onclick="addFilterOnPhoto('img/img_nature.jpg')" alt="Nature and sunrise">
 			    </div>    
 			    <div class="column">
-			      <img class="demo cursor" src="img/img_snow.jpg" style="width:100%" onclick="addFilterOnPhoto('img/img_snow.jpg')" alt="Snowy Mountains">
+			      <img class="demo cursor" src="img/img_snow.jpg" onclick="addFilterOnPhoto('img/img_snow.jpg')" alt="Snowy Mountains">
 			    </div>
 			</div>
 
-			<input class="button" id="effect" type="button" value="Add Frame">
+			<input class="button" id="snapPhoto" type="button" value="Take Photo" disabled>
+			<!-- <input class="button" id="effect" type="button" value="Add Frame"> -->
 			<input class="button" id="save" type="button" value="Save Photo" disabled>
 
 		</div>

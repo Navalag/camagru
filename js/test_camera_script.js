@@ -161,7 +161,6 @@ function makePhoto(e) {
   document.getElementById('uploadPhoto').style.display = 'none';
   document.getElementById('downloadPhoto').style.display = 'block';
 
-
   if (video.nodeName == 'IMG')
   {
     width = video.width;
