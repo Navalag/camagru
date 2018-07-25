@@ -21,11 +21,14 @@ var canvas = null;
 var photo = null;
 var startVideo = null;
 var snapPhoto = null;
-var addEffect = null;
 var savePhoto = null;
 var cameraDiv = null;
 
 var ul = document.getElementById('photo');
+var removeLast = document.getElementById('removeLast');
+var sizeUpEffect = document.getElementById('sizeUp');
+var sizeDownEffect = document.getElementById('sizeDown');
+var downloadPhoto = document.getElementById('download');
 // var photoMontages = document.getElementsByClassName('demo')[0];
 
 /*
@@ -63,7 +66,6 @@ function startup() {
 	startVideo = document.getElementById('startVideo');
 	snapPhoto = document.getElementById('snapPhoto');
 	uploadForm = document.getElementById('upload-form');
-	addEffect = document.getElementById('effect');
 	savePhoto = document.getElementById('save');
 	cameraDiv = document.getElementById('cameraDiv');
 	/*
@@ -173,7 +175,9 @@ function takePicture() {
 // 	savePhoto.removeAttribute('disabled');
 // }
 
-
+/*
+** Activate script when user clicks on one of the superposable images
+*/
 function addFilterOnPhoto(path) {
 	function createIMG(src) {
 		const img = document.createElement('img');
@@ -213,14 +217,88 @@ function addFilterOnPhoto(path) {
 		}, true);
 	}
 
+	/*
+	** Create new img tag on page.
+	** This img will make a preview of effects on video stream.
+	*/
 	const img_copy = createIMG(path);
 	snapPhoto.removeAttribute('disabled');
 	cameraDiv.appendChild(img_copy);
+	/*
+	** start drag and drop listener
+	*/
 	dragAndDrop(img_copy);
 }
+
 /*
-** Activate script when user clicks on one of the superposable images
+** Add listener for remove last effect button
 */
+removeLast.addEventListener("click", function(ev) {
+	var imgs = document.getElementsByClassName('temp');
+	var imgsLenght = cameraDiv.querySelectorAll(".temp").length;
+
+	if (imgsLenght > 0) {
+		imgs[imgsLenght - 1].parentNode.removeChild(imgs[imgsLenght - 1]);
+	}
+	ev.preventDefault();
+});
+
+/*
+** Add listener for increase effect size button
+*/
+sizeUpEffect.addEventListener("click", function(ev) {
+	var imgs = document.getElementsByClassName('temp');
+	var imgsLenght = cameraDiv.querySelectorAll(".temp").length;
+	var target;
+	var width;
+	var height;
+
+	if (imgsLenght > 0) {
+		target = imgs[imgsLenght - 1];
+		width = target.offsetWidth;
+		height = target.offsetHeight;
+		if (width < 400 && height < 400) {
+			width += 5;
+			height += 5;
+			target.style.height = height + 'px';
+			target.style.width = width + 'px';
+		}
+	}
+	ev.preventDefault();
+});
+
+/*
+** Add listener for decrease effect size button
+*/
+sizeDownEffect.addEventListener("click", function(ev) {
+	var imgs = document.getElementsByClassName('temp');
+	var imgsLenght = cameraDiv.querySelectorAll(".temp").length;
+	var target;
+	var width;
+	var height;
+
+	if (imgsLenght > 0) {
+		target = imgs[imgsLenght - 1];
+		width = target.offsetWidth;
+		height = target.offsetHeight;
+		if (width > 40 && height > 40) {
+			width -= 5;
+			height -= 5;
+			target.style.height = height + 'px';
+			target.style.width = width + 'px';
+		}
+	}
+	ev.preventDefault();
+});
+
+// need to fix script bellow
+
+// downloadPhoto.addEventListener("click", function(ev) {
+// 	this.href = canvas.toDataURL();
+// 	this.download = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+// 	ev.preventDefault();
+// });
+
 // photoMontages.onclick = function(event) {
 // 	var target = event.target;
 // 	if (target.className === 'demo cursor' && target.tagName == 'IMG') {

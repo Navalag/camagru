@@ -108,7 +108,10 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 			</div>
 
 			<input class="button" id="snapPhoto" type="button" value="Take Photo" disabled>
-			<!-- <input class="button" id="effect" type="button" value="Add Frame"> -->
+			<input class="button" id="removeLast" type="button" value="Remove last">
+			<input class="button" id="sizeUp" type="button" value="+">
+			<input class="button" id="sizeDown" type="button" value="-">
+			<input class="button" id="download" type="button" value="Download">
 			<input class="button" id="save" type="button" value="Save Photo" disabled>
 
 		</div>
