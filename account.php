@@ -83,35 +83,42 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 			</form>
 		</div>
 		
-		<h2 style="text-align:center">Slideshow Gallery</h2>
+		<h2 style="text-align:center">Montage your photo:</h2>
 		<div class="camera-canvas">
 			
-			<div class="clearfix">
-			    <div class="column">
-			      <img class="demo cursor" src="img/frame1.png" onclick="addFilterOnPhoto('img/frame1.png')" alt="The Woods">
-			    </div>
-			    <div class="column">
-			      <img class="demo cursor" src="img/frame2.png" onclick="addFilterOnPhoto('img/frame2.png')" alt="Cinque Terre">
-			    </div>
-			    <div class="column">
-			      <img class="demo cursor" src="img/frame3.png" onclick="addFilterOnPhoto('img/frame3.png')" alt="Mountains and fjords">
-			    </div>
-			    <div class="column">
-			      <img class="demo cursor" src="img/img_lights.jpg" onclick="addFilterOnPhoto('img/img_lights.jpg')" alt="Northern Lights">
-			    </div>
-			    <div class="column">
-			      <img class="demo cursor" src="img/img_nature.jpg" onclick="addFilterOnPhoto('img/img_nature.jpg')" alt="Nature and sunrise">
-			    </div>    
-			    <div class="column">
-			      <img class="demo cursor" src="img/img_snow.jpg" onclick="addFilterOnPhoto('img/img_snow.jpg')" alt="Snowy Mountains">
-			    </div>
+			<div class="photo-montages">
+				<img class="demo" src="img/effects/frame1.png" onclick="addFilterOnPhoto('img/effects/frame1.png')">
+				<img class="demo" src="img/effects/frame2.png" onclick="addFilterOnPhoto('img/effects/frame2.png')">
+				<img class="demo" src="img/effects/frame3.png" onclick="addFilterOnPhoto('img/effects/frame3.png')">
+				<img class="demo" src="img/effects/frame4.png" onclick="addFilterOnPhoto('img/effects/frame4.png')">
+				<img class="demo" src="img/effects/frame5.png" onclick="addFilterOnPhoto('img/effects/frame5.png')">
+				<img class="demo" src="img/effects/frame6.png" onclick="addFilterOnPhoto('img/effects/frame6.png')">
+				<img class="demo" src="img/effects/frame7.png" onclick="addFilterOnPhoto('img/effects/frame7.png')">
+				<img class="demo" src="img/effects/frame8.png" onclick="addFilterOnPhoto('img/effects/frame8.png')">
+				<img class="demo" src="img/effects/frame9.png" onclick="addFilterOnPhoto('img/effects/frame9.png')">
+				<img class="demo" src="img/effects/frame10.png" onclick="addFilterOnPhoto('img/effects/frame10.png')">
+				<img class="demo" src="img/effects/frame11.png" onclick="addFilterOnPhoto('img/effects/frame11.png')">
+				<img class="demo" src="img/effects/frame12.png" onclick="addFilterOnPhoto('img/effects/frame12.png')">
+				<img class="demo" src="img/effects/frame13.png" onclick="addFilterOnPhoto('img/effects/frame13.png')">
+				<img class="demo" src="img/effects/frame14.png" onclick="addFilterOnPhoto('img/effects/frame14.png')">
+				<img class="demo" src="img/effects/frame15.png" onclick="addFilterOnPhoto('img/effects/frame15.png')">
+				<img class="demo" src="img/effects/frame16.png" onclick="addFilterOnPhoto('img/effects/frame16.png')">
+				<img class="demo" src="img/effects/frame18.png" onclick="addFilterOnPhoto('img/effects/frame18.png')">
+				<img class="demo" src="img/effects/frame19.png" onclick="addFilterOnPhoto('img/effects/frame19.png')">
+				<img class="demo" src="img/effects/frame20.png" onclick="addFilterOnPhoto('img/effects/frame20.png')">
+				<img class="demo" src="img/effects/frame21.png" onclick="addFilterOnPhoto('img/effects/frame21.png')">
+				<img class="demo" src="img/effects/frame22.png" onclick="addFilterOnPhoto('img/effects/frame22.png')">
+				<img class="demo" src="img/effects/frame23.png" onclick="addFilterOnPhoto('img/effects/frame23.png')">
+				<img class="demo" src="img/effects/frame24.png" onclick="addFilterOnPhoto('img/effects/frame24.png')">
+				<img class="demo" src="img/effects/frame25.png" onclick="addFilterOnPhoto('img/effects/frame25.png')">
+				<img class="demo" src="img/effects/frame26.png" onclick="addFilterOnPhoto('img/effects/frame26.png')">
 			</div>
 
 			<input class="button" id="snapPhoto" type="button" value="Take Photo" disabled>
-			<input class="button" id="removeLast" type="button" value="Remove last">
-			<input class="button" id="sizeUp" type="button" value="+">
-			<input class="button" id="sizeDown" type="button" value="-">
-			<input class="button" id="download" type="button" value="Download">
+			<input class="button" id="removeLast" type="button" value="Remove last" disabled>
+			<input class="button" id="sizeUp" type="button" value="+" disabled>
+			<input class="button" id="sizeDown" type="button" value="-" disabled>
+			<input class="button" id="download" type="button" value="Download" disabled>
 			<input class="button" id="save" type="button" value="Save Photo" disabled>
 
 		</div>

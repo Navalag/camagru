@@ -194,19 +194,30 @@ canvas {
 /*   ---- Account page styles ----   */
 
 /* Add a pointer when hovering over the thumbnail images */
-.cursor {
+/*.cursor {
 	cursor: pointer;
+}*/
+
+.photo-montages {
+	display: flex;
+	overflow: auto;
+  /*overflow-y: hidden;*/
 }
 
 /* Six columns side by side */
-.column {
+/*.column {
 	float: left;
 	width: 16.66%;
-}
+}*/
 
 /* Add a transparency effect for thumnbail images */
 .demo {
 	opacity: 0.6;
+	cursor: pointer;
+	/*width: 8em;*/
+	height: 6em;
+	padding: 3px;
+	margin: 2px;
 }
 
 /*.active,*/
@@ -216,8 +227,8 @@ canvas {
 
 .temp {
 	position: absolute;
-	top: 50px;
-	left: 50px;
+	top: 0px;
+	left: 0px;
 }
 
 /*img {
