@@ -530,10 +530,9 @@ legend {
 
 .button-account-2 {
 	float: left;
-	width: 35%;
+	width: 100%;
 	color: #7c669e;
-	margin-top: .5em;
-  margin-bottom: .5em;
+  margin-bottom: 1.2em;
 	padding: .3em .5em;
 	text-align: center;
 	font-size: .9em;

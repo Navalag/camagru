@@ -300,13 +300,35 @@ sizeDownEffect.addEventListener("click", function(ev) {
 	ev.preventDefault();
 });
 
-// need to fix script bellow
-
+/*
+** Download photo
+*/
 // downloadPhoto.addEventListener("click", function(ev) {
 // 	this.href = canvas.toDataURL();
 // 	this.download = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
 // 	ev.preventDefault();
 // });
+
+document.getElementById('uploadImage').addEventListener("click", function() {
+	var file = document.querySelector('input[type=file]').files[0];
+	var parentDiv = document.getElementById('cameraDiv');
+	var newImg = document.createElement('img');
+	var reader = new FileReader();
+
+	if (file) {
+		reader.readAsDataURL(file);
+	}
+	reader.onloadend = function () {
+		startVideo.style.display = 'none';
+		uploadForm.style.display = 'none';
+		// var videoTag = document.getElementById('videoElement');
+		// parentDiv.removeChild(videoTag);
+		newImg.setAttribute('src', reader.result);
+		newImg.setAttribute('class', 'temp');
+		// newImg.className = 'upload_img';
+		parentDiv.appendChild(newImg);
+	}
+});
 
 function saveImage() {
 	var xhr = new XMLHttpRequest();

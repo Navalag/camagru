@@ -79,7 +79,8 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 			<form class="upload-file--form" id="upload-form" action="inc/camera-photo/upload_photo.php" method="post" enctype="multipart/form-data">
 				Select image to upload:
 				<input type="file" name="fileToUpload" id="fileToUpload">
-				<input type="submit" value="Upload Image" name="submit">
+				<input class="button" id="uploadImage" type="button" value="Upload Image">
+				<!-- <input type="submit" value="Upload Image" name="submit"> -->
 			</form>
 		</div>
 
