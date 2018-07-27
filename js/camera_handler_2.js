@@ -317,31 +317,32 @@ function saveImage() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			console.log(xhr.responseText);
 			// photo.setAttribute('src', imgFromCanvas);
-			var li = createLI(imgFromCanvas);
-			ul.appendChild(li);
+			location.reload();
+			// var li = createLI(imgFromCanvas);
+			// ul.appendChild(li);
 		}
 	};
 	xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
 	xhr.send(img);
 
-	function createLI(src) {
-		function createElement(elementName, property, value) {
-			const element = document.createElement(elementName);
-			element[property] = value; 
-			return element;
-		}
+	// function createLI(src) {
+	// 	function createElement(elementName, property, value) {
+	// 		const element = document.createElement(elementName);
+	// 		element[property] = value; 
+	// 		return element;
+	// 	}
 		
-		function appendToLI(elementName, property, value) {
-			const element = createElement(elementName, property, value);
-			li.appendChild(element);
-			return element;
-		}
+	// 	function appendToLI(elementName, property, value) {
+	// 		const element = createElement(elementName, property, value);
+	// 		li.appendChild(element);
+	// 		return element;
+	// 	}
 		
-		const li = document.createElement('li');
-		appendToLI('img', 'src', src);
-		appendToLI('button', 'textContent', 'remove');
-		return li;
-	}
+	// 	const li = document.createElement('li');
+	// 	appendToLI('img', 'src', src);
+	// 	appendToLI('button', 'textContent', 'remove');
+	// 	return li;
+	// }
 }
 
 /*
