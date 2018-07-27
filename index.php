@@ -69,7 +69,7 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 
 		<h1 class="headline">Welcome! <i class="emoji-header em em-sunny"></i></h1>
 		<h2 class="tagline">Camagru is a small Instagram-like site <i class="em em-camera"></i> allowing you to create and share photo-montages.</h2>
-		<h2 class="tagline">Simply make photo, add funny effects and leave your footprint in history of the project.</h2>
+		<h2 class="tagline">Simply make photo, add funny effects and leave your footprint <i class="em em-feet"></i> in history of the project.</h2>
 		<h2>Enjoy!! <i class="emoji-header em em-yellow_heart"></i> <i class="emoji-header em em-star-struck"></i></h2>
 
 	</div>

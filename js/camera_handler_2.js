@@ -348,23 +348,23 @@ function saveImage() {
 ** When user click on remove button in user photo gallery
 ** below script will remove photo from page and from database on server
 */
-ul.addEventListener('click', (e) => {
-	if (e.target.tagName === 'BUTTON') {
-		const button = e.target;
-		const li = button.parentNode;
-		const ul = li.parentNode;
-		const img_alt = li.childNodes[0].alt;
-		const img = "img_id=" + img_alt;
-		const xhr = new XMLHttpRequest();
+// ul.addEventListener('click', (e) => {
+// 	if (e.target.tagName === 'BUTTON') {
+// 		const button = e.target;
+// 		const li = button.parentNode;
+// 		const ul = li.parentNode;
+// 		const img_alt = li.childNodes[0].alt;
+// 		const img = "img_id=" + img_alt;
+// 		const xhr = new XMLHttpRequest();
 
-		xhr.open("POST", "../inc/edit_photo/delete_photo.php", true);
-		xhr.onreadystatechange = function() {
-			if (xhr.readyState == 4 && xhr.status == 200) {
-				console.log(xhr.responseText);
-				ul.removeChild(li);
-			}
-		};
-		xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
-		xhr.send(img);
-	}
-});
+// 		xhr.open("POST", "../inc/edit_photo/delete_photo.php", true);
+// 		xhr.onreadystatechange = function() {
+// 			if (xhr.readyState == 4 && xhr.status == 200) {
+// 				console.log(xhr.responseText);
+// 				ul.removeChild(li);
+// 			}
+// 		};
+// 		xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+// 		xhr.send(img);
+// 	}
+// });

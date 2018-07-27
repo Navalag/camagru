@@ -4,11 +4,14 @@
    PAGE CONTENT FUNCTIONS
    ======================================================= */
 
-function get_item_html($item) {
+function get_item_html($item, $current_page) {
 	$output = "<li><img src='" 
 			. $item["src"] . "' alt='" 
 			. $item["img_id"] . "' />" 
-			. "<button>remove</button>"
+			. "<a class='button-account-2' href='"
+			. "inc/edit_photo/delete_photo.php?img_id="
+			. $item["img_id"]."&pg=".$current_page."'>remove</a>"
+			. "<a class='button-account-2'>download</a>"
 			. "</li>";
 	return $output;
 }

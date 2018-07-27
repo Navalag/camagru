@@ -82,8 +82,15 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 				<input type="submit" value="Upload Image" name="submit">
 			</form>
 		</div>
+
+		<div class="buttons-group clearfix">
+			<a class="button-account-1" id="sizeDown"><i class="fas fa-minus"></i></a>
+			<a class="button-account-1" id="sizeUp"><i class="fas fa-plus"></i></a>
+			<a class="button-account-1" id="removeLast"><i class="fas fa-undo-alt"></i></a>
+			<a class="button-account-1" id="snapPhoto"><i class="fas fa-camera"></i></a>
+		</div>
 		
-		<h2 style="text-align:center">Montage your photo:</h2>
+		<!-- <h2 style="text-align:center">Montage your photo:</h2> -->
 		<div class="camera-canvas">
 			
 			<div class="photo-montages">
@@ -114,12 +121,8 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 				<img class="demo" src="img/effects/frame26.png" onclick="addFilterOnPhoto('img/effects/frame26.png')">
 			</div>
 
-			<input class="button" id="snapPhoto" type="button" value="Take Photo" disabled>
-			<input class="button" id="removeLast" type="button" value="Remove last" disabled>
-			<input class="button" id="sizeUp" type="button" value="+" disabled>
-			<input class="button" id="sizeDown" type="button" value="-" disabled>
-			<input class="button" id="download" type="button" value="Download" disabled>
-			<input class="button" id="save" type="button" value="Save Photo" disabled>
+			<!-- <input class="button" id="download" type="button" value="Download" disabled> -->
+			<input class="button" id="save" type="button" value="Save" disabled>
 
 		</div>
 
@@ -133,7 +136,7 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 				<?php
 				$user_photo = get_single_user_photo_array($items_per_page,$offset);
 				foreach ($user_photo as $item) {
-					echo get_item_html($item);
+					echo get_item_html($item, $current_page);
 				}
 				?>
 			</ul>

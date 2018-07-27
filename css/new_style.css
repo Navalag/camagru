@@ -502,6 +502,61 @@ legend {
 	color:#fff;
 }
 
+.buttons-group {
+
+}
+
+.button-account-1 {
+	float: left;
+	width: 23%;
+	color: #7c669e;
+	margin: 1%;
+	margin-top: 1em;
+  margin-bottom: 1em;
+	padding: .3em .5em;
+	text-align: center;
+	font-size: 1.2em;
+	border: solid 1px #7c669e;
+	border-radius: 4px;
+	-webkit-transition-duration: 0.1s; /* Safari */
+	transition-duration: 0.1s;
+}
+/*.button-account:first-child {
+	margin-left: 0;
+}
+.button-account:last-child {
+	margin-right: 0;
+}*/
+
+.button-account-2 {
+	float: left;
+	width: 35%;
+	color: #7c669e;
+	margin-top: .5em;
+  margin-bottom: .5em;
+	padding: .3em .5em;
+	text-align: center;
+	font-size: .9em;
+	border: solid 1px #7c669e;
+	border-radius: 4px;
+	-webkit-transition-duration: 0.1s; /* Safari */
+	transition-duration: 0.1s;
+}
+.button-account-2:first-child {
+	margin-right: 30%;
+}
+
+.button-account-1:hover,
+.button-account-1:focus,
+.button-account-1:active,
+.button-account-2:hover,
+.button-account-2:focus,
+.button-account-2:active {
+	background: #7c669e;
+	color: #fff;
+	cursor: pointer;
+}
+
 .form-container {
 	background-color: #fff;
 	border-radius: 8px;
