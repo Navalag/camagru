@@ -30,7 +30,7 @@ var ul = document.getElementById('photo');
 var removeLast = document.getElementById('removeLast');
 var sizeUpEffect = document.getElementById('sizeUp');
 var sizeDownEffect = document.getElementById('sizeDown');
-var downloadPhoto = document.getElementById('download');
+// var downloadPhoto = document.getElementById('download');
 
 /*
 ** Below is the main function in this file.
@@ -117,7 +117,7 @@ function turnOnCamera() {
 	}, false);
 }
 
-/* 
+/*
 ** Capture a photo by fetching the current contents 
 ** of the video and drawing it into a canvas,
 ** then converting that to a PNG format data URL.
@@ -129,6 +129,7 @@ function turnOnCamera() {
 function takePicture() {
 	var context = canvas.getContext('2d');
 	var imgs = cameraDiv.querySelectorAll(".temp");
+	var uploadedIMG = cameraDiv.querySelector('.uploaded');
 	var imgsLenght = imgs.length;
 	// getBoundingClientRect() method returns the size
 	// of an element and its position relative to the viewport.
@@ -136,12 +137,20 @@ function takePicture() {
 	var i = 0;
 
 	if (width && height) {
-
 		// first add on canvas picture from video stream
+		// canvas.width = width;
+		// canvas.height = height;
+		context.drawImage(video, 0, 0, width, height);
+		addMontagesOnCanvas();
+	} else if (uploadedIMG) {
+		width = uploadedIMG.width;
+		height = uploadedIMG.height;
 		canvas.width = width;
 		canvas.height = height;
-		context.drawImage(video, 0, 0, width, height);
-
+		context.drawImage(uploadedIMG, 0, 0, width, height);
+		addMontagesOnCanvas();
+	}
+	function addMontagesOnCanvas() {
 		// than add on canvas all superposable images
 		while (i < imgsLenght) {
 			width = imgs[i].width;
@@ -155,13 +164,16 @@ function takePicture() {
 			context.drawImage(imgs[i], relativePos.left, relativePos.top, width, height);
 			i++;
 		}
-
 		// At the end turn off video stream
 		// and remove all superposable images from page, 
 		// means leave it only as effects on img we created above.
 		// Than turn on save photo button.
-		video.src = "";
-		localstream.getTracks()[0].stop();
+		if (video.src) {
+			video.src = "";
+			localstream.getTracks()[0].stop();
+		} else if (uploadedIMG) {
+			uploadedIMG.parentNode.removeChild(uploadedIMG);
+		}
 		while (imgsLenght > 0) {
 			imgs[imgsLenght - 1].parentNode.removeChild(imgs[imgsLenght - 1]);
 			imgsLenght--;
@@ -171,6 +183,7 @@ function takePicture() {
 		// takePicture()
 		width = null;
 		height = null;
+		uploadedIMG = null;
 	}
 }
 
@@ -220,7 +233,7 @@ function addFilterOnPhoto(path) {
 	** Create new img tag on page.
 	** This img will make a preview of effects on video stream.
 	*/
-	if (video.style.display !== 'none') {
+	if (video.style.display !== 'none' || document.querySelector('.uploaded')) {
 		const img_copy = createIMG(path);
 		snapPhoto.removeAttribute('disabled');
 		removeLast.removeAttribute('disabled');
@@ -246,7 +259,6 @@ removeLast.addEventListener("click", function(ev) {
 	}
 	// disable take photo button when user removed all effects
 	if (imgsLenght == 1) {
-		console.log('check');
 		snapPhoto.setAttribute('disabled', '');
 	}
 	ev.preventDefault();
@@ -324,7 +336,7 @@ document.getElementById('uploadImage').addEventListener("click", function() {
 		// var videoTag = document.getElementById('videoElement');
 		// parentDiv.removeChild(videoTag);
 		newImg.setAttribute('src', reader.result);
-		newImg.setAttribute('class', 'temp');
+		newImg.setAttribute('class', 'uploaded');
 		// newImg.className = 'upload_img';
 		parentDiv.appendChild(newImg);
 	}
