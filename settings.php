@@ -15,10 +15,11 @@ $section = null;
 
 $nameErr = $passwordErr = $emailErr = "";
 $finalMessage = "";
-$username = $email = "";
+$username = $email = $receive_notif = "";
 
 /*
-** select user info from DB, fill with this info name, email and password
+** select user info from DB,
+** fill with this info name, email and password
 */
 try {
 	$sql = $conn->prepare("SELECT * FROM `users` 
@@ -33,6 +34,7 @@ try {
 		$username = $user_info['username'];
 		$email = $user_info['email'];
 		$password = $user_info['password'];
+		$receive_notif = $user_info['notifications'];
 	}
 }
 catch(PDOException $e) {
@@ -107,13 +109,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		}
 	}
 
+	if ($_POST["notifications"] == 1) {
+		echo "check";
+		$receive_notif = 1;
+	} else {
+		$receive_notif = 0;
+	}
+
 	/*
 	** UPDATE DATABASE WITH NEW VALUES
 	*/
 	if (empty($nameErr) && empty($emailErr) && empty($passwordErr) && empty($finalMessage)) {
 		try {
 			$sql = $conn->prepare("UPDATE `users` 
-				SET `username` = '$new_username', `email` = '$new_email', `password` = '$password' 
+				SET `username` = '$new_username', 
+					`email` = '$new_email', 
+					`password` = '$password', 
+					`notifications` = '$receive_notif' 
 				WHERE `username` = '$username' LIMIT 1");
 			$sql->execute();
 			$_SESSION['Username'] = $new_username;
@@ -206,6 +218,8 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 		<input type="password" id="confirm_new_password" name="confirm_new_password">
 
 	</fieldset>
+
+	<input type="checkbox" name="notifications" value="1" <?php if ($receive_notif == 1) { echo " checked"; } ?>> Receive notificatoins?
 
 	<input class="button" type="submit" value="Update profile">
 

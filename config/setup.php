@@ -30,6 +30,7 @@ try {
 			`username` varchar(50) NOT NULL default '',
 			`password` varchar(128) NOT NULL default '',
 			`email` varchar(250) NOT NULL default '',
+			`notifications` binary(1) NOT NULL default '1',
 			`active` binary(1) NOT NULL default '0'
 			)";
 	$conn->exec($sql);

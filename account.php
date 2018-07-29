@@ -85,10 +85,10 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 		</div>
 
 		<div class="buttons-group clearfix">
-			<a class="button-account-1" id="sizeDown"><i class="fas fa-minus"></i></a>
-			<a class="button-account-1" id="sizeUp"><i class="fas fa-plus"></i></a>
-			<a class="button-account-1" id="removeLast"><i class="fas fa-undo-alt"></i></a>
-			<a class="button-account-1" id="snapPhoto"><i class="fas fa-camera"></i></a>
+			<button class="button-account-1" id="sizeDown" type="button" disabled><i class="fas fa-minus"></i></button>
+			<button class="button-account-1" id="sizeUp" type="button" disabled><i class="fas fa-plus"></i></button>
+			<button class="button-account-1" id="removeLast" type="button" disabled><i class="fas fa-undo-alt"></i></button>
+			<button class="button-account-1" id="snapPhoto" type="button" disabled><i class="fas fa-camera"></i></button>
 		</div>
 		
 		<!-- <h2 style="text-align:center">Montage your photo:</h2> -->

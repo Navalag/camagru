@@ -31,6 +31,7 @@ var removeLast = document.getElementById('removeLast');
 var sizeUpEffect = document.getElementById('sizeUp');
 var sizeDownEffect = document.getElementById('sizeDown');
 // var downloadPhoto = document.getElementById('download');
+var uploadIMG = document.getElementById('uploadImage');
 
 /*
 ** Below is the main function in this file.
@@ -235,11 +236,12 @@ function addFilterOnPhoto(path) {
 	*/
 	if (video.style.display !== 'none' || document.querySelector('.uploaded')) {
 		const img_copy = createIMG(path);
+		cameraDiv.appendChild(img_copy);
+
 		snapPhoto.removeAttribute('disabled');
 		removeLast.removeAttribute('disabled');
 		sizeUpEffect.removeAttribute('disabled');
 		sizeDownEffect.removeAttribute('disabled');
-		cameraDiv.appendChild(img_copy);
 		/*
 		** start drag and drop listener
 		*/
@@ -278,7 +280,7 @@ sizeUpEffect.addEventListener("click", function(ev) {
 		target = imgs[imgsLenght - 1];
 		width = target.offsetWidth;
 		height = target.offsetHeight;
-		if (width < 400 && height < 400) {
+		if (width < 640 && height < 480) {
 			width += 5;
 			height += 5;
 			target.style.height = height + 'px';
@@ -321,7 +323,7 @@ sizeDownEffect.addEventListener("click", function(ev) {
 // 	ev.preventDefault();
 // });
 
-document.getElementById('uploadImage').addEventListener("click", function() {
+uploadIMG.addEventListener("click", function() {
 	var file = document.querySelector('input[type=file]').files[0];
 	var parentDiv = document.getElementById('cameraDiv');
 	var newImg = document.createElement('img');
