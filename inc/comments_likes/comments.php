@@ -28,12 +28,14 @@ if ((!empty($comment_entered)) && (!empty($img_id))) {
 	if ((!empty($result))) {
 		$result = $result[0];
 		$comment_amount = $result['comments'];
+		$author_id = $result['user_id'];
 	} else {
 		echo "error - malicious injection";
 		exit();
 	}
 	try {
-		$sql = $conn->prepare("INSERT INTO `comments` (`img_id`, `name`, `date`, `comments`) VALUES ('$img_id', '$name', '$date', '$comment_entered')");
+		$sql = $conn->prepare("INSERT INTO `comments` (`img_id`, `name`, `date`, `comments`) 
+			VALUES ('$img_id', '$name', '$date', '$comment_entered')");
 		$sql->execute();
 		$sql = $conn->prepare("UPDATE `user_img` 
 				SET `comments` = $comment_amount+1
@@ -43,6 +45,29 @@ if ((!empty($comment_entered)) && (!empty($img_id))) {
 	catch (Exception $e) {
 		echo "Unable to retrieved results";
 		exit;
+	}
+
+	/*
+	** send notification to author of the img that it was commented
+	*/
+	try {
+		$sql = $conn->prepare("SELECT * FROM `users` 
+				WHERE `id` = $author_id LIMIT 1");
+		$sql->execute();
+	} catch (Exception $e) {
+		echo "Unable to retrieved results";
+		exit;
+	}
+	$result = $sql->setFetchMode(PDO::FETCH_ASSOC);
+	$result = $sql->fetchAll();
+	if (empty($result)) {
+		echo "Unable to retrieved results";
+		exit();
+	} else {
+		$result = $result[0];
+		if ($result['notifications'] == 1) {
+			sendmail_template_3($result['email'], $result['username']);
+		}
 	}
 }
 
@@ -92,5 +117,6 @@ if (!empty($img_id)) {
 		}
 	}
 }
+$conn = null;
 
 ?>

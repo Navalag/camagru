@@ -99,13 +99,6 @@ function get_comments_block_html($item) {
 		$output = "<div id='showcomments".$item['img_id']
 				. "'></div>"
 				. "<table><tbody><tr>"
-				// . "<th>Name:</th>"
-				// . "</tr>"
-				// . "<tr>"
-				// . "<td><input type='text' id='name_entered"
-				// . $item['img_id']
-				// . "'/></td>"
-				// . "</tr>"
 				. "<tr>"
 				. "<th>Comment:</th>"
 				. "</tr>"
@@ -115,7 +108,7 @@ function get_comments_block_html($item) {
 				. "'></textarea></td>"
 				. "</tr>"
 				. "<tr>"
-				. "<td><input type='submit' value='Comment' "
+				. "<td><input type='button' value='Comment' "
 				. "onclick='submitComment(".$item['img_id']
 				. ")' /></td>"
 				. "</tr>"
@@ -260,6 +253,39 @@ function sendmail_template_2($email, $new_password) {
 			------------------------
 
 			Thanks,
+			your friends at Camagru.
+			";
+	$body = wordwrap($body,70);
+
+	// Set preferences for Subject field
+	$subject_preferences = array(
+		"input-charset" => "utf-8",
+		"output-charset" => "utf-8",
+		"line-length" => 76,
+		"line-break-chars" => "\r\n"
+	);
+
+	// Set mail header
+	$header = "Content-type: text/html; charset=utf-8" . " \r\n";
+	$header .= "From: <noreply@camagru.com>" . "\r\n";
+	$header .= "MIME-Version: 1.0 \r\n";
+	$header .= "Content-Transfer-Encoding: 8bit \r\n";
+	$header .= "Date: ".date("r (T)")." \r\n";
+	$header .= iconv_mime_encode("Subject", $subject, $subject_preferences);
+
+	// Send mail
+	return (mail($to, $subject, $body, $header));
+}
+
+function sendmail_template_3($email, $username) {
+	$to = $email;
+	$subject = "[Camagru] you receive new comment";
+	$body = "
+			Hi, ".$username."!
+
+			You received new comment on your photo.
+
+			Thanks for being with us,
 			your friends at Camagru.
 			";
 	$body = wordwrap($body,70);

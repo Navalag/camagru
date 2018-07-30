@@ -50,6 +50,7 @@ function submitComment(id) {
 			var comments_body = return_data.substr(i);
 			document.getElementById("comment_count" + id).innerHTML = comments_amount + " comments";
 			document.getElementById("showcomments" + id).innerHTML = comments_body;
+			usercomment = "";
 		}
 	}
 	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

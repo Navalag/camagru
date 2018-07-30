@@ -19,7 +19,7 @@ $username = $email = $receive_notif = "";
 
 /*
 ** select user info from DB,
-** fill with this info name, email and password
+** fill with it name, email, password and receive_notif
 */
 try {
 	$sql = $conn->prepare("SELECT * FROM `users` 
@@ -109,8 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		}
 	}
 
-	if ($_POST["notifications"] == 1) {
-		echo "check";
+	if (!empty($_POST["notifications"]) && $_POST["notifications"] == 1) {
 		$receive_notif = 1;
 	} else {
 		$receive_notif = 0;

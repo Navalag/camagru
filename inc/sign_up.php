@@ -77,7 +77,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 		$password = md5($password);
 		try {
 			$sql = $conn->prepare("INSERT INTO `users` 
-					VALUES(NULL,'$username','$password','$email',0)");
+					VALUES(NULL,'$username','$password','$email',1,0)");
 			$sql->execute();
 			}
 		catch (PDOException $e)
