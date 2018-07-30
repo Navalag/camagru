@@ -121,14 +121,24 @@ img {
 	padding: 1em;
 }
 
+.border-wrapper {
+	border: 1px solid LightGray;
+	padding: 14px;
+	background: Gainsboro;
+}
+
+.user-img {
+	margin-bottom: .5em;
+}
+
 .col {
 	padding: 1em;
 }
 
 .collage img {
 	width: 100%;
-	border: 1px solid #9885b2;
-	background: #9885b2;
+/*	border: 1px solid #9885b2;
+	background: #9885b2;*/
 }
 
 .col.collage {
@@ -182,11 +192,7 @@ canvas {
 	-ms-transform: translate(-50%, -50%);
 }
 
-#video {
-	border: 1px solid #645180;
-	background-color: #645180;
-}
-
+#video,
 #canvas {
 	background-color: #645180;
 }
@@ -545,7 +551,7 @@ legend {
 	float: left;
 	width: 100%;
 	color: #7c669e;
-  margin-bottom: 1.2em;
+  margin-bottom: 1.5em;
 	padding: .3em .5em;
 	text-align: center;
 	font-size: .9em;
@@ -714,7 +720,6 @@ th {
 .likes-comments {
 	width: 100%;
 	padding: .5em 3em;
-	padding-top: .5em;
 }
 
 .count_like {
@@ -777,7 +782,7 @@ th {
 	.container {
 		width: 90%;
 		margin: 0 auto;
-		max-width: 768px;
+		max-width: 860px;
 	}
 
 	.name,
@@ -812,7 +817,7 @@ th {
 
 	.cont-wrap {
 		margin-top: 3em !important;
-		max-width: 1025px !important;
+		max-width: 1070px !important;
 	}
 
 	.img-container {

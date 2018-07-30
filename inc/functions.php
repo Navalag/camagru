@@ -5,7 +5,7 @@
    ======================================================= */
 
 function get_item_html($item, $current_page) {
-	$output = "<li><img src='" 
+	$output = "<li><img class='border-wrapper user-img' src='" 
 			. $item["src"] . "' alt='" 
 			. $item["img_id"] . "' />" 
 			. "<a class='button-account-2' href='"
@@ -15,7 +15,7 @@ function get_item_html($item, $current_page) {
 	return $output;
 }
 function get_div_item_html($item) {
-	$output = "<img src='" 
+	$output = "<img class='border-wrapper' src='" 
 			. $item["src"] . "' alt='" 
 			. $item["img_id"] . "' />";
 	return $output;

@@ -70,18 +70,20 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 	<div class="account_primary col">
 		<h2 class="account-page--header">You Look Grate!</h2>
 		
-		<div class="camera" id='cameraDiv'>
-			<video style="display: none;" id="video" width="640" height="480" autoplay>Video stream not available.</video>
-			<canvas id="canvas" width="640" height="480"></canvas>
+		<div class="border-wrapper">
+			<div class="camera" id='cameraDiv'>
+				<video style="display: none;" id="video" width="640" height="480" autoplay>Video stream not available.</video>
+				<canvas id="canvas" width="640" height="480"></canvas>
 
-			<input class="button" id="startVideo" type="button" value="Turn on Camera">
+				<input class="button" id="startVideo" type="button" value="Turn on Camera">
 
-			<form class="upload-file--form" id="upload-form" action="inc/camera-photo/upload_photo.php" method="post" enctype="multipart/form-data">
-				Select image to upload:
-				<input type="file" name="fileToUpload" id="fileToUpload">
-				<input class="button" id="uploadImage" type="button" value="Upload Image">
-				<!-- <input type="submit" value="Upload Image" name="submit"> -->
-			</form>
+				<form class="upload-file--form" id="upload-form" action="inc/camera-photo/upload_photo.php" method="post" enctype="multipart/form-data">
+					Select image to upload:
+					<input type="file" name="fileToUpload" id="fileToUpload">
+					<input class="button" id="uploadImage" type="button" value="Upload Image">
+					<!-- <input type="submit" value="Upload Image" name="submit"> -->
+				</form>
+			</div>
 		</div>
 
 		<div class="buttons-group clearfix">
