@@ -64,33 +64,29 @@ if ($total_items > 0) {
 include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 ?>
 
+<?php if (!isset($_SESSION['Username'])) { ?>
+
 <div class="container clearfix">
 	<div class="primary col">
 
 		<h1 class="headline">Welcome! <i class="emoji-header em em-sunny"></i></h1>
-		<h2 class="tagline">Camagru is a small Instagram-like site <i class="em em-camera"></i> allowing you to create and share photo-montages.</h2>
-		<h2 class="tagline">Simply make photo, add funny effects and leave your footprint <i class="em em-feet"></i> in history of the project.</h2>
+		<h2 class="tagline">Camagru is a small Instagram-like <i class="em em-camera"></i> site allowing you to create and share photo-montages.</h2>
+		<h2 class="tagline">Simply make photo, add funny effects and leave your footprint <i class="em em-feet"></i> in history.</h2>
 		<h2>Enjoy!! <i class="emoji-header em em-yellow_heart"></i> <i class="emoji-header em em-star-struck"></i></h2>
 
 	</div>
 
-	<div class="secondary col">
+	<div class="secondary col clearfix">
 
-		<form class="form-container" method="post" action="inc/sing_in.php">
+		<form class="form-container form-main-page" method="post" action="/inc/sign_in.php">
 
 			<h1>Quick Sign In</h1>
-			<!-- <table> -->
-				<!-- <tbody> -->
-					<!-- <tr> -->
-						<label for="name">Username:</label>
-						<input type="text" id="name" name="username">
-					<!-- </tr> -->
-					<!-- <tr> -->
-						<label for="password">Password:</label>
-						<input type="password" id="password" name="password">
-					<!-- </tr> -->
-				<!-- </tbody> -->
-			<!-- </table> -->
+
+			<label for="name">Username:</label>
+			<input type="text" id="name" name="username">
+
+			<label for="password">Password:</label>
+			<input type="password" id="password" name="password">
 
 			<input class="button" type="submit" value="Sign In">
 
@@ -98,6 +94,8 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 
 	</div><!-- /.secondary .col -->
 </div><!--/.container-->
+
+<?php } ?>
 
 <div class="container clearfix">
 

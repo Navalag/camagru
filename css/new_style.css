@@ -121,12 +121,6 @@ img {
 	padding: 1em;
 }
 
-.border-wrapper {
-	border: 1px solid LightGray;
-	padding: 14px;
-	background: Gainsboro;
-}
-
 .user-img {
 	margin-bottom: .5em;
 }
@@ -785,9 +779,22 @@ th {
 		max-width: 860px;
 	}
 
+	.border-wrapper {
+		border: 1px solid LightGray;
+		padding: 14px;
+		background: Gainsboro;
+	}
+
 	.name,
 	.col {
 		float: left;
+	}
+
+	.primary {
+		width: 60%;
+	}
+	.secondary {
+		width: 40%;
 	}
 
 	.main-nav {
@@ -803,17 +810,9 @@ th {
 		font-size: 1.4em;
 	}
 
-	/* ---- Float clearfix ---- */
-
-	.clearfix::after {
-		content: " ";
-		display: table;
-		clear: both;
+	.form-main-page {
+		float: right;
 	}
-
-}
-
-@media (min-width: 958px) {
 
 	.cont-wrap {
 		margin-top: 3em !important;
@@ -823,11 +822,6 @@ th {
 	.img-container {
 		padding: 1.5em;
 		margin-top: 2em;
-	}
-
-	.primary,
-	.secondary {
-		width: 50%;
 	}
 
 	.collage {
@@ -842,6 +836,19 @@ th {
 	.account_secondary {
 		width: 32%;
 	}
+
+	/* ---- Float clearfix ---- */
+
+	.clearfix::after {
+		content: " ";
+		display: table;
+		clear: both;
+	}
+
+}
+
+@media (min-width: 958px) {
+
 
 	/*.container {
 		width: 90%;
