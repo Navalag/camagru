@@ -191,6 +191,25 @@ canvas {
 	background-color: #645180;
 }
 
+.pagination {
+	display: inline-block;
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+}
+.pagination a {
+	padding: 6px 12px;
+	transition: background-color .3s;
+}
+.pagination a.active {
+	background-color: #7d669e;
+	color: white;
+}
+.pagination a:hover:not(.active) {
+	background-color: #57476f;
+	color: white;
+}
+
 /*   ---- Account page styles ----   */
 
 /* Add a pointer when hovering over the thumbnail images */

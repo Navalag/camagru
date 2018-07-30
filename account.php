@@ -49,15 +49,17 @@ if ($total_items > 0) {
 	*/
 	$offset = ($current_page - 1) * $items_per_page;
 
-	$pagination = "<div class=\"pagination\">";
-	$pagination .= "Pages: ";  
+	$pagination = "<div class=\"pagination clearfix\">";
+	$pagination .= "<a href=\"account.php?pg=1\">&laquo;</a>";
+	// $pagination .= "<p class='pages'>Pages: </p>";
 	for ($i = 1; $i <= $total_pages; $i++) {
 		if ($i == $current_page) {
-			$pagination .= " <span>$i</span>";
+			$pagination .= "<a class=\"active\" href=\"#\">$i</a>";
 		} else {
-			$pagination .= " <a href='/account.php?pg=$i'>$i</a>";
+			$pagination .= "<a href='account.php?pg=$i'>$i</a>";
 		}
 	}
+	$pagination .= "<a href=\"account.php?pg=$i\">&raquo;</a>";
 	$pagination .= "</div>";
 	/* end of pagination */
 }
