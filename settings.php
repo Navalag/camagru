@@ -14,7 +14,7 @@ $pageTitle = "Settings profile - Camagru";
 $section = null;
 
 $nameErr = $passwordErr = $emailErr = "";
-$finalMessage = "";
+$finalError = $finalSuccess = "";
 $username = $email = $receive_notif = "";
 
 /*
@@ -28,7 +28,7 @@ try {
 	$user_info = $sql->setFetchMode(PDO::FETCH_ASSOC);
 	$user_info = $sql->fetchAll();
 	if (empty($user_info)) {
-		$finalMessage = "Error!";
+		$finalError = "Error!";
 	} else {
 		$user_info = $user_info[0];
 		$username = $user_info['username'];
@@ -38,7 +38,7 @@ try {
 	}
 }
 catch(PDOException $e) {
-	$finalMessage = 'Database failed! Reason: ' . $e->getMessage();
+	$finalError = 'Database failed! Reason: ' . $e->getMessage();
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -91,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$old_password = test_input($_POST['old_password']);
 		$old_password = md5($old_password);
 		if ($old_password != $password) {
-			$passwordErr = "Old password incorrect.";
+			$passwordErr = "Old password is incorrect.";
 		} else {
 			$new_password = test_input($_POST['new_password']);
 			// if (!preg_match("/^.*(?=.{8,})(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$/",$new_password)) {
@@ -118,7 +118,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	/*
 	** UPDATE DATABASE WITH NEW VALUES
 	*/
-	if (empty($nameErr) && empty($emailErr) && empty($passwordErr) && empty($finalMessage)) {
+	if (empty($nameErr) && empty($emailErr) && empty($passwordErr) && empty($finalError)) {
 		try {
 			$sql = $conn->prepare("UPDATE `users` 
 				SET `username` = '$new_username', 
@@ -130,11 +130,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$_SESSION['Username'] = $new_username;
 			$username = $new_username;
 			$email = $new_email;
-			$finalMessage = 'Your profile has been updated!';
+			$finalSuccess = 'Your profile has been updated!';
 			}
 		catch(PDOException $e)
 			{
-			$finalMessage = 'Database failed! Reason: ' . $e->getMessage();
+			$finalError = 'Database failed! Reason: ' . $e->getMessage();
 			}
 	}
 }
@@ -149,18 +149,27 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 
 	<div class="alerts form-table" style="
 			<?php 
-				if (empty($finalMessage) && empty($nameErr) 
-					&& empty($emailErr) && empty($passwordErr)){ 
+				if (empty($finalError) && empty($nameErr) 
+					&& empty($emailErr) && empty($passwordErr)
+					&& empty($finalSuccess)){ 
 					echo "display: none;"; 
 				}
 			?>">
+		<p class="message success" style="
+			<?php 
+				if (empty($finalSuccess)){ 
+					echo "display: none;"; 
+				}
+			?>">
+			<?php echo $finalSuccess;?>
+		</p>
 		<p class="message" style="
 			<?php 
-				if (empty($finalMessage)){ 
+				if (empty($finalError)){ 
 					echo "display: none;"; 
 				}
 			?>">
-			<?php echo $finalMessage;?>
+			<?php echo $finalError;?>
 		</p>
 		<p class="message" style="
 			<?php 
@@ -218,7 +227,10 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 
 	</fieldset>
 
-	<input type="checkbox" name="notifications" value="1" <?php if ($receive_notif == 1) { echo " checked"; } ?>> Receive notificatoins?
+	<label class="checbox-container">Do you want to receive email notificatoins when someone comments on your photo?
+	  <input type="checkbox" name="notifications" value="1" <?php if ($receive_notif == 1) { echo " checked"; } ?>>
+	  <span class="checkmark"></span>
+	</label>
 
 	<input class="button" type="submit" value="Update profile">
 

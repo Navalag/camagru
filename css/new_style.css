@@ -627,6 +627,9 @@ legend {
 .form-table {
 	max-width: 480px;
 }
+.form-sign-in {
+	max-width: 300px;
+}
 
 .upload-file--form {
 	background: #f4f2f7;
@@ -656,6 +659,70 @@ span.required {
 	font-size: 1em !important;
 }
 
+/*  ---- Custom input[checkbox] element ----  */
+
+.checbox-container {
+  display: block;
+  position: relative;
+  padding-left: 44px;
+  cursor: pointer;
+  font-size: .9em;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.checbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 9px;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #e7e3ed;
+}
+
+.checbox-container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+.checbox-container input:checked ~ .checkmark {
+  background-color: #7c669e;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.checbox-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.checbox-container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
 /*  ---- Alert messages ----*/
 
 .alerts {
@@ -670,6 +737,12 @@ span.required {
 	text-align: left;
 	margin-bottom: 0;
 	margin-top: 1em;
+}
+.success { background-color: #36b55c !important; }
+
+.message-link {
+	color: #fff !important;
+	text-decoration: underline;
 }
 
 /*.form-report {

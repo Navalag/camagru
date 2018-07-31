@@ -7,7 +7,7 @@ $pageTitle = "Sign Up - Camagru";
 $section = null;
 
 $nameErr = $emailErr = $passwordErr = $repeatPasswordErr = "";
-$finalMessage = "";
+$finalError = $finalSuccess = "";
 $username = $email = $password = $repeat_password = "";
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -82,10 +82,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 			}
 		catch (PDOException $e)
 			{
-			$finalMessage = 'User could not be added to the database. Reason: ' . $e->getMessage();
+			$finalError = 'User could not be added to the database. Reason: ' . $e->getMessage();
 			}
 	}
-	if (empty($finalMessage) && empty($nameErr) && empty($emailErr) && empty($passwordErr) && empty($repeatPasswordErr)) {
+	if (empty($finalError) && empty($nameErr) && empty($emailErr) && empty($passwordErr) && empty($repeatPasswordErr)) {
 		/*
 		** get the new user id
 		** lastInsertId - Get the ID generated in the last query
@@ -103,9 +103,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 			** SEND EMAIL
 			*/
 			if (sendmail_template_1($email, $userid, $key)) {
-				$finalMessage = "Thank You for registration. Please check your email for confirmation!";
+				$finalSuccess = "Thank You for registration. Please check your email for confirmation!";
 			} else {
-				$finalMessage = "Error: Could not send confirm email";
+				$finalError = "Error: Could not send confirm email";
 				$sql = $conn->prepare("DELETE FROM `users` 
 							WHERE `username` = '$username' LIMIT 1");
 				$sql->execute();
@@ -116,7 +116,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 			}
 		catch(PDOException $e)
 			{
-			$finalMessage = 'Confirm row was not added to the database. Reason: ' . $e->getMessage();
+			$finalError = 'Confirm row was not added to the database. Reason: ' . $e->getMessage();
 			}
 	}
 }
@@ -140,11 +140,11 @@ if(isset($_GET['id']) && isset($_GET['code']))
 						WHERE `id` = '$check_key[id]' LIMIT 1");
 			$sql->execute();
 		}
-		$finalMessage = 'User has been confirmed. Thank-You!';
+		$finalSuccess = 'Your account has been confirmed.<br>You can now <a href="/inc/sign_in.php" class="message-link">Sign In.</a>';
 		}
 	catch(PDOException $e)
 		{
-		$finalMessage = 'The user could not be confirmed Reason: ' . $e->getMessage();
+		$finalError = 'The user could not be confirmed Reason: ' . $e->getMessage();
 		}
 }
 $conn = null;
@@ -158,15 +158,21 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 
 	<p class="message" style="
 		<?php 
-			if (empty($finalMessage)){ 
+			if (empty($finalError)){ 
 				echo "display: none;"; 
 			}
 		?>">
-		<?php echo $finalMessage;?>
+		<?php echo $finalError;?>
+	</p>
+	<p class="message success" style="
+		<?php 
+			if (empty($finalSuccess)){ 
+				echo "display: none;"; 
+			}
+		?>">
+		<?php echo $finalSuccess;?>
 	</p>
 
-	<label for="name">Name: <span class="required">*</span></label>
-	<input type="text" id="name" name="username" value="<?php echo $username;?>">
 	<p class="message" style="
 		<?php 
 			if (empty($nameErr)){ 
@@ -175,9 +181,9 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 		?>
 		"><?php echo $nameErr;?>
 	</p>
+	<label for="name">Name: <span class="required">*</span></label>
+	<input type="text" id="name" name="username" value="<?php echo $username;?>">
 	
-	<label for="mail">Email: <span class="required">*</span></label>
-	<input type="email" id="mail" name="email" value="<?php echo $email;?>">
 	<p class="message" style="
 		<?php 
 			if (empty($emailErr)){ 
@@ -186,9 +192,9 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 		?>
 		"><?php echo $emailErr;?>
 	</p>
+	<label for="mail">Email: <span class="required">*</span></label>
+	<input type="email" id="mail" name="email" value="<?php echo $email;?>">
 	
-	<label for="password">Password: <span class="required">*</span></label>
-	<input type="password" id="password" name="password">
 	<p class="message" style="
 		<?php 
 			if (empty($passwordErr)){ 
@@ -197,9 +203,9 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 		?>
 		"><?php echo $passwordErr;?>
 	</p>
+	<label for="password">Password: <span class="required">*</span></label>
+	<input type="password" id="password" name="password">
 
-	<label for="repeat-password">Repeat Password: <span class="required">*</span></label>
-	<input type="password" id="repeat-password" name="repeat_password">
 	<p class="message" style="
 		<?php 
 			if (empty($repeatPasswordErr)){ 
@@ -208,6 +214,8 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 		?>
 		"><?php echo $repeatPasswordErr;?>
 	</p>
+	<label for="repeat-password">Repeat Password: <span class="required">*</span></label>
+	<input type="password" id="repeat-password" name="repeat_password">
 
 	<input class="button" type="submit" value="Sign Up">
 	<span class="form-text">Already have an acount? </span><a href="/inc/sign_in.php">Sign In</a>

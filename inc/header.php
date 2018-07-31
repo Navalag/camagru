@@ -18,7 +18,7 @@ if (!isset($_SESSION)) {
 	<!-- <link rel="stylesheet" href="/css/style.css"> -->
 </head>
 <body>
-	
+
 	<header class="main-header">
 		<div class="container clearfix">
 				
