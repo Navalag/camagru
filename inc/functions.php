@@ -11,7 +11,10 @@ function get_item_html($item, $current_page) {
 			. "<a class='button-account-2' href='"
 			. "inc/edit_photo/delete_photo.php?img_id="
 			. $item["img_id"]."&pg=".$current_page."'>remove</a>"
+			. "<a class='button-account-2' href='"
+			. $item["src"]."' download>download</a>"
 			. "</li>";
+			// var_dump($item);
 	return $output;
 }
 function get_div_item_html($item) {
