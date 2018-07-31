@@ -8,7 +8,7 @@ if (!isset($_SESSION['Username'])) {
 }
 
 $pageTitle = "Personal account - Camagru";
-$section = null;
+$section = "account";
 
 include($_SERVER["DOCUMENT_ROOT"]."/inc/functions.php");
 

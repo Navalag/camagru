@@ -4,7 +4,7 @@ include($_SERVER["DOCUMENT_ROOT"]."/config/connect.php");
 include($_SERVER["DOCUMENT_ROOT"]."/inc/functions.php");
 
 $pageTitle = "Sign Up - Camagru";
-$section = null;
+$section = "sign_up";
 
 $nameErr = $emailErr = $passwordErr = $repeatPasswordErr = "";
 $finalError = $finalSuccess = "";

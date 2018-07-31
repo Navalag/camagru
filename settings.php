@@ -11,7 +11,7 @@ include($_SERVER["DOCUMENT_ROOT"]."/config/connect.php");
 include($_SERVER["DOCUMENT_ROOT"]."/inc/functions.php");
 
 $pageTitle = "Settings profile - Camagru";
-$section = null;
+$section = "settings";
 
 $nameErr = $passwordErr = $emailErr = "";
 $finalError = $finalSuccess = "";
