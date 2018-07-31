@@ -851,6 +851,16 @@ th {
 	float: right;
 }
 
+.comments-block {
+	width: 100%;
+}
+
+.input-comment {
+	background: #fff;
+	font-size: .9em;
+	margin: 0 1em;
+}
+
 /* ================================= 
 	Media Queries
 ==================================== */

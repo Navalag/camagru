@@ -84,6 +84,33 @@ function get_likes_div_html($item) {
 /*
 ** create block with comments
 */
+// function get_comments_block_html($item) {
+// 	if (!isset($_SESSION)) {
+// 		session_start();
+// 	}
+// 	include($_SERVER["DOCUMENT_ROOT"]."/config/connect.php");
+	
+// 	$output = "";
+// 	/*
+// 	** check user session to prevent comments display when user
+// 	** is not authorized
+// 	*/
+// 	if (isset($_SESSION['Username'])) {
+// 		$output = "<div class='comments-block'>"
+// 				. "<div id='showcomments".$item['img_id']
+// 				. "'></div>"
+// 				. "<input type='text' class='input-comment'"
+// 				. "placeholder='Write a comment...'"
+// 				. "id='comment_entered".$item['img_id']."' "
+// 				. "onclick='submitComment(".$item['img_id'].")' />"
+// 				. "</div>";
+// 				// . "<input type='button' value='Comment' "
+// 				// . "onclick='submitComment(".$item['img_id']
+// 				// . ")' />";
+// 	}
+// 	return $output;
+// }
+
 function get_comments_block_html($item) {
 	if (!isset($_SESSION)) {
 		session_start();
