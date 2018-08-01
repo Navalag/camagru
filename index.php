@@ -50,7 +50,6 @@ if ($total_items > 0) {
 
 	$pagination = "<div class=\"pagination\">";
 	$pagination .= "<a href=\"index.php?pg=1\">&laquo;</a>";
-	// $pagination .= "<p class='pages'>Pages: </p>";
 	for ($i = 1; $i <= $total_pages; $i++) {
 		if ($i == $current_page) {
 			$pagination .= "<a class=\"active\" href=\"#\">$i</a>";

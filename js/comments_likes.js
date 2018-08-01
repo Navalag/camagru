@@ -4,7 +4,7 @@
 function like_unlike_photo(id) {
 	const like_unlike = document.querySelector('#img' + id);
 	const xhr = new XMLHttpRequest();
-	const url = "../inc/comments_likes/likes.php";
+	const url = "../inc/php-ajax/likes.php";
 	const img_id = id;
 	if (like_unlike.className === 'far fa-heart liked') {
 		var request = "unlike=1&img_id="+img_id;
@@ -74,7 +74,7 @@ function like_unlike_photo(id) {
 
 function submitComment(id) {
 	var request = new XMLHttpRequest();
-	var url = "../inc/comments_likes/comments.php";
+	var url = "../inc/php-ajax/comments.php";
 	var usercomment = document.getElementById("comment_entered" + id).value;
 	var img_id = id;
 	var vars= "comment="+usercomment+"&img_id="+img_id;

@@ -30,7 +30,6 @@ var ul = document.getElementById('photo');
 var removeLast = document.getElementById('removeLast');
 var sizeUpEffect = document.getElementById('sizeUp');
 var sizeDownEffect = document.getElementById('sizeDown');
-// var downloadPhoto = document.getElementById('download');
 var uploadIMG = document.getElementById('uploadImage');
 
 /*
@@ -102,9 +101,11 @@ function turnOnCamera() {
 		if (!streaming) {
 			height = video.videoHeight / (video.videoWidth/width);
 		
-			// Firefox currently has a bug where the height can't be read from
-			// the video, so we will make assumptions if this happens.
-		
+			/*
+			** Firefox currently has a bug 
+			** where the height can't be read from
+			** the video, so we will make assumptions if this happens.
+			*/
 			if (isNaN(height)) {
 				height = width / (4/3);
 			}
@@ -132,15 +133,15 @@ function takePicture() {
 	var imgs = cameraDiv.querySelectorAll(".temp");
 	var uploadedIMG = cameraDiv.querySelector('.uploaded');
 	var imgsLenght = imgs.length;
-	// getBoundingClientRect() method returns the size
-	// of an element and its position relative to the viewport.
+	/*
+	** getBoundingClientRect() method returns the size
+	** of an element and its position relative to the viewport.
+	*/
 	var parentPos = canvas.getBoundingClientRect();
 	var i = 0;
 
 	if (width && height) {
 		// first add on canvas picture from video stream
-		// canvas.width = width;
-		// canvas.height = height;
 		context.drawImage(video, 0, 0, width, height);
 		addMontagesOnCanvas();
 	} else if (uploadedIMG) {
@@ -165,10 +166,12 @@ function takePicture() {
 			context.drawImage(imgs[i], relativePos.left, relativePos.top, width, height);
 			i++;
 		}
-		// At the end turn off video stream
-		// and remove all superposable images from page, 
-		// means leave it only as effects on img we created above.
-		// Than turn on save photo button.
+		/*
+		** At the end turn off video stream
+		** and remove all superposable images from page, 
+		** means leave it only as effects on img we created above.
+		** Than turn on save photo button.
+		*/
 		if (video.src) {
 			video.src = "";
 			localstream.getTracks()[0].stop();
@@ -180,8 +183,10 @@ function takePicture() {
 			imgsLenght--;
 		}
 		savePhoto.removeAttribute('disabled');
-		// set width and height to null to prevent double call function
-		// takePicture()
+		/*
+		** set width and height to null to prevent double call function
+		** takePicture()
+		*/
 		width = null;
 		height = null;
 		uploadedIMG = null;
@@ -314,15 +319,6 @@ sizeDownEffect.addEventListener("click", function(ev) {
 	ev.preventDefault();
 });
 
-/*
-** Download photo
-*/
-// downloadPhoto.addEventListener("click", function(ev) {
-// 	this.href = canvas.toDataURL();
-// 	this.download = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-// 	ev.preventDefault();
-// });
-
 uploadIMG.addEventListener("click", function() {
 	var file = document.querySelector('input[type=file]').files[0];
 	var parentDiv = document.getElementById('cameraDiv');
@@ -335,11 +331,8 @@ uploadIMG.addEventListener("click", function() {
 	reader.onloadend = function () {
 		startVideo.style.display = 'none';
 		uploadForm.style.display = 'none';
-		// var videoTag = document.getElementById('videoElement');
-		// parentDiv.removeChild(videoTag);
 		newImg.setAttribute('src', reader.result);
 		newImg.setAttribute('class', 'uploaded');
-		// newImg.className = 'upload_img';
 		parentDiv.appendChild(newImg);
 	}
 });
@@ -348,60 +341,13 @@ function saveImage() {
 	var xhr = new XMLHttpRequest();
 	var imgFromCanvas = canvas.toDataURL("image/png");
 	var img = "img=" + imgFromCanvas;
-	xhr.open("POST", "../inc/edit_photo/save_photo.php", true);
+	xhr.open("POST", "../inc/php-ajax/save_photo.php", true);
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			console.log(xhr.responseText);
-			// photo.setAttribute('src', imgFromCanvas);
 			location.reload();
-			// var li = createLI(imgFromCanvas);
-			// ul.appendChild(li);
 		}
 	};
 	xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
 	xhr.send(img);
-
-	// function createLI(src) {
-	// 	function createElement(elementName, property, value) {
-	// 		const element = document.createElement(elementName);
-	// 		element[property] = value; 
-	// 		return element;
-	// 	}
-		
-	// 	function appendToLI(elementName, property, value) {
-	// 		const element = createElement(elementName, property, value);
-	// 		li.appendChild(element);
-	// 		return element;
-	// 	}
-		
-	// 	const li = document.createElement('li');
-	// 	appendToLI('img', 'src', src);
-	// 	appendToLI('button', 'textContent', 'remove');
-	// 	return li;
-	// }
 }
-
-/*
-** When user click on remove button in user photo gallery
-** below script will remove photo from page and from database on server
-*/
-// ul.addEventListener('click', (e) => {
-// 	if (e.target.tagName === 'BUTTON') {
-// 		const button = e.target;
-// 		const li = button.parentNode;
-// 		const ul = li.parentNode;
-// 		const img_alt = li.childNodes[0].alt;
-// 		const img = "img_id=" + img_alt;
-// 		const xhr = new XMLHttpRequest();
-
-// 		xhr.open("POST", "../inc/edit_photo/delete_photo.php", true);
-// 		xhr.onreadystatechange = function() {
-// 			if (xhr.readyState == 4 && xhr.status == 200) {
-// 				console.log(xhr.responseText);
-// 				ul.removeChild(li);
-// 			}
-// 		};
-// 		xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
-// 		xhr.send(img);
-// 	}
-// });

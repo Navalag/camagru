@@ -51,7 +51,6 @@ if ($total_items > 0) {
 
 	$pagination = "<div class=\"pagination clearfix\">";
 	$pagination .= "<a href=\"account.php?pg=1\">&laquo;</a>";
-	// $pagination .= "<p class='pages'>Pages: </p>";
 	for ($i = 1; $i <= $total_pages; $i++) {
 		if ($i == $current_page) {
 			$pagination .= "<a class=\"active\" href=\"#\">$i</a>";
@@ -83,7 +82,6 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 					Select image to upload:
 					<input type="file" name="fileToUpload" id="fileToUpload">
 					<input class="button" id="uploadImage" type="button" value="Upload Image">
-					<!-- <input type="submit" value="Upload Image" name="submit"> -->
 				</form>
 			</div>
 		</div>
@@ -95,7 +93,6 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 			<button class="button-account-1" id="snapPhoto" type="button" disabled><i class="fas fa-camera"></i></button>
 		</div>
 		
-		<!-- <h2 style="text-align:center">Montage your photo:</h2> -->
 		<div class="camera-canvas">
 			
 			<div class="photo-montages">
@@ -126,7 +123,6 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 				<img class="demo" src="img/effects/frame26.png" onclick="addFilterOnPhoto('img/effects/frame26.png')">
 			</div>
 
-			<!-- <input class="button" id="download" type="button" value="Download" disabled> -->
 			<input class="button" id="save" type="button" value="Save" disabled>
 
 		</div>
@@ -156,6 +152,6 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 
 </div>
 
-<script src="js/camera_handler_2.js"></script>
+<script src="js/camera.js"></script>
 
 <?php include($_SERVER["DOCUMENT_ROOT"].'/inc/footer.php'); ?>

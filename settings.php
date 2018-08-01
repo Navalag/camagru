@@ -28,7 +28,7 @@ try {
 	$user_info = $sql->setFetchMode(PDO::FETCH_ASSOC);
 	$user_info = $sql->fetchAll();
 	if (empty($user_info)) {
-		$finalError = "Error!";
+		$finalError = "DB Error!";
 	} else {
 		$user_info = $user_info[0];
 		$username = $user_info['username'];
