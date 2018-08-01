@@ -1,5 +1,5 @@
 /*
-	Colors:
+	Color scheme:
 
 	#645180 - dark violet (header, borders, headlines);
 	#e7e3ed - light violet (body);
@@ -22,6 +22,7 @@
 
 * {
 	box-sizing: border-box;
+	outline:none;
 }
 
 body {
@@ -33,7 +34,6 @@ body {
 
 p {
 	font-size: .95em;
-	/*margin-bottom: 1.8em;*/
 }
 
 h2,
@@ -76,14 +76,6 @@ img {
 	display: block;
 }
 
-/*.main-nav a {
-	font-size: .95em;
-	font-weight: bold;
-	color: #fff;
-	text-transform: uppercase;
-	letter-spacing: .5px;
-}*/
-
 .main-nav a:hover {
 	color: #fff;
 	background: #4c3d61;
@@ -108,11 +100,6 @@ img {
 .main-header {
 	background: #645180;
 }
-
-/*.media {
-	width: 640px;
-	height: 480px;
-}*/
 
 .camera {
 	position: relative;
@@ -144,8 +131,6 @@ img {
 
 .collage img {
 	width: 100%;
-/*	border: 1px solid #9885b2;
-	background: #9885b2;*/
 }
 
 .col.collage {
@@ -225,34 +210,20 @@ canvas {
 
 /*   ---- Account page styles ----   */
 
-/* Add a pointer when hovering over the thumbnail images */
-/*.cursor {
-	cursor: pointer;
-}*/
-
 .photo-montages {
 	display: flex;
 	overflow: auto;
-	/*overflow-y: hidden;*/
+	overflow-y: hidden;
 }
 
-/* Six columns side by side */
-/*.column {
-	float: left;
-	width: 16.66%;
-}*/
-
-/* Add a transparency effect for thumnbail images */
 .demo {
 	opacity: 0.6;
 	cursor: pointer;
-	/*width: 8em;*/
 	height: 6em;
 	padding: 3px;
 	margin: 2px;
 }
 
-/*.active,*/
 .demo:hover {
 	opacity: 1;
 }
@@ -268,75 +239,7 @@ canvas {
 	top: 0px;
 	left: 0px;
 	width: 100%;
-	/*object-fit: cover;*/
 }
-
-/*img {
-	vertical-align: middle;
-}*/
-
-/* Position the image container (needed to position the left and right arrows) */
-/*.container {
-	position: relative;
-}*/
-
-/* Hide the images by default */
-/*.mySlides {
-	display: none;
-}*/
-
-/* Next & previous buttons */
-/*.prev,
-.next {
-	cursor: pointer;
-	position: absolute;
-	top: 40%;
-	width: auto;
-	padding: 16px;
-	margin-top: -50px;
-	color: white;
-	font-weight: bold;
-	font-size: 20px;
-	border-radius: 0 3px 3px 0;
-	user-select: none;
-	-webkit-user-select: none;
-}*/
-
-/* Position the "next button" to the right */
-/*.next {
-	right: 0;
-	border-radius: 3px 0 0 3px;
-}*/
-
-/* On hover, add a black background color with a little bit see-through */
-/*.prev:hover,
-.next:hover {
-	background-color: rgba(0, 0, 0, 0.8);
-}*/
-
-/* Number text (1/3 etc) */
-/*.numbertext {
-	color: #f2f2f2;
-	font-size: 12px;
-	padding: 8px 12px;
-	position: absolute;
-	top: 0;
-}*/
-
-/* Container for image text */
-/*.caption-container {
-	text-align: center;
-	background-color: #222;
-	padding: 2px 16px;
-	color: white;
-}*/
-
-/*.row:after {
-	content: "";
-	display: table;
-	clear: both;
-}*/
-
 
 /* ================================= 
 	Form and Table Styles
@@ -344,155 +247,13 @@ canvas {
 
 /* ---- Forms ---- */
 
-/*
-
-input[type="text"],
-input[type="password"],
-input[type="date"],
-input[type="datetime"],
-input[type="email"],
-input[type="number"],
-input[type="search"],
-input[type="tel"],
-input[type="time"],
-input[type="url"],
-textarea,
-select {
-	background: rgba(255,255,255,0.1);
-	border: none;
-	font-size: 16px;
-	height: auto;
-	margin: 0;
-	outline: 0;
-	padding: 15px;
-	width: 100%;
-	background-color: #e8eeef;
-	color: #8a97a0;
-	box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
-	margin-bottom: 30px;
-}
-
-input[type="radio"],
-input[type="checkbox"] {
-	margin: 0 4px 8px 0;
-}
-
-select {
-	padding: 6px;
-	height: 32px;
-	border-radius: 2px;
-}
-
-button {
-	padding: 19px 39px 18px 39px;
-	color: #FFF;
-	background-color: #4bc970;
-	font-size: 18px;
-	text-align: center;
-	font-style: normal;
-	border-radius: 5px;
-	width: 100%;
-	border: 1px solid #3ac162;
-	border-width: 1px 1px 3px;
-	box-shadow: 0 -1px 0 rgba(255,255,255,0.1) inset;
-	margin-bottom: 10px;
-	margin-top: 15px;
-}
-
-fieldset {
-	margin-bottom: 30px;
-	border: none;
-}
-
-legend {
-	font-size: 1.4em;
-	margin-bottom: 10px;
-}
-
-label {
-	display: block;
-	margin-bottom: 8px;
-}
-
-label.light {
-	font-weight: 300;
-	display: inline;
-}
-
-.number {
-	background-color: #5fcf80;
-	color: #fff;
-	height: 30px;
-	width: 30px;
-	display: inline-block;
-	font-size: 0.8em;
-	margin-right: 4px;
-	line-height: 30px;
-	text-align: center;
-	text-shadow: 0 1px 0 rgba(255,255,255,0.2);
-	border-radius: 100%;
-}
-
-p.message {
-	background: #ffeca4;
-	border: 1px solid #f16702;
-	padding: 1em;
-	width: 444px;
-}*/
-
-/* ---- New forms ---- */
-
-/* ---- Button ---- */
-
-
-/*.button:last-child {
-	margin-right:0;
-}*/
-
-/*.button--primary {
-	background-color:#5fcf80;
-	border-color:#5fcf80;
-	color:#fff;
-}
-.button--primary:hover,
-.button--primary:active,
-.button--primary:focus {
-	background-color:#3ac162;
-	border-color:#3ac162;
-	color:#fff
-}*/
-
-/*.button--topic-php {
-	border-color:#7D669E !important;
-	color:#7D669E !important;
-}
-.button--topic-php:hover,
-.button--topic-php:active,
-.button--topic-php:focus {
-	border-color:#645180 !important;
-	color:#645180 !important;
-}
-
-.button--topic-php .button--primary {
-	background-color:#7D669E !important;
-	border-color:#7D669E !important;
-	color:#fff !important;
-}
-.button--topic-php .button--primary:hover,
-.button--topic-php.button--primary:active,
-.button--topic-php.button--primary:focus {
-	background-color:#645180 !important;
-	border-color:#645180 !important;
-}*/
-
-
 form {
 	max-width: 300px;
 	margin: 10px auto;
 	padding: 10px 20px;
-	/*background: #f4f7f8;*/
 	border-radius: 8px;
 }
+
 input {
 	border-radius: 4px;
 	box-shadow: none;
@@ -500,14 +261,12 @@ input {
 	border: solid 1px #9885b2;
 	padding: 8px 10px;
 	width:100%;
-	/*border-style: none;*/
 }
+
 input[type="button"]:disabled {
 	background-color: #8089b6;
 	border-color: #8089b6;
 }
-
-/*  ----  Additional Form Atributes -----  */
 
 label {
 	margin: .6em 0 .6em;
@@ -542,10 +301,6 @@ legend {
 	color:#fff;
 }
 
-.buttons-group {
-
-}
-
 .button-account-1 {
 	float: left;
 	width: 23%;
@@ -564,14 +319,7 @@ legend {
 }
 .button-account-1:focus,
 .button-account-1:active {
-	/*background: #f4f2f7;*/
 }
-/*.button-account:first-child {
-	margin-left: 0;
-}
-.button-account:last-child {
-	margin-right: 0;
-}*/
 
 .button-account-2 {
 	float: left;
@@ -640,6 +388,7 @@ legend {
 .form-table {
 	max-width: 480px;
 }
+
 .form-sign-in {
 	max-width: 300px;
 }
@@ -657,9 +406,11 @@ legend {
 	margin-top: .5em;
 	font-size: .89em;
 }
+
 span.form-text {
 	font-size: .95em;
 }
+
 span.required {
 	color:#ed5a5a;
 }
@@ -667,6 +418,7 @@ span.required {
 .inline-block--lable {
 	display: inline-block;
 }
+
 .right-align--link {
 	float: right;
 	font-size: 1em !important;
@@ -751,26 +503,13 @@ span.required {
 	margin-bottom: 0;
 	margin-top: 1em;
 }
+
 .success { background-color: #36b55c !important; }
 
 .message-link {
 	color: #fff !important;
 	text-decoration: underline;
 }
-
-/*.form-report {
-	padding:1.5rem;
-	margin-bottom:3rem;
-}
-.form-report .button {
-	margin-top:1rem;
-}
-.form-add {
-	padding:1.5rem;
-}
-.form-add .button {
-	margin-top:1rem;
-}*/
 
 /* ---- Tables ---- */
 
@@ -801,18 +540,6 @@ td {
 th {
 	font-size:.875rem;
 }
-/*thead th {
-	background-color:#f7f6f9 !important;
-}*/
-
-/*.forgot-pass {
-	float: right;
-}
-#not-block {
-	display: inline;
-}*/
-
-
 
 /* ---- Like-Comment icons ---- */
 
@@ -836,7 +563,6 @@ th {
 }
 .unliked.far {
 	font-weight: 400;
-	/*color: DimGray;*/
 }
 .unliked:hover {
 	font-weight: 600;
@@ -966,24 +692,3 @@ th {
 	}
 
 }
-
-@media (min-width: 958px) {
-
-
-	/*.container {
-		width: 90%;
-		max-width: 768px;
-	}*/
-
-	/*.primary {
-		width: 60%;
-	}
-
-	.secondary {
-		width: 40%;
-	}*/
-
-}
-
-
-
