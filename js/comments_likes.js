@@ -87,7 +87,8 @@ function submitComment(id) {
 			var comments_body = return_data.substr(i);
 			document.getElementById("comment_count" + id).innerHTML = comments_amount + " comments";
 			document.getElementById("showcomments" + id).innerHTML = comments_body;
-			usercomment = "";
+			document.getElementById("comment_entered" + id).value = "";
+
 		}
 	}
 	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
