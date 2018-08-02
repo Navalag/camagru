@@ -27,3 +27,6 @@ Create comment box with PHP AJAX SQL
 
 Implement likes unlikes with PHP SQL
 - http://codewithawa.com/posts/like-and-unlike-system-using-php-and-mysql-database
+
+Safe Password Hashing
+-http://php.net/manual/ru/faq.passwords.php#faq.password.storing-salts

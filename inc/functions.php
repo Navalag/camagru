@@ -8,10 +8,10 @@ function get_item_html($item, $current_page) {
 	$output = "<li><img class='border-wrapper user-img' src='" 
 			. $item["src"] . "' alt='" 
 			. $item["img_id"] . "' />" 
-			. "<a class='button-account-2' href='"
+			. "<a class='button-account-2 left-child' href='"
 			. "inc/php-ajax/delete_photo.php?img_id="
 			. $item["img_id"]."&pg=".$current_page."'>remove</a>"
-			. "<a class='button-account-2' href='"
+			. "<a class='button-account-2 right-child' href='"
 			. $item["src"]."' download>download</a>"
 			. "</li>";
 	return $output;

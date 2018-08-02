@@ -323,7 +323,8 @@ legend {
 
 .button-account-2 {
 	float: left;
-	width: 100%;
+	width: 45%;
+	margin: 0 5%;
 	color: #7c669e;
 	margin-bottom: 1.5em;
 	padding: .3em .5em;
@@ -334,8 +335,11 @@ legend {
 	-webkit-transition-duration: 0.1s; /* Safari */
 	transition-duration: 0.1s;
 }
-.button-account-2:first-child {
-	margin-right: 30%;
+.left-child {
+	margin-left: 0;
+}
+.right-child {
+	margin-right: 0;
 }
 
 .button-account-1:hover,

@@ -23,14 +23,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 			$nameErr = "Only letters and white space allowed"; 
 		}
 		// check if name exists in database
-		// $sql = $conn->prepare("SELECT * FROM `users` 
-		// 				WHERE `username` = '$username' LIMIT 1");
-		// $sql->execute();
-		// $check_user = $sql->setFetchMode(PDO::FETCH_ASSOC);
-		// $check_user = $sql->fetchAll();
-		// if (!empty($check_user)) {
-		// 	$nameErr = "User with this username already exists";
-		// }
+		$sql = $conn->prepare("SELECT * FROM `users` 
+						WHERE `username` = '$username' LIMIT 1");
+		$sql->execute();
+		$check_user = $sql->setFetchMode(PDO::FETCH_ASSOC);
+		$check_user = $sql->fetchAll();
+		if (!empty($check_user)) {
+			$nameErr = "User with this username already exists";
+		}
 	}
 
 	if (empty($_POST["email"])) {
@@ -74,7 +74,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 	** ADD USER TO DATABASE
 	*/
 	if (empty($nameErr) && empty($emailErr) && empty($passwordErr) && empty($repeatPasswordErr)) {
-		$password = md5($password);
+		$password = password_hash($password, PASSWORD_DEFAULT);
 		try {
 			$sql = $conn->prepare("INSERT INTO `users` 
 					VALUES(NULL,'$username','$password','$email',1,0)");

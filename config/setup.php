@@ -28,7 +28,7 @@ try {
 	$sql = "CREATE TABLE IF NOT EXISTS `users` (
 			`id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 			`username` varchar(50) NOT NULL default '',
-			`password` varchar(128) NOT NULL default '',
+			`password` varchar(255) NOT NULL default '',
 			`email` varchar(250) NOT NULL default '',
 			`notifications` binary(1) NOT NULL default '1',
 			`active` binary(1) NOT NULL default '0'

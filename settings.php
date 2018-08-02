@@ -89,10 +89,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	if (!empty($_POST["old_password"])) {
 		$old_password = test_input($_POST['old_password']);
-		$old_password = md5($old_password);
-		if ($old_password != $password) {
-			$passwordErr = "Old password is incorrect.";
-		} else {
+		// $old_password = md5($old_password);
+		if (password_verify($old_password, $password)) {
 			$new_password = test_input($_POST['new_password']);
 			// if (!preg_match("/^.*(?=.{8,})(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$/",$new_password)) {
 			// 	$passwordErr = "Password must be at least 8 characters and must contain at least one lower case letter, one upper case letter and one digit"; 
@@ -102,10 +100,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				if ($new_password != $confirm_new_password) {
 					$passwordErr = "Passwords doesn't match";
 				} else {
-					$new_password = md5($new_password);
+					$new_password = password_hash($new_password, PASSWORD_DEFAULT);
 					$password = $new_password;
 				}
 			}
+		} else {
+			$passwordErr = "Old password is incorrect.";
 		}
 	}
 

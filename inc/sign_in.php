@@ -28,20 +28,21 @@ if(isset($_POST["username"]) || isset($_POST["password"])) {
 	** CHECK USER IN DATABASE
 	*/
 	if (empty($errorMessage)) {
-		$password = md5($password);
 		try {
 			$sql = $conn->prepare("SELECT * FROM `users` 
-					WHERE `username` = '$username' AND `password` = '$password' AND `active` = 1");
+					WHERE `username` = '$username' AND `active` = 1 
+					LIMIT 1");
 			$sql->execute();
 			$check_user = $sql->setFetchMode(PDO::FETCH_ASSOC);
 			$check_user = $sql->fetchAll();
-			if (empty($check_user)) {
-				$errorMessage = "Incorrect username or password";
-			} else {
+			if (!empty($check_user) 
+				&& password_verify($password, $check_user[0]['password'])) {
 				session_start();
 				$_SESSION['Username'] = $check_user[0]["username"];
 				$_SESSION['userID'] = $check_user[0]["id"];
 				header("location:http://localhost:8080/account.php");
+			} else {
+				$errorMessage = "Incorrect username or password";
 			}
 		}
 		catch (PDOException $e) {
@@ -66,7 +67,7 @@ if (isset($_POST['email']) || isset($_GET['forgot_pass'])) {
 		}
 	}
 	$new_password = random_str(10);
-	$hash_new_password = md5($new_password);
+	$hash_new_password = password_hash($new_password, PASSWORD_DEFAULT);
 	/*
 	** SEND EMAIL
 	*/
