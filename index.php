@@ -98,7 +98,7 @@ include($_SERVER["DOCUMENT_ROOT"].'/inc/header.php');
 
 <?php } ?>
 
-<div class="container clearfix">
+<div class="container main-page-container clearfix">
 
 	<!-- display posts, likes and comments gotten from the database  -->
 	<ul class="img-container">

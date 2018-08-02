@@ -132,7 +132,7 @@ function get_comments_block_html($item) {
 				. "<th>Comment:</th>"
 				. "</tr>"
 				. "<tr>"
-				. "<td><textarea cols='30' rows='2' "
+				. "<td><textarea cols='28' rows='2' "
 				. "id='comment_entered".$item['img_id']
 				. "'></textarea></td>"
 				. "</tr>"

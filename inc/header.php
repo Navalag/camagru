@@ -19,7 +19,7 @@ if (!isset($_SESSION)) {
 <body>
 
 	<header class="main-header">
-		<div class="container header-wrap clearfix">
+		<div class="container <?php if ($section == "account") { echo "header-wrap "; } ?>clearfix">
 				
 			<h1 class='name'><a class='logo' href='/'><i class='fas fa-camera-retro'></i> camagru</a></h1>
 
