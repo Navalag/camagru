@@ -4,7 +4,7 @@
 ** calculated based on the aspect ratio of the input stream.
 */
 var width = 640;
-var height = 0;
+var height = 480;
 /*
 ** |streaming| indicates whether or not we're currently streaming
 ** video from the camera. Obviously, we start at false.
@@ -75,7 +75,7 @@ function turnOnCamera() {
 	navigator.getMedia = ( navigator.getUserMedia ||
 							navigator.webkitGetUserMedia ||
 							navigator.mozGetUserMedia ||
-							navigator.msGetUserMedia);
+							navigator.msGetUserMedia );
 
 	navigator.getMedia(
 		{
@@ -84,39 +84,12 @@ function turnOnCamera() {
 		},
 		function(stream) {
 			localstream = stream;
-			if (navigator.mozGetUserMedia) {
-				video.mozSrcObject = stream;
-			} else {
-				var vendorURL = window.URL || window.webkitURL;
-				video.src = vendorURL.createObjectURL(stream);
-			}
-			video.play();
+			video.srcObject = stream;
 		},
 		function(err) {
 			console.log("An error occured! " + err);
 		}
 	);
-
-	video.addEventListener('canplay', function(ev){
-		if (!streaming) {
-			height = video.videoHeight / (video.videoWidth/width);
-		
-			/*
-			** Firefox currently has a bug 
-			** where the height can't be read from
-			** the video, so we will make assumptions if this happens.
-			*/
-			if (isNaN(height)) {
-				height = width / (4/3);
-			}
-		
-			video.setAttribute('width', width);
-			video.setAttribute('height', height);
-			canvas.setAttribute('width', width);
-			canvas.setAttribute('height', height);
-			streaming = true;
-		}
-	}, false);
 }
 
 /*
@@ -140,16 +113,16 @@ function takePicture() {
 	var parentPos = canvas.getBoundingClientRect();
 	var i = 0;
 
-	if (width && height) {
-		// first add on canvas picture from video stream
-		context.drawImage(video, 0, 0, width, height);
-		addMontagesOnCanvas();
-	} else if (uploadedIMG) {
+	if (uploadedIMG) {
 		width = uploadedIMG.width;
 		height = uploadedIMG.height;
 		canvas.width = width;
 		canvas.height = height;
 		context.drawImage(uploadedIMG, 0, 0, width, height);
+		addMontagesOnCanvas();
+	} else if ((width && height) && !uploadedIMG) {
+		// first add on canvas picture from video stream
+		context.drawImage(video, 0, 0, width, height);
 		addMontagesOnCanvas();
 	}
 	function addMontagesOnCanvas() {

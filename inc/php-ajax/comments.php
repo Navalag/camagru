@@ -14,7 +14,6 @@ $date = date("d-m-Y");
 /*
 ** check if user enter new comment than add it to database
 */
-// var_dump($_POST['comment']);
 if ((!empty($comment_entered)) && (!empty($img_id))) {
 	try {
 		$sql = $conn->prepare("SELECT * FROM `user_img` 

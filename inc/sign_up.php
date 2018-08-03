@@ -42,23 +42,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 			$emailErr = "Invalid email format"; 
 		}
 		// check if email exists in database
-		// $sql = $conn->prepare("SELECT * FROM `users` 
-		// 				WHERE `email` = '$email' LIMIT 1");
-		// $sql->execute();
-		// $check_email = $sql->setFetchMode(PDO::FETCH_ASSOC);
-		// $check_email = $sql->fetchAll();
-		// if (!empty($check_email)) {
-		// 	$emailErr = "This email already exists in our database";
-		// }
+		$sql = $conn->prepare("SELECT * FROM `users` 
+						WHERE `email` = '$email' LIMIT 1");
+		$sql->execute();
+		$check_email = $sql->setFetchMode(PDO::FETCH_ASSOC);
+		$check_email = $sql->fetchAll();
+		if (!empty($check_email)) {
+			$emailErr = "This email already exists in our database";
+		}
 	}
 
 	if (empty($_POST["password"])) {
     	$passwordErr = "Password is required";
   	} else {
 		$password = test_input($_POST['password']);
-		// if (!preg_match("/^.*(?=.{8,})(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$/",$password)) {
-		// 	$passwordErr = "Password must be at least 8 characters and must contain at least one lower case letter, one upper case letter and one digit"; 
-		// }
+		if (!preg_match("/^.*(?=.{8,})(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$/",$password)) {
+			$passwordErr = "Password must be at least 8 characters and must contain at least one lower case letter, one upper case letter and one digit"; 
+		}
 	}
 
 	if (empty($_POST["repeat_password"])) {
@@ -91,10 +91,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 		** lastInsertId - Get the ID generated in the last query
 		*/
 		$userid = $conn->lastInsertId();
-		//create a random key
+		// create a random key
 		$key = $username . $email . date('mY');
 		$key = md5($key);
-		//add confirm row
+		// add confirm row
 		try {
 			$sql = $conn->prepare("INSERT INTO `confirm` 
 					VALUES(NULL,'$userid','$key','$email')");
