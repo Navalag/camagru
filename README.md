@@ -1,6 +1,6 @@
-# camagru
-A small Instagram-like site allowing users to create and share photo-montages
+Camagru is a small Instagram-like site allowing you to create and share photo-montages.
 
+Simply make photo, add funny effects and leave your footprint  in history.
 
 Useful links:
 
