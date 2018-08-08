@@ -84,4 +84,4 @@ Also please find JavaScript and CSS files in /js :file_folder: and /css :file_fo
 
 :large_blue_diamond:  [Implement likes unlikes with PHP SQL](http://codewithawa.com/posts/like-and-unlike-system-using-php-and-mysql-database)
 
-:large_blue_diamond:  [Safe Password Hashing](http://php.net/manual/ru/faq.passwords.php#faq.password.storing-salts)
+:large_blue_diamond:  [Safe Password Hashing](http://php.net/manual/en/faq.passwords.php)
