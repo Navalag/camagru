@@ -64,7 +64,7 @@ At **/inc** folder :file_folder: you can find **header**, **footer**, **sign in*
 
 At **/config** :file_folder: stored database configurations and setup files.
 
-Also please find JavaScript and CSS files in /js :file_folder: and /css :file_folder: folders according.
+Also please find JavaScript and CSS files in **/js** :file_folder: and **/css** :file_folder: folders according.
 
 ## USEFUL LINKS:
 
