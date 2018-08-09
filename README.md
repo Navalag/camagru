@@ -9,6 +9,8 @@ App's users can select an image in a list of superposable images (for example a 
 
 All captured images are public, likeables and commentable.
 
+**Please find subject with full description [here](camagru.en.pdf).**
+
 <img src="screenshots/screen2.png">
 
 <img src="screenshots/screen3.png">
