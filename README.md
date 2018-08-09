@@ -9,57 +9,57 @@ App's users can select an image in a list of superposable images (for example a 
 
 All captured images are public, likeables and commentable.
 
-<img src="screenshots/screen2.png" width="800">
+<img src="screenshots/screen2.png">
 
-<img src="screenshots/screen3.png" width="800">
+<img src="screenshots/screen3.png">
 
-<img src="screenshots/screen4.png" width="800">
+<img src="screenshots/screen4.png">
 
-<img src="screenshots/screen1.png" width="800">
+<img src="screenshots/screen1.png">
 
 ## DESCRIPTION OF MY IMPLEMENTATION:
 
 ### The project is divided into :three: parts.
 
-:one: Profile Page:
+#### :one: Profile Page:
 
-- :large_orange_diamond:  get access to the camera (check it in different browsers);
+:large_orange_diamond:  get access to the camera (check it in different browsers);
  
-- :large_orange_diamond:  making photo;
+:large_orange_diamond:  making photo;
  
-- :large_orange_diamond:  upload image from computer;
+:large_orange_diamond:  upload image from computer;
  
-- :large_orange_diamond:  add frames, effects or filters on captured photo or as preview on video stream;
+:large_orange_diamond:  add frames, effects or filters on captured photo or as preview on video stream;
  
-- :large_orange_diamond:  save edited image to a personal gallery (and of course - database :wink:);
+:large_orange_diamond:  save edited image to a personal gallery (and of course - database :wink:);
  
-- :large_orange_diamond:  delete personal images.
+:large_orange_diamond:  delete personal images.
  
-:two: User Management:
+#### :two: User Management:
 
-- :large_orange_diamond:  sign up;
+:large_orange_diamond:  sign up;
  
-- :large_orange_diamond:  sign in;
+:large_orange_diamond:  sign in;
  
-- :large_orange_diamond:  sign out;
+:large_orange_diamond:  sign out;
  
-- :large_orange_diamond:  email confirmation;
+:large_orange_diamond:  email confirmation;
  
-- :large_orange_diamond:  edit profile;
+:large_orange_diamond:  edit profile;
  
-- :large_orange_diamond:  change password;
+:large_orange_diamond:  change password;
  
-- :large_orange_diamond:  forgot password.
+:large_orange_diamond:  forgot password.
  
-:three: Public Gallery:
+#### :three: Public Gallery:
 
-- :large_orange_diamond:  show all images from all users ordered by date of creation;
+:large_orange_diamond:  show all images from all users ordered by date of creation;
  
-- :large_orange_diamond:  allow like images;
+:large_orange_diamond:  allow like images;
  
-- :large_orange_diamond:  allow comment images;
+:large_orange_diamond:  allow comment images;
  
-- :large_orange_diamond:  add pagination.
+:large_orange_diamond:  add pagination.
 
 ### Structure of the project:
 
