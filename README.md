@@ -3,11 +3,19 @@
 
 Camagru is the project developed without any frameworks nor external libraries, only with native PHP, JavaScript, CSS and HTML.
 
-The idea is to create a small web aplication where users can make basic photo editing using theirs webcams and some predefined images. 
+The idea is to create a small web application where users can make basic photo editing using theirs webcams and some predefined images.
 
 App's users can select an image in a list of superposable images (for example a picture frame or other "we don't wanna know what you are using this for" objects), take picture with his/her webcam and admire the result that is mixing both pictures.
 
 All captured images are public, likeables and commentable.
+
+<img src="screenshots/screen2.png" width="800">
+
+<img src="screenshots/screen3.png" width="800">
+
+<img src="screenshots/screen4.png" width="800">
+
+<img src="screenshots/screen1.png" width="800">
 
 ## DESCRIPTION OF MY IMPLEMENTATION:
 
@@ -23,7 +31,7 @@ All captured images are public, likeables and commentable.
  
 - :large_orange_diamond:  add frames, effects or filters on captured photo or as preview on video stream;
  
-- :large_orange_diamond:  save edited image to a personal gallery (and offcourse - database :wink:);
+- :large_orange_diamond:  save edited image to a personal gallery (and of course - database :wink:);
  
 - :large_orange_diamond:  delete personal images.
  
@@ -85,3 +93,8 @@ Also please find JavaScript and CSS files in **/js** :file_folder: and **/css** 
 :large_blue_diamond:  [Implement likes unlikes with PHP SQL](http://codewithawa.com/posts/like-and-unlike-system-using-php-and-mysql-database)
 
 :large_blue_diamond:  [Safe Password Hashing](http://php.net/manual/en/faq.passwords.php)
+
+## HOW TO CONTACT ME:
+
+If you found mistake || bug || have any questions || suggestions, please feel free to contact me at
+agalavan@student.unit.ua
