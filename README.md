@@ -3,55 +3,63 @@
 
 Camagru is the project developed without any frameworks nor external libraries, only with native PHP, JavaScript, CSS and HTML.
 
-The idea is to create a small web aplication where users can make basic photo editing using theirs webcams and some predefined images. 
+The idea is to create a small web application where users can make basic photo editing using theirs webcams and some predefined images.
 
 App's users can select an image in a list of superposable images (for example a picture frame or other "we don't wanna know what you are using this for" objects), take picture with his/her webcam and admire the result that is mixing both pictures.
 
 All captured images are public, likeables and commentable.
 
+<img src="screenshots/screen2.png">
+
+<img src="screenshots/screen3.png">
+
+<img src="screenshots/screen4.png">
+
+<img src="screenshots/screen1.png">
+
 ## DESCRIPTION OF MY IMPLEMENTATION:
 
 ### The project is divided into :three: parts.
 
-:one: Profile Page:
+#### :one: Profile Page:
 
-- :large_orange_diamond:  get access to the camera (check it in different browsers);
+:large_orange_diamond:  get access to the camera (check it in different browsers);
  
-- :large_orange_diamond:  making photo;
+:large_orange_diamond:  making photo;
  
-- :large_orange_diamond:  upload image from computer;
+:large_orange_diamond:  upload image from computer;
  
-- :large_orange_diamond:  add frames, effects or filters on captured photo or as preview on video stream;
+:large_orange_diamond:  add frames, effects or filters on captured photo or as preview on video stream;
  
-- :large_orange_diamond:  save edited image to a personal gallery (and offcourse - database :wink:);
+:large_orange_diamond:  save edited image to a personal gallery (and of course - database :wink:);
  
-- :large_orange_diamond:  delete personal images.
+:large_orange_diamond:  delete personal images.
  
-:two: User Management:
+#### :two: User Management:
 
-- :large_orange_diamond:  sign up;
+:large_orange_diamond:  sign up;
  
-- :large_orange_diamond:  sign in;
+:large_orange_diamond:  sign in;
  
-- :large_orange_diamond:  sign out;
+:large_orange_diamond:  sign out;
  
-- :large_orange_diamond:  email confirmation;
+:large_orange_diamond:  email confirmation;
  
-- :large_orange_diamond:  edit profile;
+:large_orange_diamond:  edit profile;
  
-- :large_orange_diamond:  change password;
+:large_orange_diamond:  change password;
  
-- :large_orange_diamond:  forgot password.
+:large_orange_diamond:  forgot password.
  
-:three: Public Gallery:
+#### :three: Public Gallery:
 
-- :large_orange_diamond:  show all images from all users ordered by date of creation;
+:large_orange_diamond:  show all images from all users ordered by date of creation;
  
-- :large_orange_diamond:  allow like images;
+:large_orange_diamond:  allow like images;
  
-- :large_orange_diamond:  allow comment images;
+:large_orange_diamond:  allow comment images;
  
-- :large_orange_diamond:  add pagination.
+:large_orange_diamond:  add pagination.
 
 ### Structure of the project:
 
@@ -85,3 +93,8 @@ Also please find JavaScript and CSS files in **/js** :file_folder: and **/css** 
 :large_blue_diamond:  [Implement likes unlikes with PHP SQL](http://codewithawa.com/posts/like-and-unlike-system-using-php-and-mysql-database)
 
 :large_blue_diamond:  [Safe Password Hashing](http://php.net/manual/en/faq.passwords.php)
+
+## HOW TO CONTACT ME:
+
+If you found mistake || bug || have any questions || suggestions, please feel free to contact me at
+agalavan@student.unit.ua
