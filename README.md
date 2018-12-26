@@ -1,7 +1,7 @@
 # A small Instagram-like site allowing users to create and share photo-montages
 ## Simply make photo :camera:, add funny effects :sparkles: and leave your footprint :feet: in history.
 
-Camagru is the project developed without any frameworks nor external libraries, only with native PHP, JavaScript, CSS and HTML.
+Camagru is the project developed without any frameworks nor external libraries, **only with native PHP, JavaScript, CSS and HTML**.
 
 The idea is to create a small web application where users can make basic photo editing using theirs webcams and some predefined images.
 
